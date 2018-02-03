@@ -1,4 +1,0 @@
-# command /tele <text> <number>:
-	# trigger:
-		# set {warteleport%arg-1%%arg-2%} to player's location
-		# message "[Debug]: Saved your locaiton including where you are facing."

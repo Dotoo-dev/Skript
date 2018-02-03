@@ -1,7 +1,0 @@
-
-on drop:
-	# player is not op
-	# send "test" to all ops
-	cancel event
-on death:
-	clear drops
