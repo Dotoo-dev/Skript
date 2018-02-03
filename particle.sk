@@ -1,0 +1,13 @@
+# every 5 second:
+	# set {flame.%UUID of player%} to location of player
+	# show 3 "flame" particles at {votecrateparticle} for all player offset by 0.4, 0.7, 0.4
+
+# command /setvoteparticle:
+	# trigger:
+		# set {votecrateparticle} at location of player
+		
+# command /setp1:
+	# trigger:
+		# player is op
+		# spawn a silverfish
+		# apply invisibility to last spawned entity

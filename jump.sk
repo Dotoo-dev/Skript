@@ -1,0 +1,51 @@
+command /jumppad <number>:
+	usage: /jumppad <数字> 数字部分はジャンプの強度になるぽっぽ！
+	trigger:
+		player is op
+		give a stone plate named "&5Jumppad" with lore "%arg-1%||&f上の数字はジャンプ強度だよ！" to player
+		
+on place of stone plate:
+	name of player's tool is "&5Jumppad"
+	if player is op:
+		set {jumppad.%event-block%} to 1
+	else:
+		cancel event
+on break of stone plate:
+	{jumppad.%event-block%} is set
+	if player is op:
+		clear {jumppad.%event-block%}
+
+on pressure plate:
+	{jumppad.%event-block%} is set
+	if difference between {jumped%player%} and now is less than 10 seconds:
+		stop
+	else:
+		execute console command "effect %player% minecraft:levitation 1 50"
+		send "&7You used jump pad! You may use the pad every 10 seconds :)"
+		set {jumped%player%} to now
+		
+command /jumppad2 <number>:
+	usage: /jumppad <数字> 数字部分はジャンプの強度になるぽっぽ！
+	trigger:
+		player is op
+		give a stone plate named "&4Jumppad" with lore "%arg-1%||&f上の数字はジャンプ強度だよ！" to player
+		
+on place of stone plate:
+	name of player's tool is "&4Jumppad"
+	if player is op:
+		set {jumppad2.%event-block%} to line 1 of lore of held item of player parsed as number
+	else:
+		cancel event
+on break of stone plate:
+	{jumppad2.%event-block%} is set
+	if player is op:
+		clear {jumppad2.%event-block%}
+
+on pressure plate:
+	{jumppad2.%event-block%} is set
+	if difference between {jumped2%player%} and now is less than 1 seconds:
+		stop
+	else:
+		execute console command "effect %player% minecraft:levitation 1 %{jumppad2.%event-block%}%"
+		send "&7You used jump pad! You may use the pad every 1 seconds :)"
+		set {jumped2%player%} to now

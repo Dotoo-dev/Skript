@@ -1,0 +1,6 @@
+on first join:
+	# broadcast "&eWelcome to THE WAR II, %player% !!"
+	give 256 nether brick named "&fCreeper Coin" to player
+	give 256 nether quartz named "&fMoosh Coin" to player
+	execute console command "/warp spawn %player%"
+	give crackshot weapon "bombkit1" to player

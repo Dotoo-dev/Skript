@@ -1,0 +1,8 @@
+# on right click:
+	# player is op
+	# if distance between player and targeted entity is less than 15:
+		# send "within 15"
+	# else:
+		# send "outside"
+# on crackshot reload:
+	# broadcast "debug: reloading time:%event-number%"

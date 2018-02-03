@@ -1,0 +1,31 @@
+command /spawn:
+	trigger:
+		if player is in world "city" or "syoteru" or "spawn" or "huntmap" or "kihu":
+			execute console command "warp spawn %player%"
+			execute console command "scoreboard teams join default %player%"
+			set {inpracticeonoff%player%} to 0
+			set {inpractice%player%snow1} to 0
+			set {inpractice%player%snow2} to 0
+			set {inpractice%player%desert1} to 0
+			set {inpractice%player%desert2} to 0
+			set {inpractice%player%nether1} to 0
+			set {inpractice%player%nether2} to 0
+			set {inpractice%player%land1} to 0
+			set {inpractice%player%land2} to 0
+			set {inpractice%player%plat1} to 0
+			set {inpractice%player%plat2} to 0
+			set {inpractice%player%jungle1} to 0
+			set {inpractice%player%jungle2} to 0
+			set {inpractice%player%ruin1} to 0
+			set {inpractice%player%ruin2} to 0
+			set {inpractice%player%end1} to 0
+			set {inpractice%player%end2} to 0
+			set {namecolor%player%} to "&f"
+			execute console command "settabname %player% white"
+			# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+		else:
+			if {war.inteam.creeper.%player%} is 1:
+				damage player by 100 hearts
+			else if {war.inteam.moosh.%player%} is 1:
+				damage player by 100 hearts
+			message "&7You've suicided to return to your spawn !!"

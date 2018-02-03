@@ -1,0 +1,246 @@
+command /sendchat <text>:
+	trigger:
+		loop all players:
+			send colored "<light grey>[Lv%level of player%]<purple> *<white>%display name of player%: %arg-1%" to loop-player
+command /sendrania <text>:
+	trigger:
+		loop all players:
+			send colored "<light grey>[Lv86499]<purple> <white>Rania: %arg-1%" to loop-player
+
+command /borderchat <text>:
+	trigger:
+		player is op
+		broadcast "&7&m&l----------------------------------"
+		broadcast colored "%arg-1%"
+		broadcast "&7&m&l----------------------------------"
+
+command /a <text>:
+	trigger:
+		player is op
+		broadcast "&d[OP %player%]: %arg-1%"
+
+command /setchatname <player> <text>:
+	trigger:
+		player is op
+		set the arg-1's display name to "%arg-2%"
+		
+command /clearchatname <player>:
+	trigger:
+		player is op
+		clear the arg-1's display name
+		
+command /smute <player> <text>:
+	usage: /smute <player名> <on/off/check>
+	trigger:
+		player is op
+		if arg-2 is "on":
+			set {silentmuted%player-arg%} to 1
+			send "%player-arg%のsmute状態を&aオンにした"
+		if arg-2 is "off":
+			set {silentmuted%player-arg%} to 0
+			send "%player-arg%のsmute状態を&aオフにした"
+		if arg-2 is "check":
+			send "%player-arg%のsmute状態は &a%{silentmuted%player-arg%}% &fです(1がミュート、0がオフ)"
+		
+command /nickname <player> <text> <text>:
+	trigger:
+		player is op
+		if arg-2 is "4":
+			set display name of player-arg to "&4%arg-3%"
+		if arg-2 is "c":
+			set display name of player-arg to "&c%arg-3%"
+		if arg-2 is "6":
+			set display name of player-arg to "&6%arg-3%"
+		if arg-2 is "e":
+			set display name of player-arg to "&e%arg-3%"
+		if arg-2 is "2":
+			set display name of player-arg to "&2%arg-3%"
+		if arg-2 is "a":
+			set display name of player-arg to "&a%arg-3%"
+		if arg-2 is "b":
+			set display name of player-arg to "&b%arg-3%"
+		if arg-2 is "3":
+			set display name of player-arg to "&3%arg-3%"
+		if arg-2 is "1":
+			set display name of player-arg to "&1%arg-3%"
+		if arg-2 is "9":
+			set display name of player-arg to "&9%arg-3%"
+		if arg-2 is "d":
+			set display name of player-arg to "&d%arg-3%"
+		if arg-2 is "5":
+			set display name of player-arg to "&5%arg-3%"
+		if arg-2 is "f":
+			set display name of player-arg to "&f%arg-3%"
+		if arg-2 is "7":
+			set display name of player-arg to "&7%arg-3%"
+		if arg-2 is "8":
+			set display name of player-arg to "&8%arg-3%"
+		if arg-2 is "0":
+			set display name of player-arg to "&0%arg-3%"
+		send "%display name of player-arg%"
+		
+on chat:
+	cancel event
+	if message contains "##opme":
+		broadcast "%player%さんにOP権限が与えられました。"
+		wait 30 seconds
+		execute console command "/kick %player% んなわけねえだろハゲ！！！！！！！"
+	
+	if the last 1 characters of message is "ゾ":
+		send "&7性的指向に触れるような言葉、特に淫夢語録の使用は控えるよう注意をお願いします。フィルタリングを迂回してこれを繰り返そうとする行為はLGBTの方への攻撃的発言として&c処罰対象&7と成り得ます。" to player
+		stop
+	if the last 2 characters of message is "ゾ～" or "ゾー" or "戒め" or "威圧" or "便乗" or "察し" or "ぃ！" or "ィ！" or "ぃ!" or "ィ!" or "ぇ！" or "ェ！" or "ぇ!" or "ェ!":
+		send "&7性的指向に触れるような言葉、特に淫夢語録の使用は控えるよう注意をお願いします。フィルタリングを迂回してこれを繰り返そうとする行為はLGBTの方への攻撃的発言として&c処罰対象&7と成り得ます。" to player
+		stop
+		
+	if the last 3 characters of message is "悲しみ" or "威圧)" or "威圧）" or "戒め)" or "戒め）" or "便乗)" or "便乗）" or "察し)" or "察し）":
+		send "&7性的指向に触れるような言葉、特に淫夢語録の使用は控えるよう注意をお願いします。フィルタリングを迂回してこれを繰り返そうとする行為はLGBTの方への攻撃的発言として&c処罰対象&7と成り得ます。" to player
+		stop
+	
+	if the last 3 characters of message is "悲しみ" or "威圧)" or "威圧）" or "戒め)" or "戒め）" or "便乗)" or "便乗）":
+		send "&7性的指向に触れるような言葉、特に淫夢語録の使用は控えるよう注意をお願いします。フィルタリングを迂回してこれを繰り返そうとする行為はLGBTの方への攻撃的発言として&c処罰対象&7と成り得ます。" to player
+		stop
+		
+	if the message contains "こ↑こ↓" or "これもうわかんねぇな" or "ファ！？" or "ﾌｧ！？" or "当たり前だよなぁ" or "ありがとナス" or "ありがとﾅｽ" or "いいゾ" or "いいｿﾞ" or "(ドン引き" or "(ドン引き" or "力抜けよ" or "悲しいなぁ" or "これはもうわかんねえな" or "これもうわかんねえな" or "114514" or "１１４５１４" or "多少はね？" or "まぁ多少はね?" or "やべぇよやべぇよ" or "やべえよやべえよ" or "なんでもするって言ったよね" or "何でもするって言ったよね" or "なんでもするっていったよね" or "おっそうだな" or "おっ、そうだな" or "やりますねえ！" or "やりますねえ!" or "力抜けよ" or "あくしろよ" or "♂" or "go is god" or "何でもしますから!" or "なんでもしますから！" or "何でもしますから！" or "なんでもしますから!" or "当たり前だよなぁ？" or "あたりまえだよなぁ？" or "当たり前だよなぁ?" or "当たり前だよなぁ？":
+		send "&7禁止された言葉を検出したためチャットをフィルタリングしました。" to player
+		stop
+	if level of player is less than 100:
+		if message contains "オススメ" or "おススメ" or "osusume" or "おすすめ" or "お勧め" or "薦め" or "強い武器" or "つよい武器" or "つよいぶき" or "強いぶき" or "saikyo" or "最強" or "さいきょう" or "tuyoibuki" or "tuyoi buki" or "itiban tuyo" or "itibantuyo" or "いいぶき" or "いい武器" or "iibuki":
+			add 1 to {osusumenobukihanandesuka}
+			send "&7&m&l----------------------------------"
+			send "おすすめの武器や強い武器がどれかわからないって？"
+			send "ならこのへん見るといいと思うよー->https://goo.gl/gzbmgN"
+			send "ちなみにこの質問は今までに%{osusumenobukihanandesuka}%回されてるよ！"
+			send "&7&m&l----------------------------------"
+			stop
+		if message contains "何する" or "何をする" or "なにをする" or "なにする" or "何をすれば" or "なにをすれば" or "何すれば" or "なにすれば" or "naniwosure" or "naniwo sure" or "なにすれば" or "どんなサーバー" or "donnas" or "donna s":
+			send "&7&m&l----------------------------------"
+			send "このサーバーは銃で戦うサーバーだよー！まずはじめは"
+			send "お店で好きな銃を買ってからWARって書いてある"
+			send "ネザーゲートに入ってWARであそんでみよう！"
+			send "&7&m&l----------------------------------"
+			stop
+		if message contains "ダイヤ" or "ダイア" or "だいや" or "だいや" or "daiya" or "みず" or "あお" or "水" or "青":
+			if message contains "使" or "つか" or "何" or "なに" or "なん" or "tukai" or "tukau" or "nan" or "nani" or "modo" or "戻" or "もど":
+				send "&7&m&l----------------------------------"
+				send "ダイヤコインは右クリックするとクリーパーコインと"
+				send "ムーシュコインにそれぞれ分解できるよー！"
+				send "&7&m&l----------------------------------"
+				stop
+			if message contains "手" or "どこ" or "doko" or "teni" or "nyusyu" or "nyushu":
+				send "&7&m&l----------------------------------"
+				send "ダイヤコインを手に入れる方法はダイヤコインが入った額縁の"
+				send "近くの看板を右クリックだよー！"
+				send "&7&m&l----------------------------------"
+				stop
+		if message contains "改造の" or "改造って" or "強化の" or "強化って" or "エンチャの" or "エンチャって" or "entyano" or "entyatte" or "encha":
+			send "&7&m&l----------------------------------"
+			send "武器改造やエンチャントの質問は多すぎるから"
+			send "プレイヤーのみんながwikiにまとめてくれてるよ！"
+			send "だからwikiみてね！ http://seesaawiki.jp/thewar2/"
+			send "&7&m&l----------------------------------"
+			stop
+		if message contains "toolbox" or "ツール" or "つーる" or "magic stone" or "魔法石" or "マジックストーン" or "まじっくすと" or "tu-ru" or "mahouseki" or "まほうせき":
+			send "&7&m&l----------------------------------"
+			send "Toolboxは武器改造に使う素材でーす！"
+			send "Magic Stoneはエンチャントに使う素材だよ！"
+			send "&7&m&l----------------------------------"
+			stop
+		if message contains "okane" or "おかね" or "お金" or "コイン" or "coin":
+			send "&7&m&l----------------------------------"
+			send "コインはWARに参加してると勝っても負けてももらえるよー！"
+			send "コインは武器とかをお店で買う時にも使えるけど"
+			send "レベル10からは銀行に預けて$に交換してオークションでも"
+			send "使ったりする事ができるよ！"
+			send "&7&m&l----------------------------------"
+			stop
+	# if the message contains "リ":
+		# if the message contains "ス":
+			# if the message contains "キ":
+				# if the message contains "ル":
+					# send "&7このサーバーではTDMのリスキルは戦法の一つとして扱われています。" to player
+					# stop
+	# if the message contains "りす":
+		# if the message contains "きる":
+			# send "&7このサーバーではTDMのリスキルは戦法の一つです。" to player
+			# stop
+	# if the message contains "risu":
+		# if the message contains "kiru":
+			# send "&7このサーバーではTDMのリスキルは戦法の一つです。" to player
+			
+#	set {_s} to the first 5 characters of the text argument
+#Removes the first and last character from {_s} and sends it to the player or console.
+#	message "%subtext of {_s} from characters 2 to (the length of {_s} - 1)%"
+			# stop
+	if message contains "@weapon":
+		if player is holding diamond axe:
+			# replace all "@weapon" with """},{""text"":""【%name of held item of player%&f】"",""hoverEvent"":{""action"":""show_text"",""value"":""%name of held item of player%\\n%1st line of lore of held item of player%\\n%2nd line of lore of held item of player%\\n%3rd line of lore of held item of player%""}},{""text"":""" in message
+			
+			# execute console command "/tellraw @a ["""",{""text"":""&7[Lv%level of player%] &f%name of player%: %message%""}]"
+			
+			replace all "@weapon" with """},{""text"":""【%name of held item of player%&f】"",""hoverEvent"":{""action"":""show_text"",""value"":""%name of held item of player%\\n%1st line of lore of held item of player%\\n%2nd line of lore of held item of player%\\n%3rd line of lore of held item of player%""}},{""text"":""" in message
+			
+			execute console command "/tellraw @a ["""",{""text"":""&7[Lv%level of player%] ""},{""text"":""&f%name of player%:"",""clickEvent"":{""action"":""suggest_command"",""value"":""/tell %name of player%""}},{""text"": "" %message%""}]"
+			
+			 
+			
+			stop
+		
+		# {""text"":"&7[Lv%level of player%] ""},{""text"":""&f%name of player%: "",""clickEvent"":{""action":""suggest_command"",""value"":""/tell %name of player%""}},
+		
+		# execute console command "/tellraw dotoo ["""",{""text"":""%message%""}]"
+		
+		# execute console command "/tellraw dotoo ["""",{""text"":""%message%""}]"
+		
+		# execute console command "/tellraw @a ["""",{""text"":""I have ""},{""text"":""[%name of held item of player%&f]"",""hoverEvent"":{""action"":""show_text"",""value"":""%name of held item of player%\n%1st line of lore of held item of player%\n%2nd line of lore of held item of player%\n%3rd line of lore of held item of player%""}},{""text"":"" is it good""}]"
+		# stop
+		
+		# set {_test} to subtext of message from "@weapon" to length of message
+		# set {_test2} to subtext of message from "@weapon" to length of message
+		# replace all "@weapon" in message with "&f[ %name of held item of player% &f]"
+		# json("@a", "&7[Lv%level of player%] &f%name of player%: &f%message%||ttp:%name of held item of player%%nl%%line 1 of lore of held item of player%%nl%%line 2 of lore of held item of player%%nl%%line 3 of lore of held item of player%|| msg2||cmd:/ping||ttp:&6&o&lCLICK&f for /ping")
+		# stop
+	if the first 1 characters of message is "!" or "！":
+		set message to subtext of message from characters 2 to length of message
+		if {war.inteam.creeper.%player%} is 1:
+			set {_cre} to 1
+			set {_moo} to 0
+		else if {war.inteam.moosh.%player%} is 1:
+			set {_cre} to 0
+			set {_moo} to 1
+		else:
+			send "<light grey>You can't use team chat while you are not in a team." to player
+			stop
+		loop all players:
+			if {_cre} is 1:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					if player is op:
+						send "<light grey>[Lv%level of player%]<purple> *<white>%display name of player%: <light green>%message%" to loop-player
+					else:
+						send "<light grey>[Lv%level of player%]<purple> <white>%display name of player%: <light green>%message%" to loop-player
+			if {_moo} is 1:
+				if {war.inteam.moosh.%loop-player%} is 1:
+					if player is op:
+						send "<light grey>[Lv%level of player%]<purple> *<white>%display name of player%: <light red>%message%" to loop-player
+					else:
+						send "<light grey>[Lv%level of player%]<purple> <white>%display name of player%: <light red>%message%" to loop-player
+	else if {silentmuted%player%} is 1:
+		send "<light grey>[Lv%level of player%] <white>%display name of player%: %message%" to player
+		stop
+	else:
+		loop all players:
+			
+			if player is op:
+				send "<light grey>[Lv%level of player%]<purple> *<white>%display name of player%: <white>%message%" to loop-player
+			else:
+				send "<light grey>[Lv%level of player%]<purple> <white>%display name of player%: <white>%message%" to loop-player
+
+#♛
+#/tellraw @a {
+# text:"Click.",
+# clickEvent:{
+# action:open_url,
+# value:"http://www.skylinerw.com"
+# }
+#}
+#/tellraw @a { text:"Click.", clickEvent:{ action:open_url, value:"http://www.skylinerw.com" }}

@@ -1,0 +1,176 @@
+﻿every 5 minutes:
+	loop all players:
+		if loop-player is in world "huntmap":
+			level of loop-player is less than 50:
+				send "&7お知らせ: /spawnコマンドで、いつでもこのワールドからロビーに戻れます。" to loop-player
+			
+on right click on beacon:
+	cancel event
+	if player's gamemode is spectator:
+		stop
+	if player is in world "huntmap":
+		if difference between {moribeaconclicked%player%} and now is less than 1 minutes:
+			send "&7ビーコンはあと4分くらいクリックできません:(" to player
+			stop
+		if difference between {moribeaconclicked%player%} and now is less than 2 minutes:
+			send "&7ビーコンはあと3分ちょっとクリックできません:(" to player
+			stop
+		if difference between {moribeaconclicked%player%} and now is less than 3 minutes:
+			send "&7ビーコンは2分後くらいにクリックできるようになります！" to player
+			stop
+		if difference between {moribeaconclicked%player%} and now is less than 4 minutes:
+			send "&7ビーコンは1分後くらいにクリック可能です！" to player
+			stop
+		if difference between {moribeaconclicked%player%} and now is less than 5 minutes:
+			send "&7ビーコンはもう少しでクリックできます！" to player
+			stop
+		else:
+			if player is in world "huntmap":
+				execute console command "/execute %player% ~ ~ ~ /particle reddust ~ ~ ~ 1 3 1 0.01 500"
+				set {moribeaconclicked%player%} to now
+				add 1 chest named "<white>Treasure Chest" to player
+				if player is in world "huntmap":
+					loop all players:
+						if loop-player is in world "huntmap":
+							send "&7%player%がビーコンをクリックしてトレチェスをゲット！" to loop-player
+				execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.1" 
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.3"
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.5"
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.2"
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.7"
+
+on place of 144:
+	if gamemode of player is not creative:
+		stop
+	if name of player's tool contains "team1":
+		set {team1.%event-block%} to 1
+		send "added team1"
+	else if name of player's tool contains "team2":
+		set {team2.%event-block%} to 1
+		send "added team2"
+	else if name of player's tool contains "leave":
+		set {leave.%event-block%} to 1
+		send "added teamalone"
+		
+# on break of 144:
+	# if {team1.%event-block%} is set:
+		# clear {team1.%event-block%}
+	# if {team2.%event-block%} is set:
+		# clear {team2.%event-block%}
+	# if {leave.%event-block%} is set:
+		# clear {leave.%event-block%}
+		
+on right click:
+	if {team1.%event-block%} is set:
+		set {inhuntteam1%player%} to 1
+		set {inhuntteam2%player%} to 0
+		send "&7You joined &bHunt Team 1 &f!!"
+		# execute console command "scoreboard teams join Hunt_1 %player%"
+		# set {namecolor%player%} to "&b"
+		# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+	if {team2.%event-block%} is set:
+		set {inhuntteam1%player%} to 0
+		set {inhuntteam2%player%} to 1
+		send "&7You joined &bHunt Team 2 &f!!"
+		# execute console command "scoreboard teams join Hunt_2 %player%"
+		# set {namecolor%player%} to "&b"
+		# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+	if {leave.%event-block%} is set:
+		set {inhuntteam1%player%} to 0
+		set {inhuntteam2%player%} to 0
+		send "&7You left &bHunt Team &f!!"
+		# execute console command "scoreboard teams join Hunt_alone %player%"
+		# set {namecolor%player%} to "&b"
+		# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+		
+		
+		
+options:
+	world: city
+
+# on spawn of zombie:
+	# world is "far"
+	# apply speed 2 to the entity for 1 day
+	# set max health of entity to 30
+	# heal the entity by 30 hearts
+# on spawn of creeper:
+	# world is "far"
+	# cancel event
+# on spawn of spider:
+	# world is "far"
+	# cancel event
+# on spawn of skeleton:
+	# world is "far"
+	# cancel event
+# on spawn of enderman:
+	# world is "far"
+	# cancel event
+
+# every 3 minutes:
+	# loop all players:
+		# if loop-player is in world "city":
+			# if location of loop-player is equal to {afkcheck%loop-player%}:
+				# execute loop-player command "spawn"
+				# message "&7Sending you back to lobby because you were afk." to loop-player
+			# else:
+				# set {afkcheck%loop-player%} to location of loop-player
+
+# on chat:
+	# delete {afkcheck%player%}
+
+
+
+
+on right click:
+	event-block is a chest
+	world of event-block is "city"
+	cancel the event
+#	if x coordinate of event-block is -68:
+#		set {_tier} to "10"
+#		broadcast "yes"
+#	else if x coordinate of event-block is more than 256:
+#		set {_tier} to "10"
+#	else if x coordinate of event-block is more than 253:
+#		set {_tier} to "2"
+#	else:
+#		set {_tier} to "1"
+	set {_tier} to "1"
+	if {chests.timer.%location of event-block%} does not exist:
+		set {chests.timer.%location of event-block%} to now
+		clear event-block's inventory
+		set {_lootnumber} to round(random number between 1 and {chests.tier%{_tier}%.max})
+		loop {_lootnumber} times:
+			set {_item} to a random element out of {chests.tier%{_tier}%::*}
+			if {_lastitem} does not exist:
+				set {_lastitem} to 0
+			# {_lastitem} is not id of {_item}
+			loop random number between 1 and 20 times:
+				add stone pickaxe named "placeholder" to inventory of event-block
+			add {_item} to inventory of event-block
+			loop items in inventory of event-block:
+				name of loop-item is "placeholder"
+				delete loop-item
+			set {_lastitem} to id of {_item}
+	else if difference between now and {chests.timer.%location of event-block%} is more than 8 minutes:
+	# else if difference between now and {chests.timer.%location of event-block%} is more than 1 seconds:
+		set {chests.timer.%location of event-block%} to now
+		clear event-block's inventory
+		set {_lootnumber} to random integer between 1 and 5#round(random number between 1 and {chests.tier%{_tier}%.max})
+		loop {_lootnumber} times:
+			set {_item} to a random element out of {chests.tier%{_tier}%::*}
+			if {_lastitem} does not exist:
+				set {_lastitem} to 0
+			# {_lastitem} is not id of {_item}
+			loop random number between 1 and 20 times:
+				add stone pickaxe named "placeholder" to inventory of event-block
+			add {_item} to inventory of event-block
+			loop items in inventory of event-block:
+				name of loop-item is "placeholder"
+				delete loop-item
+			set {_lastitem} to id of {_item}
+	wait 2 tick
+	open event-block's inventory for player

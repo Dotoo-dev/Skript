@@ -1,0 +1,74 @@
+on right click:
+	if player is holding a diamond pickaxe:
+		name of held item contains "Magical Glass"
+		if distance between player and targeted player is greater than 5:
+			send "&7You must get closer to the player in order to inspect."
+			stop
+		if player is not in world "spawn":
+			send "&7You can only use &fMagic Glass&7 when you are in lobby."
+			stop
+		if player's target is not a player:
+			send "&7You must target a player to inspect."
+			stop
+		else:
+			if target of player exists:
+				send "&7&m&l----------------------------------"
+				send "&f%name of targeted player%&7's current gear"
+				send "&7&m&l----------------------------------"
+				if slot 0 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 0 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 0 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 0 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 0 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 1 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 1 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 1 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 1 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 1 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 2 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 2 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 2 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 2 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 2 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 3 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 3 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 3 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 3 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 3 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 4 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 4 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 4 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 4 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 4 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 5 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 5 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 5 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 5 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 5 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 6 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 6 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 6 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 6 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 6 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 7 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 7 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 7 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 7 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 7 of targeted player%"
+					send "&7&m&l----------------------------------"
+				if slot 8 of targeted player is diamond axe:
+					send "<light grey>Name - &f%colored name of slot 8 of targeted player%"
+					send "<light grey>Mod - &f%1st line of lore of slot 8 of targeted player%"
+					send "<light grey>Ench - &f%2rd line of lore of slot 8 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 8 of targeted player%"
+					send "<light grey>AE - &f%3rd line of lore of slot 8 of targeted player%"
+					send "&7&m&l----------------------------------"
+			else:
+				send "&7Target a player in lobby and right click to inspect."

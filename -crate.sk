@@ -1,0 +1,1681 @@
+options:
+
+	#=========================================================#
+	#  __  __                   _____           _             #
+	# |  \/  |                 / ____|         | |            #
+	# | \  / | ___  __ _  __ _| |     _ __ __ _| |_ ___  ___  #
+	# | |\/| |/ _ \/ _` |/ _` | |    | '__/ _` | __/ _ \/ __| #
+	# | |  | |  __/ (_| | (_| | |____| | | (_| | ||  __/\__ \ #
+	# |_|  |_|\___|\__, |\__,_|\_____|_|  \__,_|\__\___||___/ #
+	#               __/ |                                     #
+	#              |___/                                      #
+	#														  #
+	#			   Created by PiskotPiskotovic				  #
+	#=========================================================#
+
+	#============================================================================================#
+
+	# General configuration part #
+
+	#============================================================================================#
+
+	prefix: &b&lMegaCrates ⏐&e
+	key-item: tripwire hook
+	key-name-color: &c&l
+	crate-block: ender chest
+	animation: true
+	animation-length: 5
+	# animation-length specifies length of animation IN SECONDS
+	no-key-explosion: false
+	# doesn't push player back so hard if he doesn't have key and this is false
+	open-messages: true
+	# here you can set which items will be in opening animation as border
+	animation-item1: red stained glass pane
+	animation-item2: yellow stained glass pane
+	animation-item3: green stained glass pane
+	autoclose: 2
+	# Here you can define how long will it take to autoclose the crate menu after winning. IN SECONDS
+	doautoclose: true
+	# the crate menu will not close if set to false
+	virtual-key: true
+	# Player's won't need keys as an item. Instead, they will be just a variable and crate will open only if player has 1 or more keys.
+	website: example.com
+	# Here, you can change your website that will show if player hovers on key-item in virtual-key mode.
+	hover-message: &aWant to get more?||&aVisit our website store||&aor vote on our website!
+	# Here, you can change what will show if player hovers on key-item in virtual-key mode.
+	# || = new line
+	giveonwincommand: false
+	# Won't give player the item if command for it is set and this is set to false.
+
+	# Help for commands on win:
+	# PLAYER = player's nick
+
+	#============================================================================================#
+
+	# Now it's the crates that appear on mining (lets just say that they are PrisonCrates) part! #
+
+	#============================================================================================#
+
+	appear-chance: 2
+	# This must be a number between 0.01 and 100. Write it without percentage sign.
+	# If you want to completely disable those, set this to 0.
+	block: chest
+	# This determines which block will appear.
+	open-crate: prison
+	# Insert here name of crate you want to use for PrisonCrate, or just create crate with name 'prison'.
+	staytime: 10
+	# Time (in seconds) for which will the crate stay there and will not disappear. After X seconds, the crate disappears.
+	appear-title: &a&lA chest has just appeared!
+	appear-subtitle: &7Open it before it disappears!
+	# Here you can change what will show to the player when he/she finds the crate
+	find-broadcast: true
+	# Broadcast to all players that player has found a crate while mining if set to true
+	find-message: Player %player% has found a crate while mining!
+	# This is the message that will be broadcasted.
+	openable-only-by-player: true
+	# Only the player that has found it will be able to open it if set to true.
+
+	# If you're asking where will the PrisonCrate appear, the answer is simple.
+	# You need to add WorldGuard region to special list with /crate addregion <region>
+	# to make chests appear in it.
+
+	# WARNING! PrisonCrates do not support item chances, but they still support commands on win.
+	# WorldGuard is needed for PrisonCrates. If you do not use them, you do not need WorldGuard.
+
+	#============================================================================================#
+
+command /megacrates [<text>] [<text>] [<text>] [<text>] [<text>]:
+	trigger:
+		if arg 1 isn't set:
+			make player execute command "crate"
+		else if arg 1 is set:
+			if arg 2 isn't set:
+				make player execute command "crate %arg 1%"
+			else if arg 2 is set:
+				if arg 3 isn't set:
+					make player execute command "crate %arg 1% %arg 2%"
+				else if arg 3 is set:
+					if arg 4 isn't set:
+						make player execute command "crate %arg 1% %arg 2% %arg 3%"
+					else if arg 4 is set:
+						if arg 5 isn't set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4%"
+						else if arg 5 is set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4% %arg 5%"
+
+command /megacrate [<text>] [<text>] [<text>] [<text>] [<text>]:
+	trigger:
+		if arg 1 isn't set:
+			make player execute command "crate"
+		else if arg 1 is set:
+			if arg 2 isn't set:
+				make player execute command "crate %arg 1%"
+			else if arg 2 is set:
+				if arg 3 isn't set:
+					make player execute command "crate %arg 1% %arg 2%"
+				else if arg 3 is set:
+					if arg 4 isn't set:
+						make player execute command "crate %arg 1% %arg 2% %arg 3%"
+					else if arg 4 is set:
+						if arg 5 isn't set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4%"
+						else if arg 5 is set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4% %arg 5%"
+
+command /crates [<text>] [<text>] [<text>] [<text>] [<text>]:
+	trigger:
+		if arg 1 isn't set:
+			make player execute command "crate"
+		else if arg 1 is set:
+			if arg 2 isn't set:
+				make player execute command "crate %arg 1%"
+			else if arg 2 is set:
+				if arg 3 isn't set:
+					make player execute command "crate %arg 1% %arg 2%"
+				else if arg 3 is set:
+					if arg 4 isn't set:
+						make player execute command "crate %arg 1% %arg 2% %arg 3%"
+					else if arg 4 is set:
+						if arg 5 isn't set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4%"
+						else if arg 5 is set:
+							make player execute command "crate %arg 1% %arg 2% %arg 3% %arg 4% %arg 5%"
+
+command /consolegive [<text>] [<text>]:
+	Executable by: console
+	trigger:
+		if {@virtual-key} is false:
+			set {giveto} to "%arg 2%" parsed as player
+			message " {@prefix} &eYou've given &c&l%arg 2% &ckey&e to &a%{giveto}%!&e"
+			give 1 {@key-item} named "{@key-name-color}%arg 1% key" to {giveto}
+		else if {@virtual-key} is true:
+			add 1 to {key.%arg 1%.%arg 2%}
+			message " {@prefix} &eYou've added &c&l%arg 1% &ckey&e to &a%arg 2%'s account!&e"
+
+on load:
+	if {CrateList::*} isn't set:
+		set {CrateList::*} to "&c&lYou haven't set any crates!"
+
+command /crate [<text>] [<text>] [<text>] [<text>] [<text>]:
+	Executable by: players and console
+	trigger:
+		if arg 1 isn't set:
+			message "  &2>> {@prefix} &a&lv1.9.0.2"
+			message "&b/crate give <name> <player> &eGives crate key to specified player."
+			message "&b/crate create <name> &eCreates new crate with specified name."
+			message "&b/crate additem <name> <chance> <customname=yes/no> <optional console command> &eAdds item that you're holding to specified crate."
+			message "&b/crate removeitem <name> &eRemoves last item that has been added into crate."
+			message "&b/crate place <name> &ePlaces crate to place you're looking at."
+			message "&b/crate delete <name> &eDeletes specified crate."
+			message "&b/crate addregion <name> &eAdds region in which will openable crates appear. (WorldGuard needed)"
+			message "&b/crate delregion <name> &eRemoves region in which will openable crates appear. (WorldGuard needed)"
+			message "&b/crate animationset <name> <csgo/vertical/roulette> &eChanges animation of certain crate."
+			message "&b/crate list &eSends you all crates that you have set."
+			message "&b/crate setlimit <name> <limit> &eSets limit for last item how many times it can be won."
+			message "&b/crate reload &eReloads MegaCrates."
+			message " &cCreated by PiskotPiskotovic"
+		else if arg 1 is "give":
+			if player has permission "megacrates.give":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if arg 3 is set:
+							if {@virtual-key} is false:
+								set {giveto} to "%arg 3%" parsed as player
+								message " {@prefix} &eYou've given &c&l%arg 2% &ckey&e to &a%{giveto}%!&e"
+								give 1 {@key-item} named "{@key-name-color}%arg 2% key" to {giveto}
+							else if {@virtual-key} is true:
+								add 1 to {key.%arg 2%.%arg 3%}
+								message " {@prefix} &eYou've added &c&l%arg 2% &ckey&e to &a%arg 3%'s account!&e"
+						else:
+							message " {@prefix} &cYou didn't specify any player!"
+					else:
+						message " {@prefix} &cThat crate doesn't exist."
+				else:
+					message "{@prefix} &cYou didn't specify crate name!"
+			else if "%player%" is "<none>":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if arg 3 is set:
+							if {@virtual-key} is false:
+								set {giveto} to "%arg 3%" parsed as player
+								message " {@prefix} &eYou've given &c&l%arg 2% &ckey&e to &a%{giveto}%!&e"
+								give 1 {@key-item} named "{@key-name-color}%arg 2% key" to {giveto}
+							else if {@virtual-key} is true:
+								add 1 to {key.%arg 2%.%arg 3%}
+								message " {@prefix} &eYou've added &c&l%arg 2% &ckey&e to &a%arg 3%'s account!&e"
+						else:
+							message " {@prefix} &cYou didn't specify any player!"
+					else:
+						message " {@prefix} &cThat crate doesn't exist."
+				else:
+					message "{@prefix} &cYou didn't specify crate name!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "fixname":
+			if player has permission "megacrates.admin":
+				if player's tool isn't air:
+					set player's tool's name to "%player's tool%"
+					message " {@prefix} &a&lCompleted. Now you can add it to the crate."
+				else:
+					message " {@prefix} &cYou can't rename air..."
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "setlimit":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if arg 3 is set:
+							set {limit} to "%arg 3%" parsed as integer
+							set {CrateItemLimit.%arg 2%.%{CrateItemsTotal.%arg 2%}%} to "%{limit}%" parsed as integer
+							message " {@prefix} &a&lSuccessfully set!"
+							message " {@prefix} &d&lItem: &b%{CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%}%"
+							message " {@prefix} &d&lLimit: &b%{CrateItemLimit.%arg 2%.%{CrateItemsTotal.%arg 2%}%}%"
+							message " &c&lWARNING! &c&lIf you didn't set the limit to a whole number, it won't work. You may need to remove the item then."
+						else:
+							message " {@prefix} &cYou didn't set any limit."
+					else:
+						message " {@prefix} &cThat crate doesn't exist."
+				else:
+					message "{@prefix} &cYou didn't specify crate name!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "addregion":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.{@open-crate}} is set:
+						set {region} to "%arg 2%"
+						loop all blocks in the region {region}:
+							set {PrisonCrate.%loop-block's location%} to true
+						add "%{region}% in world %player's world%" to {Regions::*}
+						message " {@prefix} &aSuccessfully set!"
+						message "&4&lWARNING! &bIf the region is in different world than you are, it won't work correctly. You must go to that world!"
+						message "&d&lNAME: &b%{region}%"
+						delete {region}
+					else:
+						message " {@prefix} &c&lSorry! Crate {@open-crate} doesn't exist. Create it and add some items/commands to it, or change the option &d&lopen-crate&c&l in MegaCrates config (MegaCrates.sk)."
+				else:
+					message " {@prefix} &cYou didn't specify any WorldGuard region!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "delregion":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.{@open-crate}} is set:
+						set {region} to "%arg 2%"
+						loop all blocks in the region {region}:
+							delete {PrisonCrate.%loop-block's location%}
+						remove "%{region}% in world %player's world%" from {Regions::*}
+						message " {@prefix} &aSuccessfully removed the WorldGuard region from list of regions where chests appear!"
+						message "&4&lWARNING! &bIf the region is in different world than you are, it won't work correctly. You must go to that world!"
+						message "&d&lNAME: &b%{region}%"
+						delete {region}
+					else:
+						message " {@prefix} &c&lSorry! Crate {@open-crate} doesn't exist. Create it and add some items/commands to it, or change the option &d&lopen-crate&c&l in MegaCrates config (MegaCrates.sk)."
+				else:
+					message " {@prefix} &cYou didn't specify any WorldGuard region!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "animationset":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if arg 3 is "csgo" or "vertical" or "roulette":
+							set {CrateType.%arg 2%} to "%arg 3%"
+							message " {@prefix} &a&lSuccessfully set! &d&l%arg 3%"
+						else:
+							message " {@prefix} &d&lExpected • &acsgo, vertical or roulette"
+					else:
+						message " {@prefix} &cThis crate doesn't exist!"
+				else:
+					message " {@prefix} &cYou didn't specify any crate."
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "create":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} isn't set:
+						message " {@prefix} &eCrate named &a%arg 2% &ehas been set!"
+						set {Crate.%arg 2%} to true
+						set {chancetotal.%arg 2%} to 100
+						if {CrateList::*} is "&c&lYou haven't set any crates!":
+							delete {CrateList::*}
+						add "%arg 2%" to {CrateList::*}
+						set {CrateType.%arg 2%} to "csgo"
+					else:
+						message " {@prefix} &cCrate with that name already exists!"
+				else:
+					message " {@prefix} &cYou didn't specify crate name!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission."
+		else if arg 1 is "additem":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if player's tool isn't air:
+							if arg 3 is set:
+								if arg 4 is set:
+									add 1 to {CrateItemsTotal.%arg 2%}
+									if arg 5 is set:
+										set {CrateItemCommand.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%arg 5%"
+									if arg 4 is "yes":
+										set {chance} to "%arg 3%" parsed as integer
+										if {chancetotal.%arg 2%} is higher or equal to {chance}:
+											message " {@prefix} &eYou've successfully added new item to crate &a%arg 2%&e!"
+											message " {@prefix} &eChance: &a&l%{chance}% %%"
+											if player's tool's name isn't set:
+												set {name} to "%player's tool%"
+											if player's tool's name is set:
+												set {name} to "%player's tool's name%"
+											set {lore} to "%player's tool's lore%"
+											set {CrateItemChance.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{chance}%" parsed as integer
+											set {lore} to "%player's tool's lore%"
+											set {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%" parsed as item
+											set name of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{name}%"
+											set lore of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{lore}%"
+											remove {chance} from {chancetotal.%arg 2%}
+											if {CrateItemsTotal.%arg 2%} is 0 or 1:
+												add 1 to {CrateItemsTotal.%arg 2%}
+												if player's tool's name isn't set:
+													set {name} to "%player's tool%"
+												if player's tool's name is set:
+													set {name} to "%player's tool's name%"
+												set {lore} to "%player's tool's lore%"
+												set {CrateItemChance.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{chance}%" parsed as integer
+												set {lore} to "%player's tool's lore%"
+												set {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%" parsed as item
+												set name of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{name}%"
+												set lore of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{lore}%"
+										else:
+											message " {@prefix} &cThe chance you entered was too high. MAX: %{chancetotal.%arg 2%}%"
+									else if arg 4 is "no":
+										set {chance} to "%arg 3%" parsed as integer
+										message " {@prefix} &eYou've successfully added new item to crate &a%arg 2%&e!"
+										message " {@prefix} &eChance: &a&l%{chance}% %%"
+										set {CrateItemChance.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{chance}%" parsed as integer
+										set {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%" parsed as item
+										set name of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%"
+										remove {chance} from {chancetotal.%arg 2%}
+										if {CrateItemsTotal.%arg 2%} is 0 or 1:
+											add 1 to {CrateItemsTotal.%arg 2%}
+											set {CrateItemChance.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%{chance}%" parsed as integer
+											set {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%" parsed as item
+											set name of {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to "%player's tool%"
+									else:
+										message " {@prefix} &cExpected yes/no, but got %arg 4%."
+								else:
+									message " {@prefix} &cExpected yes/no, but got nothing."
+							else:
+								message " {@prefix} &cYou didn't specify the chance for your item! MAX: %{chancetotal.%arg 2%}%"
+						else:
+							message " {@prefix} &cYou can't add air to things players can win..."
+					else:
+						message " {@prefix} &cThat crate doesn't exist!"
+				else:
+					message " {@prefix} &cYou didn't specify crate name!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else if arg 1 is "place":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						set player's target block to {@crate-block}
+						message " {@prefix} &eCrate was successfully set!"
+						message "&d&lTIP &aTo rotate the crate, select it with WorldEdit and write //set enderchest:1 or enderchest:2 eg."
+						set {CrateLocation.%player's target block's location%} to "%arg 2%"
+					else:
+						message " {@prefix} &cThat crate doesn't exist!"
+				else:
+					message " {@prefix} &cYou didn't specify any crate!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else if arg 1 is "delete":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						delete {CrateItem.%arg 2%}
+						delete {Crate.%arg 2%}
+						delete {CrateItemsTotal.%arg 2%}
+						message " {@prefix} &eCrate &a%arg 2% &ewas successfully deleted!"
+						delete {chancetotal.%arg 2%}
+						remove "%arg 2%" from {CrateList::*}
+						if {CrateList::*} isn't set:
+							set {CrateList::*} to "&c&lYou haven't set any crates!"
+					else:
+						message " {@prefix} &cThis crate doesn't exist!"
+				else:
+					message " {@prefix} &cYou didn't specify any crate!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else if arg 1 is "list":
+			if player has permission "megacrates.admin":
+				message " {@prefix} &d&lAll crates:"
+				message " &a&l• %{CrateList::*}%"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else if arg 1 is "removeitem":
+			if player has permission "megacrates.admin":
+				if arg 2 is set:
+					if {Crate.%arg 2%} is set:
+						if {CrateItemsTotal.%arg 2%} isn't 0:
+							delete {CrateItemLimit.%arg 2%.%{CrateItemsTotal.%arg 2%}%}
+							message " {@prefix} &eYou've successfully removed %{CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%}% from crate %arg 2%!"
+							add {CrateItemChance.%arg 2%::%{CrateItemsTotal.%arg 2%}%} to {chancetotal.%arg 2%}
+							message " {@prefix} &eChance now available for use: &a&l%{chancetotal.%arg 2%}% %%"
+							remove {CrateItem.%arg 2%::%{CrateItemsTotal.%arg 2%}%} from {CrateItem.%arg 2%::*}
+							remove 1 from {CrateItemsTotal.%arg 2%}
+						else:
+							message " {@prefix} &cYou have nothing to remove from the crate."
+					else:
+						message " {@prefix} &cThat crate doesn't exist."
+				else:
+					message " {@prefix} &cYou didn't specify any crate!"
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else if arg 1 is "reload":
+			if player has permission "megacrates.admin":
+				execute console command "sk reload MegaCrates"
+				message " {@prefix} &eConfig should be reloaded now."
+			else:
+				message " {@prefix} &cIt looks like that you don't have permission!"
+		else:
+			message " {@prefix} &cCommand not found. /crate"
+
+on load:
+	set {update} to text from url "http://www.piskotuj.8u.cz/megacrates.txt"
+	if {update} isn't "1.9.0.2":
+		message " {@prefix} &eNew version is available!" to console
+		message " &aDownload: &ehttp://bit.ly/1r3ykw2" to console
+
+on join:
+	if player has permission "megacrates.admin":
+		set {update} to text from url "http://www.piskotuj.8u.cz/megacrates.txt"
+		if {update} isn't "1.9.0.2":
+			message " {@prefix} &eNew version is available!"
+			message " &aDownload: &ehttp://bit.ly/1r3ykw2"
+
+on inventory close:
+	set {opening.%player%} to false
+	wait 0.1 second
+	set {virtual.%player%} to false
+
+# This is safe, because it looks if player has opened menu for virtual key. #
+
+command /open:
+	trigger:
+		wait 3 ticks
+		close player's inventory
+		if {virtual.%player%} is true:
+			if {key.%{CrateLocation.%{virtualcrate.%player%}%}%.%player%} is higher or equal to 1:
+				remove 1 from {key.%{CrateLocation.%{virtualcrate.%player%}%}%.%player%}
+				set {opening.%player%} to true
+				if {@animation} is false:
+					loop 5 times:
+						wait 0.1 second
+						play mob spawner flames at target block
+						play raw sound "note.bass" at player with pitch 5 volume 10
+						wait 0.1 second
+						play raw sound "note.bassattack" at player with pitch 5 volume 10
+						wait 0.1 second
+						play raw sound "note.harp" at player with pitch 5 volume 10
+						wait 0.1 second
+						play raw sound "note.pling" at player with pitch 5 volume 10
+						wait 0.1 second
+						play raw sound "note.snare" at player with pitch 5 volume 10
+					make player execute "randomtry"
+					play raw sound "random.successful_hit" at player with pitch 1 volume 10
+					delete {random}
+					set {opening.%player%} to false
+				else if {@animation} is true:
+					open chest with 3 rows named "&d&l%{CrateLocation.%{virtualcrate.%player%}%}%" to player
+					wait 3 ticks
+					if inventory name of player's current inventory is "&d&l%{CrateLocation.%{virtualcrate.%player%}%}%":
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} is "csgo" or "CSGO":
+							loop {@animation-length} times:
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize2.%player%}%} to be unstealable
+								set {_randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize3.%player%}%} to be unstealable
+								set {_randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize4.%player%}%} to be unstealable
+								set {_randomprize5.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize5.%player%}%} to be unstealable
+								set {_randomprize6.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize6.%player%}%} to be unstealable
+								set {_randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize7.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.harp" at player with pitch 1 volume 10
+								wait 0.3 seconds
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize8.%player%} to {_randomprize1.%player%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize8.%player%}%} to be unstealable
+								set {_randomprize9.%player%} to {_randomprize2.%player%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize9.%player%}%} to be unstealable
+								set {_randomprize10.%player%} to {_randomprize3.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize10.%player%}%} to be unstealable
+								set {_randomprize11.%player%} to {_randomprize4.%player%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize11.%player%}%} to be unstealable
+								set {_randomprize12.%player%} to {_randomprize5.%player%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize12.%player%}%} to be unstealable
+								set {_randomprize13.%player%} to {_randomprize6.%player%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize13.%player%}%} to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								wait 0.3 second
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item3} to be unstealable
+								format slot 2 of player with {@animation-item3} to be unstealable
+								format slot 3 of player with {@animation-item3} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item3} to be unstealable
+								format slot 6 of player with {@animation-item3} to be unstealable
+								format slot 7 of player with {@animation-item3} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize14.%player%} to {_randomprize3.%player%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize14.%player%}%} to be unstealable
+								set {randomprize15.%player%} to {_randomprize4.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								set {_randomprize16.%player%} to {_randomprize5.%player%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize16.%player%}%} to be unstealable
+								set {_randomprize17.%player%} to {_randomprize6.%player%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize17.%player%}%} to be unstealable
+								set {_randomprize18.%player%} to {_randomprize7.%player%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize18.%player%}%} to be unstealable
+								set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item3} to be unstealable
+								format slot 20 of player with {@animation-item3} to be unstealable
+								format slot 21 of player with {@animation-item3} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item3} to be unstealable
+								format slot 24 of player with {@animation-item3} to be unstealable
+								format slot 25 of player with {@animation-item3} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.harp" at player with pitch 1 volume 10
+								wait 0.2 second
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} isn't set:
+							loop {@animation-length} times:
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize2.%player%}%} to be unstealable
+								set {_randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize3.%player%}%} to be unstealable
+								set {_randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize4.%player%}%} to be unstealable
+								set {_randomprize5.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize5.%player%}%} to be unstealable
+								set {_randomprize6.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize6.%player%}%} to be unstealable
+								set {_randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize7.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.harp" at player with pitch 1 volume 10
+								wait 0.3 seconds
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize8.%player%} to {_randomprize1.%player%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize8.%player%}%} to be unstealable
+								set {_randomprize9.%player%} to {_randomprize2.%player%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize9.%player%}%} to be unstealable
+								set {_randomprize10.%player%} to {_randomprize3.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize10.%player%}%} to be unstealable
+								set {_randomprize11.%player%} to {_randomprize4.%player%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize11.%player%}%} to be unstealable
+								set {_randomprize12.%player%} to {_randomprize5.%player%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize12.%player%}%} to be unstealable
+								set {_randomprize13.%player%} to {_randomprize6.%player%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize13.%player%}%} to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								wait 0.3 second
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item3} to be unstealable
+								format slot 2 of player with {@animation-item3} to be unstealable
+								format slot 3 of player with {@animation-item3} to be unstealable
+								format slot 4 of player with torch to be unstealable
+								format slot 5 of player with {@animation-item3} to be unstealable
+								format slot 6 of player with {@animation-item3} to be unstealable
+								format slot 7 of player with {@animation-item3} to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								set {_randomprize14.%player%} to {_randomprize3.%player%}
+								format slot 12 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize14.%player%}%} to be unstealable
+								set {randomprize15.%player%} to {_randomprize4.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								set {_randomprize16.%player%} to {_randomprize5.%player%}
+								format slot 14 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize16.%player%}%} to be unstealable
+								set {_randomprize17.%player%} to {_randomprize6.%player%}
+								format slot 15 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize17.%player%}%} to be unstealable
+								set {_randomprize18.%player%} to {_randomprize7.%player%}
+								format slot 16 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize18.%player%}%} to be unstealable
+								set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 11 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 10 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{_randomprize1.%player%}%} to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 19 of player with {@animation-item3} to be unstealable
+								format slot 20 of player with {@animation-item3} to be unstealable
+								format slot 21 of player with {@animation-item3} to be unstealable
+								format slot 22 of player with torch to be unstealable
+								format slot 23 of player with {@animation-item3} to be unstealable
+								format slot 24 of player with {@animation-item3} to be unstealable
+								format slot 25 of player with {@animation-item3} to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								play raw sound "note.harp" at player with pitch 1 volume 10
+								wait 0.2 second
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} is "vertical" or "VERTICAL":
+							loop {@animation-length} times:
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								format slot 0 of player with black stained glass pane to be unstealable
+								format slot 9 of player with black stained glass pane to be unstealable
+								format slot 8 of player with black stained glass pane to be unstealable
+								format slot 17 of player with black stained glass pane to be unstealable
+								format slot 18 of player with black stained glass pane to be unstealable
+								format slot 26 of player with black stained glass pane to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 10 of player with {@animation-item1} to be unstealable
+								format slot 11 of player with {@animation-item1} to be unstealable
+								format slot 12 of player with torch to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 14 of player with torch to be unstealable
+								format slot 15 of player with {@animation-item1} to be unstealable
+								format slot 16 of player with {@animation-item1} to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								set {randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 4 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize1.%player%}%} to be unstealable
+								set {randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize2.%player%}%} to be unstealable
+								set {randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 22 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize3.%player%}%} to be unstealable
+								wait 0.3 second
+								play raw sound "note.pling" at player with pitch 2 volume 10
+								format slot 1 of player with {@animation-item2} to be unstealable
+								format slot 2 of player with {@animation-item2} to be unstealable
+								format slot 3 of player with {@animation-item2} to be unstealable
+								format slot 10 of player with {@animation-item2} to be unstealable
+								format slot 11 of player with {@animation-item2} to be unstealable
+								format slot 12 of player with torch to be unstealable
+								format slot 19 of player with {@animation-item2} to be unstealable
+								format slot 20 of player with {@animation-item2} to be unstealable
+								format slot 21 of player with {@animation-item2} to be unstealable
+								format slot 5 of player with {@animation-item2} to be unstealable
+								format slot 6 of player with {@animation-item2} to be unstealable
+								format slot 7 of player with {@animation-item2} to be unstealable
+								format slot 14 of player with torch to be unstealable
+								format slot 15 of player with {@animation-item2} to be unstealable
+								format slot 16 of player with {@animation-item2} to be unstealable
+								format slot 23 of player with {@animation-item2} to be unstealable
+								format slot 24 of player with {@animation-item2} to be unstealable
+								format slot 25 of player with {@animation-item2} to be unstealable
+								set {randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 4 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize4.%player%}%} to be unstealable
+								set {randomprize5.%player%} to {randomprize1.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize5.%player%}%} to be unstealable
+								set {randomprize6.%player%} to {randomprize2.%player%}
+								format slot 22 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize6.%player%}%} to be unstealable
+								wait 0.3 second
+								play raw sound "note.pling" at player with pitch 3 volume 10
+								format slot 1 of player with {@animation-item3} to be unstealable
+								format slot 2 of player with {@animation-item3} to be unstealable
+								format slot 3 of player with {@animation-item3} to be unstealable
+								format slot 10 of player with {@animation-item3} to be unstealable
+								format slot 11 of player with {@animation-item3} to be unstealable
+								format slot 12 of player with torch to be unstealable
+								format slot 19 of player with {@animation-item3} to be unstealable
+								format slot 20 of player with {@animation-item3} to be unstealable
+								format slot 21 of player with {@animation-item3} to be unstealable
+								format slot 5 of player with {@animation-item3} to be unstealable
+								format slot 6 of player with {@animation-item3} to be unstealable
+								format slot 7 of player with {@animation-item3} to be unstealable
+								format slot 14 of player with torch to be unstealable
+								format slot 15 of player with {@animation-item3} to be unstealable
+								format slot 16 of player with {@animation-item3} to be unstealable
+								format slot 23 of player with {@animation-item3} to be unstealable
+								format slot 24 of player with {@animation-item3} to be unstealable
+								format slot 25 of player with {@animation-item3} to be unstealable
+								set {randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 4 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize7.%player%}%} to be unstealable
+								set {randomprize15.%player%} to {randomprize4.%player%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								set {randomprize9.%player%} to {randomprize5.%player%}
+								format slot 22 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize9.%player%}%} to be unstealable
+								wait 0.3 second
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} is "roulette" or "ROULETTE":
+							loop {@animation-length} times:
+								play raw sound "note.pling" at player with pitch 1 volume 10
+								format slot 0 of player with {@animation-item1} to be unstealable
+								format slot 1 of player with {@animation-item1} to be unstealable
+								format slot 2 of player with {@animation-item1} to be unstealable
+								format slot 3 of player with {@animation-item1} to be unstealable
+								format slot 4 of player with {@animation-item1} to be unstealable
+								format slot 5 of player with {@animation-item1} to be unstealable
+								format slot 6 of player with {@animation-item1} to be unstealable
+								format slot 7 of player with {@animation-item1} to be unstealable
+								format slot 8 of player with {@animation-item1} to be unstealable
+								format slot 9 of player with {@animation-item1} to be unstealable
+								format slot 10 of player with {@animation-item1} to be unstealable
+								format slot 11 of player with {@animation-item1} to be unstealable
+								format slot 12 of player with {@animation-item1} to be unstealable
+								format slot 14 of player with {@animation-item1} to be unstealable
+								format slot 15 of player with {@animation-item1} to be unstealable
+								format slot 16 of player with {@animation-item1} to be unstealable
+								format slot 17 of player with {@animation-item1} to be unstealable
+								format slot 18 of player with {@animation-item1} to be unstealable
+								format slot 19 of player with {@animation-item1} to be unstealable
+								format slot 20 of player with {@animation-item1} to be unstealable
+								format slot 21 of player with {@animation-item1} to be unstealable
+								format slot 22 of player with {@animation-item1} to be unstealable
+								format slot 23 of player with {@animation-item1} to be unstealable
+								format slot 24 of player with {@animation-item1} to be unstealable
+								format slot 25 of player with {@animation-item1} to be unstealable
+								format slot 26 of player with {@animation-item1} to be unstealable
+								set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								wait 0.3 second
+								play raw sound "note.pling" at player with pitch 2 volume 10
+								format slot 0 of player with {@animation-item2} to be unstealable
+								format slot 1 of player with {@animation-item2} to be unstealable
+								format slot 2 of player with {@animation-item2} to be unstealable
+								format slot 3 of player with {@animation-item2} to be unstealable
+								format slot 4 of player with {@animation-item2} to be unstealable
+								format slot 5 of player with {@animation-item2} to be unstealable
+								format slot 6 of player with {@animation-item2} to be unstealable
+								format slot 7 of player with {@animation-item2} to be unstealable
+								format slot 8 of player with {@animation-item2} to be unstealable
+								format slot 9 of player with {@animation-item2} to be unstealable
+								format slot 10 of player with {@animation-item2} to be unstealable
+								format slot 11 of player with {@animation-item2} to be unstealable
+								format slot 12 of player with {@animation-item2} to be unstealable
+								format slot 14 of player with {@animation-item2} to be unstealable
+								format slot 15 of player with {@animation-item2} to be unstealable
+								format slot 16 of player with {@animation-item2} to be unstealable
+								format slot 17 of player with {@animation-item2} to be unstealable
+								format slot 18 of player with {@animation-item2} to be unstealable
+								format slot 19 of player with {@animation-item2} to be unstealable
+								format slot 20 of player with {@animation-item2} to be unstealable
+								format slot 21 of player with {@animation-item2} to be unstealable
+								format slot 22 of player with {@animation-item2} to be unstealable
+								format slot 23 of player with {@animation-item2} to be unstealable
+								format slot 24 of player with {@animation-item2} to be unstealable
+								format slot 25 of player with {@animation-item2} to be unstealable
+								format slot 26 of player with {@animation-item2} to be unstealable
+								set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								wait 0.3 second
+								play raw sound "note.pling" at player with pitch 3 volume 10
+								format slot 0 of player with {@animation-item3} to be unstealable
+								format slot 1 of player with {@animation-item3} to be unstealable
+								format slot 2 of player with {@animation-item3} to be unstealable
+								format slot 3 of player with {@animation-item3} to be unstealable
+								format slot 4 of player with {@animation-item3} to be unstealable
+								format slot 5 of player with {@animation-item3} to be unstealable
+								format slot 6 of player with {@animation-item3} to be unstealable
+								format slot 7 of player with {@animation-item3} to be unstealable
+								format slot 8 of player with {@animation-item3} to be unstealable
+								format slot 9 of player with {@animation-item3} to be unstealable
+								format slot 10 of player with {@animation-item3} to be unstealable
+								format slot 11 of player with {@animation-item3} to be unstealable
+								format slot 12 of player with {@animation-item3} to be unstealable
+								format slot 14 of player with {@animation-item3} to be unstealable
+								format slot 15 of player with {@animation-item3} to be unstealable
+								format slot 16 of player with {@animation-item3} to be unstealable
+								format slot 17 of player with {@animation-item3} to be unstealable
+								format slot 18 of player with {@animation-item3} to be unstealable
+								format slot 19 of player with {@animation-item3} to be unstealable
+								format slot 20 of player with {@animation-item3} to be unstealable
+								format slot 21 of player with {@animation-item3} to be unstealable
+								format slot 22 of player with {@animation-item3} to be unstealable
+								format slot 23 of player with {@animation-item3} to be unstealable
+								format slot 24 of player with {@animation-item3} to be unstealable
+								format slot 25 of player with {@animation-item3} to be unstealable
+								format slot 26 of player with {@animation-item3} to be unstealable
+								set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+								format slot 13 of player with {CrateItem.%{CrateLocation.%{virtualcrate.%player%}%}%::%{randomprize15.%player%}%} to be unstealable
+								wait 0.3 second
+						set {random} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%{virtualcrate.%player%}%}%}
+						if {@animation} is false:
+							make player execute "randomtry"
+						else:
+							make player execute "guirandomtry"
+						play raw sound "random.successful_hit" at player with pitch 1 volume 10
+						delete {random}
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} is "csgo" or "CSGO":
+							loop 2 times:
+								format slot 10 of player with {@animation-item1} to be unstealable
+								format slot 16 of player with {@animation-item1} to be unstealable
+								wait 0.2 second
+								format slot 11 of player with {@animation-item2} to be unstealable
+								format slot 15 of player with {@animation-item2} to be unstealable
+								wait 0.2 second
+								format slot 12 of player with {@animation-item1} to be unstealable
+								format slot 14 of player with {@animation-item1} to be unstealable
+								wait 0.2 second
+								format slot 10 of player with {@animation-item3} to be unstealable
+								format slot 16 of player with {@animation-item3} to be unstealable
+								wait 0.2 second
+								format slot 11 of player with {@animation-item3} to be unstealable
+								format slot 15 of player with {@animation-item3} to be unstealable
+								wait 0.2 second
+								format slot 12 of player with {@animation-item3} to be unstealable
+								format slot 14 of player with {@animation-item3} to be unstealable
+						if {CrateType.%{CrateLocation.%{virtualcrate.%player%}%}%} isn't set:
+							loop 2 times:
+								format slot 10 of player with {@animation-item1} to be unstealable
+								format slot 16 of player with {@animation-item1} to be unstealable
+								wait 0.2 second
+								format slot 11 of player with {@animation-item2} to be unstealable
+								format slot 15 of player with {@animation-item2} to be unstealable
+								wait 0.2 second
+								format slot 12 of player with {@animation-item1} to be unstealable
+								format slot 14 of player with {@animation-item1} to be unstealable
+								wait 0.2 second
+								format slot 10 of player with {@animation-item3} to be unstealable
+								format slot 16 of player with {@animation-item3} to be unstealable
+								wait 0.2 second
+								format slot 11 of player with {@animation-item3} to be unstealable
+								format slot 15 of player with {@animation-item3} to be unstealable
+								wait 0.2 second
+								format slot 12 of player with {@animation-item3} to be unstealable
+								format slot 14 of player with {@animation-item3} to be unstealable
+						if {@doautoclose} is true:
+							wait {@autoclose} seconds
+							set {opening.%player%} to false
+							close player's inventory
+						set {opening.%player%} to false
+			else:
+				send player title "&bYou don't have any keys" with subtitle "&bfor crate &e&l%{CrateLocation.%{virtualcrate.%player%}%}%&b." for 2 seconds
+
+on break:
+	set {curregion} to "%region at event-block's location%" parsed as text
+	if "%{Regions::*}%" contains "%{curregion}%":
+		chance of {@appear-chance}%:
+			if {@openable-only-by-player} is true:
+				set {playeropen.%block's location%} to "%player%"
+			wait 1 tick
+			set block to {@block}
+			if {@find-broadcast} is true:
+				broadcast " {@prefix} {@find-message}"
+			send player title "{@appear-title}" with subtitle "{@appear-subtitle}" for 3 seconds
+			set {Openable.%block's location%} to true
+			wait {@staytime} seconds
+			set block to air
+			delete {Openable.%block's location%}
+			delete {playeropen.%block's location%}
+
+on break of {@block}:
+	if {Openable.%block's location%} is true:
+		cancel event
+		message " {@prefix} &d&lThis cannot be breaked! Rightclick on it!" to event-player
+
+on rightclick on {@block}:
+	if player's gamemode isn't creative:
+		if {Openable.%block's location%} is true:
+			if {@openable-only-by-player} is true:
+				if {playeropen.%block's location%} isn't "%player%":
+					message " {@prefix} &c&lSorry! This crate isn't yours."
+					stop
+			set player's target block to air
+			wait 2 ticks
+			open chest with 3 rows named "&e&lOpening: &6&l{@open-crate}" to player
+			loop 30 times:
+				format slot 0 of player with yellow stained glass pane named " " to be unstealable
+				format slot 1 of player with yellow stained glass pane named " " to be unstealable
+				format slot 2 of player with yellow stained glass pane named " " to be unstealable
+				format slot 3 of player with yellow stained glass pane named " " to be unstealable
+				format slot 4 of player with yellow stained glass pane named " " to be unstealable
+				format slot 5 of player with yellow stained glass pane named " " to be unstealable
+				format slot 6 of player with yellow stained glass pane named " " to be unstealable
+				format slot 7 of player with yellow stained glass pane named " " to be unstealable
+				format slot 8 of player with yellow stained glass pane named " " to be unstealable
+				format slot 9 of player with yellow stained glass pane named " " to be unstealable
+				format slot 10 of player with yellow stained glass pane named " " to be unstealable
+				format slot 11 of player with yellow stained glass pane named " " to be unstealable
+				format slot 12 of player with yellow stained glass pane named " " to be unstealable
+				set {_random} to random integer between 1 and {CrateItemsTotal.{@open-crate}}
+				format slot 13 of player with {CrateItem.{@open-crate}::%{_random}%} to be unstealable
+				format slot 14 of player with yellow stained glass pane named " " to be unstealable
+				format slot 15 of player with yellow stained glass pane named " " to be unstealable
+				format slot 16 of player with yellow stained glass pane named " " to be unstealable
+				format slot 17 of player with yellow stained glass pane named " " to be unstealable
+				format slot 18 of player with yellow stained glass pane named " " to be unstealable
+				format slot 19 of player with yellow stained glass pane named " " to be unstealable
+				format slot 20 of player with yellow stained glass pane named " " to be unstealable
+				format slot 21 of player with yellow stained glass pane named " " to be unstealable
+				format slot 22 of player with yellow stained glass pane named " " to be unstealable
+				format slot 23 of player with yellow stained glass pane named " " to be unstealable
+				format slot 24 of player with yellow stained glass pane named " " to be unstealable
+				format slot 25 of player with yellow stained glass pane named " " to be unstealable
+				format slot 26 of player with yellow stained glass pane named " " to be unstealable
+				wait 0.1 second
+			set {_random} to random integer between 1 and {CrateItemsTotal.{@open-crate}}
+			format slot 13 of player with {CrateItem.{@open-crate}::%{_random}%} to be unstealable
+			if {CrateItemCommand.{@open-crate}::%{_random}%} is set:
+				if {@giveonwincommand} is true:
+					give {CrateItem.{@open-crate}::%{_random}%} to player
+				set {CrateCommand.%player%} to "%{CrateItemCommand.{@open-crate}::%{_random}%}%"
+				replace "PLAYER" in {CrateCommand.%player%} with "%player's name%"
+				execute console command "%{CrateCommand.%player%}%"
+			else:
+				give {CrateItem.{@open-crate}::%{_random}%} to player
+			if {@open-messages} is true:
+				message " {@prefix} &eYou have won &a%{CrateItem.{@open-crate}::%{_random}%}'s name%&e!"
+			if {@doautoclose} is true:
+				wait {@autoclose} seconds
+				close player's inventory
+	else:
+		message " {@prefix} &cYou can't open crates in creative mode!"
+
+on rightclick on {@crate-block}:
+	if {chancetotal.%block's location%} isn't set:
+		set {chancetotal.%block's location%} to 100
+	if {CrateLocation.%block's location%} is set:
+		cancel event
+		if {key.%{CrateLocation.%block's location%}%.%player%} isn't set:
+			set {key.%{CrateLocation.%block's location%}%.%player%} to 0
+		if player's gamemode isn't creative:
+			if {@virtual-key} is true:
+				open chest with 3 row named "&b&lOpen crate?" to player
+				wait 1 tick
+				set {virtual.%player%} to true
+				set {virtualcrate.%player%} to block's location
+				format slot 13 of player with {@key-item} named "&b&l%{CrateLocation.%block's location%}% keys: &e&l%{key.%{CrateLocation.%block's location%}%.%player%}%" with lore "{@hover-message}||&e{@website}" to be unstealable
+				format slot 4 of player with purple stained glass pane named " " to be unstealable
+				format slot 22 of player with purple stained glass pane named " " to be unstealable
+				format slot 2 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 0 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 1 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 3 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 6 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 5 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 7 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 8 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 9 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 10 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 11 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 12 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 14 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 15 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 16 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 17 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 18 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 19 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 20 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 21 of player with green stained glass pane named "&a&lOpen." to run [make player execute "open"]
+				format slot 23 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 24 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 25 of player with red stained glass pane named "&c&lCancel." to close
+				format slot 26 of player with red stained glass pane named "&c&lCancel." to close
+			else if {@virtual-key} is false:
+				if player's tool is {@key-item} named "{@key-name-color}%{CrateLocation.%block's location%}% key":
+					remove {@key-item} named "{@key-name-color}%{CrateLocation.%block's location%}% key" from player's inventory
+					set {opening.%player%} to true
+					if {@animation} is false:
+						loop 5 times:
+							wait 0.1 second
+							play mob spawner flames at target block
+							play raw sound "note.bass" at player with pitch 5 volume 10
+							wait 0.1 second
+							play raw sound "note.bassattack" at player with pitch 5 volume 10
+							wait 0.1 second
+							play raw sound "note.harp" at player with pitch 5 volume 10
+							wait 0.1 second
+							play raw sound "note.pling" at player with pitch 5 volume 10
+							wait 0.1 second
+							play raw sound "note.snare" at player with pitch 5 volume 10
+						make player execute "randomtry"
+						play raw sound "random.successful_hit" at player with pitch 1 volume 10
+						delete {random}
+						set {opening.%player%} to false
+					else if {@animation} is true:
+						open chest with 3 rows named "&d&l%{CrateLocation.%block's location%}%" to player
+						wait 3 ticks
+						if inventory name of player's current inventory is "&d&l%{CrateLocation.%block's location%}%":
+							if {CrateType.%{CrateLocation.%block's location%}%} is "csgo" or "CSGO":
+								loop {@animation-length} times:
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize2.%player%}%} to be unstealable
+									set {_randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize3.%player%}%} to be unstealable
+									set {_randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize4.%player%}%} to be unstealable
+									set {_randomprize5.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize5.%player%}%} to be unstealable
+									set {_randomprize6.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize6.%player%}%} to be unstealable
+									set {_randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize7.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.harp" at player with pitch 1 volume 10
+									wait 0.3 seconds
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize8.%player%} to {_randomprize1.%player%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize8.%player%}%} to be unstealable
+									set {_randomprize9.%player%} to {_randomprize2.%player%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize9.%player%}%} to be unstealable
+									set {_randomprize10.%player%} to {_randomprize3.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize10.%player%}%} to be unstealable
+									set {_randomprize11.%player%} to {_randomprize4.%player%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize11.%player%}%} to be unstealable
+									set {_randomprize12.%player%} to {_randomprize5.%player%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize12.%player%}%} to be unstealable
+									set {_randomprize13.%player%} to {_randomprize6.%player%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize13.%player%}%} to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									wait 0.3 second
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item3} to be unstealable
+									format slot 2 of player with {@animation-item3} to be unstealable
+									format slot 3 of player with {@animation-item3} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item3} to be unstealable
+									format slot 6 of player with {@animation-item3} to be unstealable
+									format slot 7 of player with {@animation-item3} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize14.%player%} to {_randomprize3.%player%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize14.%player%}%} to be unstealable
+									set {randomprize15.%player%} to {_randomprize4.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									set {_randomprize16.%player%} to {_randomprize5.%player%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize16.%player%}%} to be unstealable
+									set {_randomprize17.%player%} to {_randomprize6.%player%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize17.%player%}%} to be unstealable
+									set {_randomprize18.%player%} to {_randomprize7.%player%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize18.%player%}%} to be unstealable
+									set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item3} to be unstealable
+									format slot 20 of player with {@animation-item3} to be unstealable
+									format slot 21 of player with {@animation-item3} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item3} to be unstealable
+									format slot 24 of player with {@animation-item3} to be unstealable
+									format slot 25 of player with {@animation-item3} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.harp" at player with pitch 1 volume 10
+									wait 0.2 second
+							if {CrateType.%{CrateLocation.%block's location%}%} isn't set:
+								loop {@animation-length} times:
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize2.%player%}%} to be unstealable
+									set {_randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize3.%player%}%} to be unstealable
+									set {_randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize4.%player%}%} to be unstealable
+									set {_randomprize5.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize5.%player%}%} to be unstealable
+									set {_randomprize6.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize6.%player%}%} to be unstealable
+									set {_randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize7.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.harp" at player with pitch 1 volume 10
+									wait 0.3 seconds
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize8.%player%} to {_randomprize1.%player%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize8.%player%}%} to be unstealable
+									set {_randomprize9.%player%} to {_randomprize2.%player%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize9.%player%}%} to be unstealable
+									set {_randomprize10.%player%} to {_randomprize3.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize10.%player%}%} to be unstealable
+									set {_randomprize11.%player%} to {_randomprize4.%player%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize11.%player%}%} to be unstealable
+									set {_randomprize12.%player%} to {_randomprize5.%player%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize12.%player%}%} to be unstealable
+									set {_randomprize13.%player%} to {_randomprize6.%player%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize13.%player%}%} to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									wait 0.3 second
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item3} to be unstealable
+									format slot 2 of player with {@animation-item3} to be unstealable
+									format slot 3 of player with {@animation-item3} to be unstealable
+									format slot 4 of player with torch to be unstealable
+									format slot 5 of player with {@animation-item3} to be unstealable
+									format slot 6 of player with {@animation-item3} to be unstealable
+									format slot 7 of player with {@animation-item3} to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									set {_randomprize14.%player%} to {_randomprize3.%player%}
+									format slot 12 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize14.%player%}%} to be unstealable
+									set {randomprize15.%player%} to {_randomprize4.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									set {_randomprize16.%player%} to {_randomprize5.%player%}
+									format slot 14 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize16.%player%}%} to be unstealable
+									set {_randomprize17.%player%} to {_randomprize6.%player%}
+									format slot 15 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize17.%player%}%} to be unstealable
+									set {_randomprize18.%player%} to {_randomprize7.%player%}
+									format slot 16 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize18.%player%}%} to be unstealable
+									set {_randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 11 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									set {_randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 10 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{_randomprize1.%player%}%} to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 19 of player with {@animation-item3} to be unstealable
+									format slot 20 of player with {@animation-item3} to be unstealable
+									format slot 21 of player with {@animation-item3} to be unstealable
+									format slot 22 of player with torch to be unstealable
+									format slot 23 of player with {@animation-item3} to be unstealable
+									format slot 24 of player with {@animation-item3} to be unstealable
+									format slot 25 of player with {@animation-item3} to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									play raw sound "note.harp" at player with pitch 1 volume 10
+									wait 0.2 second
+							if {CrateType.%{CrateLocation.%block's location%}%} is "vertical" or "VERTICAL":
+								loop {@animation-length} times:
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									format slot 0 of player with black stained glass pane to be unstealable
+									format slot 9 of player with black stained glass pane to be unstealable
+									format slot 8 of player with black stained glass pane to be unstealable
+									format slot 17 of player with black stained glass pane to be unstealable
+									format slot 18 of player with black stained glass pane to be unstealable
+									format slot 26 of player with black stained glass pane to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 10 of player with {@animation-item1} to be unstealable
+									format slot 11 of player with {@animation-item1} to be unstealable
+									format slot 12 of player with torch to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 14 of player with torch to be unstealable
+									format slot 15 of player with {@animation-item1} to be unstealable
+									format slot 16 of player with {@animation-item1} to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									set {randomprize1.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 4 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize1.%player%}%} to be unstealable
+									set {randomprize2.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize2.%player%}%} to be unstealable
+									set {randomprize3.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 22 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize3.%player%}%} to be unstealable
+									wait 0.3 second
+									play raw sound "note.pling" at player with pitch 2 volume 10
+									format slot 1 of player with {@animation-item2} to be unstealable
+									format slot 2 of player with {@animation-item2} to be unstealable
+									format slot 3 of player with {@animation-item2} to be unstealable
+									format slot 10 of player with {@animation-item2} to be unstealable
+									format slot 11 of player with {@animation-item2} to be unstealable
+									format slot 12 of player with torch to be unstealable
+									format slot 19 of player with {@animation-item2} to be unstealable
+									format slot 20 of player with {@animation-item2} to be unstealable
+									format slot 21 of player with {@animation-item2} to be unstealable
+									format slot 5 of player with {@animation-item2} to be unstealable
+									format slot 6 of player with {@animation-item2} to be unstealable
+									format slot 7 of player with {@animation-item2} to be unstealable
+									format slot 14 of player with torch to be unstealable
+									format slot 15 of player with {@animation-item2} to be unstealable
+									format slot 16 of player with {@animation-item2} to be unstealable
+									format slot 23 of player with {@animation-item2} to be unstealable
+									format slot 24 of player with {@animation-item2} to be unstealable
+									format slot 25 of player with {@animation-item2} to be unstealable
+									set {randomprize4.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 4 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize4.%player%}%} to be unstealable
+									set {randomprize5.%player%} to {randomprize1.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize5.%player%}%} to be unstealable
+									set {randomprize6.%player%} to {randomprize2.%player%}
+									format slot 22 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize6.%player%}%} to be unstealable
+									wait 0.3 second
+									play raw sound "note.pling" at player with pitch 3 volume 10
+									format slot 1 of player with {@animation-item3} to be unstealable
+									format slot 2 of player with {@animation-item3} to be unstealable
+									format slot 3 of player with {@animation-item3} to be unstealable
+									format slot 10 of player with {@animation-item3} to be unstealable
+									format slot 11 of player with {@animation-item3} to be unstealable
+									format slot 12 of player with torch to be unstealable
+									format slot 19 of player with {@animation-item3} to be unstealable
+									format slot 20 of player with {@animation-item3} to be unstealable
+									format slot 21 of player with {@animation-item3} to be unstealable
+									format slot 5 of player with {@animation-item3} to be unstealable
+									format slot 6 of player with {@animation-item3} to be unstealable
+									format slot 7 of player with {@animation-item3} to be unstealable
+									format slot 14 of player with torch to be unstealable
+									format slot 15 of player with {@animation-item3} to be unstealable
+									format slot 16 of player with {@animation-item3} to be unstealable
+									format slot 23 of player with {@animation-item3} to be unstealable
+									format slot 24 of player with {@animation-item3} to be unstealable
+									format slot 25 of player with {@animation-item3} to be unstealable
+									set {randomprize7.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 4 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize7.%player%}%} to be unstealable
+									set {randomprize15.%player%} to {randomprize4.%player%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									set {randomprize9.%player%} to {randomprize5.%player%}
+									format slot 22 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize9.%player%}%} to be unstealable
+									wait 0.3 second
+							if {CrateType.%{CrateLocation.%block's location%}%} is "roulette" or "ROULETTE":
+								loop {@animation-length} times:
+									play raw sound "note.pling" at player with pitch 1 volume 10
+									format slot 0 of player with {@animation-item1} to be unstealable
+									format slot 1 of player with {@animation-item1} to be unstealable
+									format slot 2 of player with {@animation-item1} to be unstealable
+									format slot 3 of player with {@animation-item1} to be unstealable
+									format slot 4 of player with {@animation-item1} to be unstealable
+									format slot 5 of player with {@animation-item1} to be unstealable
+									format slot 6 of player with {@animation-item1} to be unstealable
+									format slot 7 of player with {@animation-item1} to be unstealable
+									format slot 8 of player with {@animation-item1} to be unstealable
+									format slot 9 of player with {@animation-item1} to be unstealable
+									format slot 10 of player with {@animation-item1} to be unstealable
+									format slot 11 of player with {@animation-item1} to be unstealable
+									format slot 12 of player with {@animation-item1} to be unstealable
+									format slot 14 of player with {@animation-item1} to be unstealable
+									format slot 15 of player with {@animation-item1} to be unstealable
+									format slot 16 of player with {@animation-item1} to be unstealable
+									format slot 17 of player with {@animation-item1} to be unstealable
+									format slot 18 of player with {@animation-item1} to be unstealable
+									format slot 19 of player with {@animation-item1} to be unstealable
+									format slot 20 of player with {@animation-item1} to be unstealable
+									format slot 21 of player with {@animation-item1} to be unstealable
+									format slot 22 of player with {@animation-item1} to be unstealable
+									format slot 23 of player with {@animation-item1} to be unstealable
+									format slot 24 of player with {@animation-item1} to be unstealable
+									format slot 25 of player with {@animation-item1} to be unstealable
+									format slot 26 of player with {@animation-item1} to be unstealable
+									set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									wait 0.3 second
+									play raw sound "note.pling" at player with pitch 2 volume 10
+									format slot 0 of player with {@animation-item2} to be unstealable
+									format slot 1 of player with {@animation-item2} to be unstealable
+									format slot 2 of player with {@animation-item2} to be unstealable
+									format slot 3 of player with {@animation-item2} to be unstealable
+									format slot 4 of player with {@animation-item2} to be unstealable
+									format slot 5 of player with {@animation-item2} to be unstealable
+									format slot 6 of player with {@animation-item2} to be unstealable
+									format slot 7 of player with {@animation-item2} to be unstealable
+									format slot 8 of player with {@animation-item2} to be unstealable
+									format slot 9 of player with {@animation-item2} to be unstealable
+									format slot 10 of player with {@animation-item2} to be unstealable
+									format slot 11 of player with {@animation-item2} to be unstealable
+									format slot 12 of player with {@animation-item2} to be unstealable
+									format slot 14 of player with {@animation-item2} to be unstealable
+									format slot 15 of player with {@animation-item2} to be unstealable
+									format slot 16 of player with {@animation-item2} to be unstealable
+									format slot 17 of player with {@animation-item2} to be unstealable
+									format slot 18 of player with {@animation-item2} to be unstealable
+									format slot 19 of player with {@animation-item2} to be unstealable
+									format slot 20 of player with {@animation-item2} to be unstealable
+									format slot 21 of player with {@animation-item2} to be unstealable
+									format slot 22 of player with {@animation-item2} to be unstealable
+									format slot 23 of player with {@animation-item2} to be unstealable
+									format slot 24 of player with {@animation-item2} to be unstealable
+									format slot 25 of player with {@animation-item2} to be unstealable
+									format slot 26 of player with {@animation-item2} to be unstealable
+									set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									wait 0.3 second
+									play raw sound "note.pling" at player with pitch 3 volume 10
+									format slot 0 of player with {@animation-item3} to be unstealable
+									format slot 1 of player with {@animation-item3} to be unstealable
+									format slot 2 of player with {@animation-item3} to be unstealable
+									format slot 3 of player with {@animation-item3} to be unstealable
+									format slot 4 of player with {@animation-item3} to be unstealable
+									format slot 5 of player with {@animation-item3} to be unstealable
+									format slot 6 of player with {@animation-item3} to be unstealable
+									format slot 7 of player with {@animation-item3} to be unstealable
+									format slot 8 of player with {@animation-item3} to be unstealable
+									format slot 9 of player with {@animation-item3} to be unstealable
+									format slot 10 of player with {@animation-item3} to be unstealable
+									format slot 11 of player with {@animation-item3} to be unstealable
+									format slot 12 of player with {@animation-item3} to be unstealable
+									format slot 14 of player with {@animation-item3} to be unstealable
+									format slot 15 of player with {@animation-item3} to be unstealable
+									format slot 16 of player with {@animation-item3} to be unstealable
+									format slot 17 of player with {@animation-item3} to be unstealable
+									format slot 18 of player with {@animation-item3} to be unstealable
+									format slot 19 of player with {@animation-item3} to be unstealable
+									format slot 20 of player with {@animation-item3} to be unstealable
+									format slot 21 of player with {@animation-item3} to be unstealable
+									format slot 22 of player with {@animation-item3} to be unstealable
+									format slot 23 of player with {@animation-item3} to be unstealable
+									format slot 24 of player with {@animation-item3} to be unstealable
+									format slot 25 of player with {@animation-item3} to be unstealable
+									format slot 26 of player with {@animation-item3} to be unstealable
+									set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+									format slot 13 of player with {CrateItem.%{CrateLocation.%block's location%}%::%{randomprize15.%player%}%} to be unstealable
+									wait 0.3 second
+							set {random} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%block's location%}%}
+							if {@animation} is false:
+								make player execute "randomtry"
+							else:
+								make player execute "guirandomtry"
+							play raw sound "random.successful_hit" at player with pitch 1 volume 10
+							delete {random}
+							if {CrateType.%{CrateLocation.%block's location%}%} is "csgo" or "CSGO":
+								loop 2 times:
+									format slot 10 of player with {@animation-item1} to be unstealable
+									format slot 16 of player with {@animation-item1} to be unstealable
+									wait 0.2 second
+									format slot 11 of player with {@animation-item2} to be unstealable
+									format slot 15 of player with {@animation-item2} to be unstealable
+									wait 0.2 second
+									format slot 12 of player with {@animation-item1} to be unstealable
+									format slot 14 of player with {@animation-item1} to be unstealable
+									wait 0.2 second
+									format slot 10 of player with {@animation-item3} to be unstealable
+									format slot 16 of player with {@animation-item3} to be unstealable
+									wait 0.2 second
+									format slot 11 of player with {@animation-item3} to be unstealable
+									format slot 15 of player with {@animation-item3} to be unstealable
+									wait 0.2 second
+									format slot 12 of player with {@animation-item3} to be unstealable
+									format slot 14 of player with {@animation-item3} to be unstealable
+							if {CrateType.%{CrateLocation.%block's location%}%} isn't set:
+								loop 2 times:
+									format slot 10 of player with {@animation-item1} to be unstealable
+									format slot 16 of player with {@animation-item1} to be unstealable
+									wait 0.2 second
+									format slot 11 of player with {@animation-item2} to be unstealable
+									format slot 15 of player with {@animation-item2} to be unstealable
+									wait 0.2 second
+									format slot 12 of player with {@animation-item1} to be unstealable
+									format slot 14 of player with {@animation-item1} to be unstealable
+									wait 0.2 second
+									format slot 10 of player with {@animation-item3} to be unstealable
+									format slot 16 of player with {@animation-item3} to be unstealable
+									wait 0.2 second
+									format slot 11 of player with {@animation-item3} to be unstealable
+									format slot 15 of player with {@animation-item3} to be unstealable
+									wait 0.2 second
+									format slot 12 of player with {@animation-item3} to be unstealable
+									format slot 14 of player with {@animation-item3} to be unstealable
+							if {@doautoclose} is true:
+								wait {@autoclose} seconds
+								set {opening.%player%} to false
+								close player's inventory
+							set {opening.%player%} to false
+				else:
+					message " {@prefix} &cYou don't have the right key!"
+					if {@no-key-explosion} is true:
+						push player backwards at speed 2
+						play raw sound "random.explode" at player with pitch 5 volume 6
+					else if {@no-key-explosion} is false:
+						push player backwards at speed 0.9
+						play raw sound "random.explode" at player with pitch 2 volume 3
+		else:
+			message " {@prefix} &cYou can't open crates in creative mode!"
+
+on break of {@crate-block}:
+	if {CrateLocation.%block's location%} is set:
+		if event-player has permission "megacrates.admin":
+			if event-player is sneaking:
+				set block to air
+				message " {@prefix} &d&lThis crate has been breaked!" to event-player
+				wait 2 ticks
+				close player's inventory
+				stop
+			else:
+				message " {@prefix} &d&lYou must sneak (shift) to break this crate!"
+				cancel event
+		else:
+			message " {@prefix} &c&lYou don't have permission for this!"
+
+# NOTE! This command is actually safe, beacause it can be only used when player is opening the crate. It is used for choosing random item from chances that you've set. #
+# It actually looks if player's inventory's name is the same as name of crate inventory. #
+
+command /guirandomtry:
+	trigger:
+		if {opening.%player%} is true:
+			if {CrateItemChance.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} is set:
+				set {randomprize15.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%player's target block's location%}%}
+				set {randomchance.%player%} to random integer between 0 and 100
+				if {randomchance.%player%} is less or equal to {CrateItemChance.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%}:
+					format slot 13 of player with {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to be unstealable
+					set {winplayer} to "%player%"
+					if {@open-messages} is true:
+						broadcast " {@prefix} &a%player% &ehas won &a%{CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%}'s name%&e!"
+					if {CrateItemCommand.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} is set:
+						if {@giveonwincommand} is true:
+							if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} is higher than 0:
+								give {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to player
+							else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} isn't set:
+								give {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to player
+						set {CrateCommand.%player%} to "%{CrateItemCommand.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%}%"
+						replace "PLAYER" in {CrateCommand.%player%} with "%player's name%"
+						if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} is higher than 0:
+							execute console command "%{CrateCommand.%player%}%"
+							remove 1 from {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%}
+						else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} isn't set:
+							execute console command "%{CrateCommand.%player%}%"
+						else:
+							message " {@prefix} &c&lSorry! This item isn't available. :("
+					else:
+						if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} is higher than 0:
+							give {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to player
+							remove 1 from {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%}
+						else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{randomprize15.%player%}%} isn't set:
+							give {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to player
+						else:
+							message " {@prefix} &c&lSorry! This item isn't available. :("
+				else:
+					make player execute "guirandomtry"
+			else:
+				format slot 13 of player with {CrateItem.%{CrateLocation.%player's target block's location%}%::%{randomprize15.%player%}%} to be unstealable
+
+# NOTE! This command is actually safe, beacause it can be only used when player is opening the crate. It is used for choosing random item from chances that you've set. #
+# It actually looks if player's inventory's name is the same as name of crate inventory. #
+
+command /randomtry:
+	trigger:
+		if {opening.%player%} is true:
+			format slot 13 of player with {CrateItem.%{CrateLocation.%player's target block's location%}%::%{random}%} to be unstealable
+			set {random.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%player's target block's location%}%}
+			if {CrateItemChance.%{CrateLocation.%player's target block's location%}%::%{random.%player%}%} is set:
+				set {random.%player%} to random integer between 1 and {CrateItemsTotal.%{CrateLocation.%player's target block's location%}%}
+				set {randomchance.%player%} to random integer between 0 and 100
+				if {randomchance.%player%} is less or equal to {CrateItemChance.%{CrateLocation.%player's target block's location%}%::%{random.%player%}%}:
+					set {winitem.%player%} to "%{CrateItem.%{CrateLocation.%player's target block's location%}%::%{random.%player%}%}%"
+					set {winplayer} to player's name
+					if {@open-messages} is true:
+						broadcast " {@prefix} &a%player% &ehas won &a%{winitem.%player%}'s name%&e!"
+					if {CrateItemCommand.%{CrateLocation.%player's target block's location%}%::%{random.%player%}%} is set:
+						if {@giveonwincommand} is true:
+							if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} is higher than 0:
+								give player {winitem.%player%}
+							else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} isn't set:
+								give player {winitem.%player%}
+						set {CrateCommand.%player%} to "%{CrateItemCommand.%{CrateLocation.%player's target block's location%}%::%{random.%player%}%}%"
+						replace "PLAYER" in {CrateCommand.%player%} with "%player's name%"
+						if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} is higher than 0:
+							execute console command "%{CrateCommand.%player%}%"
+							remove 1 from {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%}
+						else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} isn't set:
+							execute console command "%{CrateCommand.%player%}%"
+						else:
+							message " {@prefix} &c&lSorry! This item isn't available. :("
+					else:
+						if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} is higher than 0:
+							give player {winitem.%player%}
+							remove 1 from {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%}
+						else if {CrateItemLimit.%{CrateLocation.%player's target block's location%}%.%{random.%player%}%} isn't set:
+							give player {winitem.%player%}
+						else:
+							message " {@prefix} &c&lSorry! This item isn't available. :("
+				else:
+					make player execute "randomtry"
+			else:
+				set {winitem.%player%} to {CrateItem.%{CrateLocation.%player's target block's location%}%::%{random}%}
+
+on leftclick on {@crate-block}:
+	if {CrateLocation.%block's location%} is set:
+		open chest with 3 rows named "{@prefix} &ePrizes" to player
+		set {item} to 0
+		set {times} to 0
+		loop {CrateItemsTotal.%{CrateLocation.%block's location%}%} times:
+			add 1 to {item}
+			if {CrateItemChance.%{CrateLocation.%block's location%}%::%{item}%} isn't set:
+				if {CrateItemLimit.%{CrateLocation.%block's location%}%.%{item}%} isn't set:
+					set {nochance} to 100/{CrateItemsTotal.%{CrateLocation.%block's location%}%}
+					format slot {times} of player with {CrateItem.%{CrateLocation.%block's location%}%::%{item}%} named "&c%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s name%" with lore "%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s lore%||&eChance: &a%{nochance}% %%" to close
+				else:
+					set {nochance} to 100/{CrateItemsTotal.%{CrateLocation.%block's location%}%}
+					format slot {times} of player with {CrateItem.%{CrateLocation.%block's location%}%::%{item}%} named "&c%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s name%" with lore "%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s lore%||&eChance: &a%{nochance}% %%||&eIn stock: &b%{CrateItemLimit.%{CrateLocation.%block's location%}%.%{item}%}%" to close
+			else:
+				if {CrateItemLimit.%{CrateLocation.%block's location%}%.%{item}%} isn't set:
+					format slot {times} of player with {CrateItem.%{CrateLocation.%block's location%}%::%{item}%} named "&c%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s name%" with lore "%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s lore%||&eChance: &a%{CrateItemChance.%{CrateLocation.%block's location%}%::%{item}%}% %%" to close
+				else:
+					format slot {times} of player with {CrateItem.%{CrateLocation.%block's location%}%::%{item}%} named "&c%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s name%" with lore "%{CrateItem.%{CrateLocation.%block's location%}%::%{item}%}'s lore%||&eChance: &a%{CrateItemChance.%{CrateLocation.%block's location%}%::%{item}%}% %%||&eIn stock: &b%{CrateItemLimit.%{CrateLocation.%block's location%}%.%{item}%}%" to close
+			add 1 to {times}
+		if {CrateItemsTotal.%{CrateLocation.%block's location%}%} isn't set:
+			set {slot} to 0
+			loop 27 times:
+				format slot {slot} of player with red stained glass pane named "&c&lThere are no items!" with lore "&8• &bPlease tell administrator." to be unstealable
+				add 1 to {slot}
+		if {CrateItemsTotal.%{CrateLocation.%block's location%}%} is 0 or 1:
+			set {slot} to 0
+			loop 27 times:
+				format slot {slot} of player with red stained glass pane named "&c&lThere are no items!" with lore "&8• &bPlease tell administrator." to be unstealable
+				add 1 to {slot}

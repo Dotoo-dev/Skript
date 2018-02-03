@@ -1,0 +1,37 @@
+command /settabname <player> <text>:
+	executable by: console
+	trigger:
+		if arg-2 is "cwar":
+			set {namecolor%player-arg%} to "&a"
+		if arg-2 is "mwar":
+			set {namecolor%player-arg%} to "&c"
+		if arg-2 is "hunt":
+			set {namecolor%player-arg%} to "&b"
+		if arg-2 is "city":
+			set {namecolor%player-arg%} to "&6"
+		if arg-2 is "1v1":
+			set {namecolor%player-arg%} to "&e"
+		if arg-2 is "white":
+			set {namecolor%player-arg%} to "&f"
+		
+		if {prestigelive%player-arg%} is not set:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] %{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 0:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] %{namecolor%player-arg%}%%player-arg%"
+
+		if {prestigelive%player-arg%} is 1:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e★%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 2:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✳%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 3:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✴%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 4:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✴%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 5:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✹%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 6:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✦%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 7:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✚%{namecolor%player-arg%}%%player-arg%"
+		if {prestigelive%player-arg%} is 8:
+			set player-arg tab name to " &7[Lv%{lvlof%player-arg%}%] &e✠%{namecolor%player-arg%}%%player-arg%"

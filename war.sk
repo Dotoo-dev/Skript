@@ -1,0 +1,1074 @@
+﻿command /warreward <player> <text> <text>:
+	usage: "/warreward <player> <cre/moo> <win/lose>"
+	executable by: console
+	trigger:
+		loop all items of player-arg:
+			if name of loop-item contains "Magical Coin Pouch":
+				set {_switch%player-arg%} to 1
+		if {_switch%player-arg%} is not set:
+			if arg-2 is "cre":
+				give {war%arg-3%coins} of nether brick named "&fCreeper Coin" to player-arg
+			else if arg-2 is "moo":
+				give {war%arg-3%coins} of nether quartz named "&fMoosh Coin" to player-arg
+		else:
+			execute console command "/wallet %player-arg% %arg-2% %{war%arg-3%coins}%"
+		if {kihuhanabi_warcoin} is more than 0:
+			set {_tmpO} to now
+			give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to player-arg
+		if {winnermedal_on_off} is 1:
+			give {winnermedal_amount} of charcoal named "&bWinner Medal" to player-arg
+		if {kinoko_christmas} is 1:
+			if arg-3 is "win":
+				execute console command "moggive %player-arg% cakebomb1 1"
+			if arg-3 is "lose":
+				execute console command "moggive %player-arg% cakebomb2 1"
+
+command /medal <text>:
+	trigger:
+		player is op
+		if arg-1 is "on":
+			set {winnermedal_on_off} to 1
+		else if arg-1 is "off":
+			set {winnermedal_on_off} to 0
+		else if arg-1 is "1":
+			set {winnermedal_amount} to 1
+		else if arg-1 is "2":
+			set {winnermedal_amount} to 2
+		else if arg-1 is "3":
+			set {winnermedal_amount} to 3
+		else if arg-1 is "4":
+			set {winnermedal_amount} to 4
+		else if arg-1 is "5":
+			set {winnermedal_amount} to 5
+		else if arg-1 is "6":
+			set {winnermedal_amount} to 6
+		else if arg-1 is "7":
+			set {winnermedal_amount} to 7
+		else if arg-1 is "8":
+			set {winnermedal_amount} to 8
+		else if arg-1 is "9":
+			set {winnermedal_amount} to 9
+		send "Medal: On/off = %{winnermedal_on_off}%, Amount = %{winnermedal_amount}%"
+
+command /resetbomb:
+	trigger:
+		player is op
+		set {bombtimerA} to 0
+		set {bombtimerB} to 0
+command /setwarmode <number>:
+	trigger:
+		player is op
+		set {gamemode} to arg-1
+
+command /setcountdown <number>:
+	trigger:
+		player is op
+		set {countdown} to arg-1
+command /setcurrentmap <text>:
+	trigger:
+		player is op
+		set {currentmap.war} to arg-1
+command /naosi:
+	trigger:
+		set {bossbarcolor} to 1
+
+command /showwarval <player>:
+	trigger:
+		send "inteam.creeper of my value = %{war.inteam.creeper.%arg-1%}%"
+		send "inteam.moosh of my value = %{war.inteam.moosh.%arg-1%}%"
+		send "currentmap = %{currentmap.war}%"
+		send "sorter = teamnum creep: %{war.teamnumber.creeper}%, num moosh: %{war.teamnumber.moosh}%"
+		send "countdown : %{countdown}% Bosstime: %{bosstime}%"
+		send "bombset: A=%{bombsetA}% B=%{bombsetB}%"
+		send "bombtimer: A=%{bombtimerA}% B=%{bombtimerB}%"
+		send "bombdone: A=%{bombdoneA}% B=%{bombdoneB}%"
+		send "wartimeup: %{wartimeup}%"
+		send "bomblocA: %{bomblocA}%"
+		send "bomblocB: %{bomblocB}%"
+		send "gamemode: %{gamemode}%"
+
+command /setreward <text> <number>:
+	trigger:
+		player is op
+		if arg-1 is "win":
+			set {warwinreward} to arg-2
+			send "win reward = %arg-2%"
+		else if arg-1 is "lose":
+			set {warlosereward} to arg-2
+			send "lose reward = %arg-2%"
+		else if arg-1 is "mul":
+			if {kihuhanabi_warcoin} is more than 0:
+				send "&afirework was active: %{kihuhanabi_warcoin}%"
+				set {warmulti} to arg-2
+				set {warwincoins} to rounded {warwinreward}*{warmulti}*{hanabiboost}
+				set {warlosecoins} to rounded {warlosereward}*{warmulti}*{hanabiboost}
+				send "war multiplier = %arg-2%"
+				send "warwin coin = %rounded {warwinreward}*{warmulti}*{hanabiboost}%"
+				send "warlose coin = %rounded {warlosereward}*{warmulti}*{hanabiboost}%"
+				broadcast "&7Reward multiplier of WAR has been changed to %{warmulti}% !!"
+			else:
+				set {warmulti} to arg-2
+				set {warwincoins} to rounded {warwinreward}*{warmulti}
+				set {warlosecoins} to rounded {warlosereward}*{warmulti}
+				send "war multiplier = %arg-2%"
+				send "warwin coin = %rounded {warwinreward}*{warmulti}%"
+				send "warlose coin = %rounded {warlosereward}*{warmulti}%"
+				broadcast "&7Reward multiplier of WAR has been changed to %{warmulti}% !!"
+		else if arg-1 is "chk":
+			send "win reward = %{warwinreward}%"
+			send "lose reward = %{warlosereward}%"
+			send "war multiplier = %{warmulti}%"
+			send "warwin coin = %rounded {warwinreward}*{warmulti}%"
+			send "warlose coin = %rounded {warlosereward}*{warmulti}%"
+			
+command /autosetrewardval:
+	trigger:
+		set {_t} to day name from date now
+		if {_t} is "FRIDAY" or "SATURDAY" or "SUNDAY":
+			execute console command "/autosetreward 2"
+		else:
+			execute console command "/autosetreward 1"
+		# broadcast "test: %{_t}%"
+			
+command /autosetreward <number>:
+	executable by: console
+	trigger:
+		if {kihuhanabi_warcoin} is more than 0:
+			send "&afirework was active: %{kihuhanabi_warcoin}%"
+			set {warmulti} to arg-1
+			set {hanabiboost} to 5
+			set {warwincoins} to rounded {warwinreward}*{warmulti}*{hanabiboost}
+			set {warlosecoins} to rounded {warlosereward}*{warmulti}*{hanabiboost}
+			send "war multiplier = %arg-1%"
+			send "warwin coin = %rounded {warwinreward}*{warmulti}*{hanabiboost}%"
+			send "warlose coin = %rounded {warlosereward}*{warmulti}*{hanabiboost}%"
+			# broadcast "&7Reward multiplier of WAR has been changed to %{warmulti}% !!"
+		else:
+			set {warmulti} to arg-1
+			set {warwincoins} to rounded {warwinreward}*{warmulti}
+			set {warlosecoins} to rounded {warlosereward}*{warmulti}
+			send "war multiplier = %arg-1%"
+			send "warwin coin = %rounded {warwinreward}*{warmulti}%"
+			send "warlose coin = %rounded {warlosereward}*{warmulti}%"
+			# broadcast "&7Reward multiplier of WAR has been changed to %{warmulti}% !!"
+			
+command /setrewardboost <number>:
+	executable by: console
+	trigger:
+		if arg-1 is 1:
+			set {hanabiboost} to 5
+			set {warwincoins} to rounded {warwinreward}*{warmulti}*{hanabiboost}
+			set {warlosecoins} to rounded {warlosereward}*{warmulti}*{hanabiboost}
+		else if arg-1 is 0:
+			set {hanabiboost} to 1
+			set {warwincoins} to rounded {warwinreward}*{warmulti}*{hanabiboost}
+			set {warlosecoins} to rounded {warlosereward}*{warmulti}*{hanabiboost}
+			
+command /resetrewardboost:
+	trigger:
+		player is op
+		set {hanabiboost} to 1
+		set {kihuhanabi_warcoin} to 0
+		clear {kihuhanabi_warcoin_nameofplayer}	
+		broadcast "デバッグ用コマンド: コイン花火をリセットしました"
+			
+
+command /usedfirecoinboosts:
+	executable by: console
+	trigger:
+		set {warwincoins} to {warwinreward}*3*{warmulti}
+		set {warlosecoins} to {warlosereward}*3*{warmulti}
+		send "coin firework used"
+		send "warwin coin = %{warwinreward}*{warmulti}%"
+		send "warlose coin = %{warlosereward}*{warmulti}%"
+
+command /usedfirecoinboostsdisable:
+	executable by: console
+	trigger:
+		set {warwincoins} to {warwinreward}*{warmulti}
+		set {warlosecoins} to {warlosereward}*{warmulti}
+		send "coin firework disabled"
+		send "warwin coin = %{warwinreward}*{warmulti}%"
+		send "warlose coin = %{warlosereward}*{warmulti}%"
+
+# command /showwarstat:
+	# trigger:
+		# send "creeperwins = %{creeperwins}%"
+		# send "mooshwins = %{mooshwins}%"
+# command /resetwar:
+	# trigger:
+		# if player is not op:
+			# send ";)"
+		# if player is op:
+			# broadcast "&7Operator of THE WAR II is reseting WAR. Sorry :)"
+			# set {bombsetA} to 0
+			# set {bombsetB} to 0
+			# set {bombtimerA} to 0
+			# set {bombtimerB} to 0
+			# set {bombdoneA} to 0
+			# set {bombdoneB} to 0
+			# set {war.teamnumber.creeper} to 0
+			# set {war.teamnumber.moosh} to 0
+			# set block at {bomblocA} to beacon
+			# set block at {bomblocB} to beacon
+			# set {countdown} to 150
+			# loop all players:
+				# execute console command "/warp shop %loop-player%"
+				# execute console command "/scoreboard teams join default %loop-player%"
+				# set {namecolor%loop-player%} to "&e"
+				# set loop-player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+
+				# set {war.inteam.creeper.%loop-player%} to 0
+				# set {war.inteam.moosh.%loop-player%} to 0
+
+# command /testt:
+	# trigger:
+		# set {bossbarcolor} to 1
+
+
+every 20 ticks:
+
+	if {gamemode} is 0:
+
+		if {bossbarcolor} is 2:
+			set {bossbarcolor} to 1
+		else if {bossbarcolor} is 1:
+			set {bossbarcolor} to 2
+		# set {bossbarcolor} to 2
+
+		if {bombsetA} is 1:
+			if {bombsetB} is 0:
+				if {bossbarcolor} is 2:
+					if {bombdoneB} is 1:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4A site &7| &4&mB site"
+					else:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4A site &7| &eB site"
+				if {bossbarcolor} is 1:
+					if {bombdoneB} is 1:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &4&mB site"
+					else:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &eB site"
+			if {bombsetB} is 1:
+				if {bossbarcolor} is 2:
+					execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4A site &7| &4B site"
+				if {bossbarcolor} is 1:
+					execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &eB site"
+
+		else if {bombsetA} is 0:
+			if {bombsetB} is 1:
+				if {bossbarcolor} is 2:
+					if {bombdoneA} is 1:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4&mA site&r &7| &4B site"
+					else:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &4B site"
+				if {bossbarcolor} is 1:
+					if {bombdoneA} is 1:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4&mA site&r &7| &eB site"
+					else:
+						execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &eB site"
+
+			if {bombsetB} is 0:
+				if {bombdoneA} is 1:
+					execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &4&mA site&r &7| &eB site"
+				else if {bombdoneB} is 1:
+					execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &4&mB site"
+				else:
+					execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &bA site &7| &eB site"
+
+	else if {gamemode} is 1:
+		execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &aCreeper: &f%{tdmscoreC}% &7|&c Moosh: &f%{tdmscoreM}%"
+		
+	else if {gamemode} is 2:
+		execute console command "mogbar %{mogbartimer}% &6%{mapname}% &e✦ &aCreeper: &f%{domscoreC}% &7|&c Moosh: &f%{domscoreM}% &7| %{domiAbossbarcolor}%A %{domiBbossbarcolor}%B %{domiCbossbarcolor}%C "
+
+on quit:
+	if {war.inteam.creeper.%player%} is 1:
+		subtract 1 from {war.teamnumber.creeper}
+		add 1 to {gameplayed%player%}
+	else if {war.inteam.moosh.%player%} is 1:
+		subtract 1 from {war.teamnumber.moosh}
+		add 1 to {gameplayed%player%}
+	set {war.inteam.creeper.%player%} to 0
+	set {war.inteam.moosh.%player%} to 0
+#
+#	時間になったらオートバランス＋マップチェンジ
+#
+#on script load:
+#	set {currentmap.war} to "1"
+#	set {wartimer} to 0
+every 1 seconds:
+	if {countdown} is less than -1:
+		set {countdown} to 15
+	if {bombtimerA} is not 0:
+		if {countdown} is less than 11:
+			set {countdown} to 15
+			stop
+		stop
+	if {bombtimerB} is not 0:
+		if {countdown} is less than 11:
+			set {countdown} to 15
+			stop
+		stop
+
+	if {war.teamnumber.creeper} is 0:
+		if {war.teamnumber.moosh} is 0:
+			if {countdown} is more than 35:
+				stop
+
+	subtract 1 from {countdown}
+	set {mogbartimer} to {countdown}/3
+
+	# if {countdown} is 190:
+		# if {gamemode} is "valen":
+			# loop 20 times:
+				# spawn zombies at block at {locvalen1}
+				# set name of last spawned entity to "<green>リアじゅう"
+				# set max health of last spawned entity to 100
+				# heal the last spawned entity
+				# apply speed 2 to last spawned entity
+				# spawn zombies at block at {locvalen2}
+				# set name of last spawned entity to "<green>リアじゅう"
+				# set max health of last spawned entity to 100
+				# apply speed 2 to last spawned entity
+				# heal the last spawned entity
+				# spawn zombies at block at {locvalen3}
+				# set name of last spawned entity to "<green>リアじゅう"
+				# set max health of last spawned entity to 100
+				# heal the last spawned entity
+				# apply speed 2 to last spawned entity
+
+
+	if {countdown} is 30:
+
+		if {war.teamnumber.creeper} > 2:
+			if {war.teamnumber.moosh} > 2:
+				set {togglestatscount} to 1
+		else:
+			set {togglestatscount} to 0
+
+		loop all players:
+			if {war.inteam.creeper.%loop-player%} is 1:
+				send "&4!!!!!!!!!!!!!!!!!!! &f30 seconds left&4 !!!!!!!!!!!!!!!!!!!" to loop-player
+				if {gamemode} is 1:
+					send "&4!!!!!!!!!!!!!!! &fx3 score from kills&4 !!!!!!!!!!!!!!!" to loop-player
+			else if {war.inteam.moosh.%loop-player%} is 1:
+				send "&4!!!!!!!!!!!!!!!!!!! &f30 seconds left&4 !!!!!!!!!!!!!!!!!!!" to loop-player
+				if {gamemode} is 1:
+					send "&4!!!!!!!!!!!!!!! &fx3 score from kills&4 !!!!!!!!!!!!!!!" to loop-player
+
+	if {countdown} is 10:
+		execute console command "/title @a title ["""",{""text"":""10"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 9:
+		execute console command "/title @a title ["""",{""text"":""9"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 8:
+		execute console command "/title @a title ["""",{""text"":""8"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 7:
+		execute console command "/title @a title ["""",{""text"":""7"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 6:
+		execute console command "/title @a title ["""",{""text"":""6"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 5:
+		execute console command "/title @a title ["""",{""text"":""5"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 4:
+		execute console command "/title @a title ["""",{""text"":""4"",""color"":""yellow"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 3:
+		execute console command "/title @a title ["""",{""text"":""3"",""color"":""red"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 2:
+		execute console command "/title @a title ["""",{""text"":""2"",""color"":""red"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 1:
+		execute console command "/title @a title ["""",{""text"":""1"",""color"":""red"",""bold"":""true""}]"
+		wait a second
+	if {countdown} is 0:
+
+		set {war.teamnumber.creeper} to 0
+		set {war.teamnumber.moosh} to 0
+		set {countdown} to 300
+		
+		if {gamemode} is 2:
+			execute console command "/title @a title ["""",{""text"":""Mooshroom team "",""color"":""red"",""bold"":""true""},{""text"":""wins!"",""color"":""gold"",""bold"":""true""}]"
+			execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for Moosh team, %{warlosecoins}% for losers"",""color"":""gray"",""bold"":""false""}]"
+
+		if {gamemode} is 0:
+			execute console command "/title @a title ["""",{""text"":""Mooshroom team "",""color"":""red"",""bold"":""true""},{""text"":""wins!"",""color"":""gold"",""bold"":""true""}]"
+			execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for Moosh team, %{warlosecoins}% for losers"",""color"":""gray"",""bold"":""false""}]"
+		if {gamemode} is 1:
+			if {tdmscoreC} is equal to {tdmscoreM}:
+				execute console command "/title @a title ["""",{""text"":""Draw!! "",""color"":""grey"",""bold"":""true""},{""text"":""you're all winners!"",""color"":""gold"",""bold"":""true""}]"
+				execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for all of you!"",""color"":""gray"",""bold"":""false""}]"
+
+			if {tdmscoreC} is more than {tdmscoreM}:
+				execute console command "/title @a title ["""",{""text"":""Creeper team "",""color"":""green"",""bold"":""true""},{""text"":""wins!"",""color"":""gold"",""bold"":""true""}]"
+				execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for Creeper team, %{warlosecoins}% for losers"",""color"":""gray"",""bold"":""false""}]"
+
+			if {tdmscoreM} is more than {tdmscoreC}:
+				execute console command "/title @a title ["""",{""text"":""Mooshroom team "",""color"":""red"",""bold"":""true""},{""text"":""wins!"",""color"":""gold"",""bold"":""true""}]"
+				execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for Moosh team, %{warlosecoins}% for losers"",""color"":""gray"",""bold"":""false""}]"
+
+		if {gamemode} is 2:
+			loop {domibeacon1::*}:
+				set block above loop-value to air
+			loop {domibeacon2::*}:
+				set block above loop-value to air
+			loop {domibeacon3::*}:
+				set block above loop-value to air
+			set {domiAisforC} to 0
+			set {domiAisforM} to 0
+			set {domiBisforC} to 0
+			set {domiBisforM} to 0
+			set {domiCisforC} to 0
+			set {domiCisforM} to 0
+			set {domitimer1} to 0
+			set {domitimer2} to 0
+			set {domitimer3} to 0
+			set {domiAbossbarcolor} to "&7"
+			set {domiBbossbarcolor} to "&7"
+			set {domiCbossbarcolor} to "&7"
+			set {domscoreC} to 0
+			set {domscoreM} to 0
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+					make loop-player execute command "thisisacommandforsettingtab"
+					execute console command "settabname %loop-player% white"
+					
+					if {domscoreC} is smaller than {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You lost the WAR :(" to loop-player
+						send "&7You got %{warlosecoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% cre lose"
+					else if {domscoreC} is greater than {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% cre win"
+					else if {domscoreC} = {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% cre win"
+					# give 1 charcoal named "&bWinner Medal" to loop-player
+					
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+					make loop-player execute command "thisisacommandforsettingtab"
+					execute console command "settabname %loop-player% white"
+					
+					if {domscoreC} is greater than {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You lost the WAR :(" to loop-player
+						send "&7You got %{warlosecoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% moo lose"
+					else if {domscoreC} is smaller than {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% moo win"
+					else if {domscoreC} = {domscoreM}:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% creeper coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% moo win"
+					
+				if gamemode of loop-player is not survival:
+					set loop-player's gamemode to survival
+				set {war.inteam.creeper.%loop-player%} to 0
+				set {war.inteam.moosh.%loop-player%} to 0
+				
+				
+		if {gamemode} is 0:
+
+			set {bombsetA} to 0
+			set {bombsetB} to 0
+			set {bombtimerA} to 0
+			set {bombtimerB} to 0
+			set {bombdoneA} to 0
+			set {bombdoneB} to 0
+			loop {blocks1::*}:
+				set block at loop-value to air
+			loop {blocks2::*}:
+				set block at loop-value to air
+			set block at {bomblocA} to beacon
+			set block at {bomblocB} to beacon
+
+
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+					
+					# give 1 charcoal named "&bWinner Medal" to loop-player
+					
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+					
+					# give 1 charcoal named "&bWinner Medal" to loop-player
+
+			loop all players:
+
+
+				if {war.inteam.creeper.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					set {bombactionbarof%loop-player%B} to 0
+					execute console command "settabname %loop-player% white"
+					# set {namecolor%loop-player%} to "&f"
+					# set loop-player tab name to " &7[Lv%{lvlof%loop-player%}%] %{namecolor%loop-player%}%%loop-player%"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					send "&7&m&l----------------------------------" to loop-player
+					send "&7You lost the WAR :(" to loop-player
+					send "&7You got %{warlosecoins}% creeper coins." to loop-player
+					send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+					send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+					send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+					send "&7&m&l----------------------------------" to loop-player
+					# loop all items of loop-player:
+						# if name of loop-item contains "Magical Coin Pouch":
+							
+							# set {_switch%loop-player%} to 1
+					# if {_switch%loop-player%} is not set:
+						# give {warlosecoins} of nether brick named "&fCreeper Coin" to loop-player
+					# else:
+						# execute console command "/wallet %loop-player% cre %{warlosecoins}%"
+					# if {kihuhanabi_warcoin} is more than 0:
+						# set {_tmpO} to now
+						# give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to loop-player
+					execute console command "/warreward %loop-player% cre lose"
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+						add 1 to {stats_mooshwin%loop-player%}
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% Moosh Coins and +20 exp !!" to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% moo win"
+						add 20 to {expnew%UUID of loop-player%}
+						set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+						# else:
+						set the loop-player's level to {lvlof%UUID of loop-player%}
+					else:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% Moosh Coins !!" to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						execute console command "/warreward %loop-player% moo win"
+
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					set {bombactionbarof%loop-player%B} to 0
+					execute console command "settabname %loop-player% white"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+				else if {spectatemode%loop-player%} is 1:
+					set {spectatemode%loop-player%} to 0
+					set {togglespec%loop-player%} to 1
+					execute console command "settabname %loop-player% white"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+					execute console command "warp shop %loop-player%"
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+
+
+
+		else if {gamemode} is 1:
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+
+			loop all players:
+
+				if {war.inteam.creeper.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					set {bombactionbarof%loop-player%B} to 0
+					execute console command "settabname %loop-player% white"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					# if {warbreak} is not 1:
+
+					if {tdmscoreC} is equal to {tdmscoreM}:
+						if {togglestatscount} is 1:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Creeper Coins and +20 exp !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre win"
+							
+							
+							add 20 to {expnew%UUID of loop-player%}
+							set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+							# else:
+							set the loop-player's level to {lvlof%UUID of loop-player%}
+						else:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Creeper Coins !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre win"
+						
+
+					else if {tdmscoreC} is more than {tdmscoreM}:
+						if {togglestatscount} is 1:
+							add 1 to {stats_creeperwin%loop-player%}
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Creeper Coins and +20 exp !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre win"
+							
+							add 20 to {expnew%UUID of loop-player%}
+							set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+							# else:
+							set the loop-player's level to {lvlof%UUID of loop-player%}
+						else:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Creeper Coins !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre win"
+
+					else if {tdmscoreM} is more than {tdmscoreC}:
+						if {togglestatscount} is 1:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You lost the WAR :(" to loop-player
+							send "&7You got %{warlosecoins}% creeper coins." to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre lose"
+							
+						else:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You lost the WAR :(" to loop-player
+							send "&7You got %{warlosecoins}% creeper coins." to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% cre lose"
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					set {bombactionbarof%loop-player%B} to 0
+					execute console command "settabname %loop-player% white"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					if {tdmscoreC} is equal to {tdmscoreM}:
+						message "&7You won the WAR !!" to loop-player
+						if {togglestatscount} is 1:
+							add 1 to {stats_mooshwin%loop-player%}
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Moosh Coins and +20 exp !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo win"
+							add 20 to {expnew%UUID of loop-player%}
+							set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+							# else:
+							set the loop-player's level to {lvlof%UUID of loop-player%}
+						else:
+							add 1 to {stats_mooshwin%loop-player%}
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Moosh Coins !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo win"
+
+					else if {tdmscoreC} is more than {tdmscoreM}:
+						if {togglestatscount} is 1:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You lost the WAR :(" to loop-player
+							send "&7You got %{warlosecoins}% Moosh Coins." to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo lose"
+							
+						else:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You lost the WAR :(" to loop-player
+							send "&7You got %{warlosecoins}% Moosh Coins." to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo lose"
+
+					else if {tdmscoreM} is more than {tdmscoreC}:
+						if {togglestatscount} is 1:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Moosh Coins and +20 exp !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo win"
+							add 20 to {expnew%UUID of loop-player%}
+							set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+							set the loop-player's level to {lvlof%UUID of loop-player%}
+						else:
+							send "&7&m&l----------------------------------" to loop-player
+							send "&7You won the WAR !!" to loop-player
+							send "&7You got %{warwincoins}% Moosh Coins !!" to loop-player
+							send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+							send "&7MVP of creeper team: %{wartopkd.creeper.playername}% (%{wartopkd.creeper.current}% Kills)" to loop-player
+							send "&7MVP of moosh team: %{wartopkd.moosh.playername}% (%{wartopkd.moosh.current}% Kills)" to loop-player
+							send "&7&m&l----------------------------------" to loop-player
+							execute console command "/warreward %loop-player% moo win"
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+				else if {spectatemode%loop-player%} is 1:
+					set {spectatemode%loop-player%} to 0
+					set {togglespec%loop-player%} to 1
+					execute console command "settabname %loop-player% white"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					execute console command "warp shop %loop-player%"
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+
+
+
+		set {tdmscoreC} to 0
+		set {tdmscoreM} to 0
+		
+		set {tempwar.war3} to {tempwar.war2}
+		set {tempwar.war2} to {tempwar.war1}
+		set {tempwar.war1} to {tempwar.war}
+		execute console command "/nextwar"
+		# set {valentscore} to 0
+
+		# else if {currentmap.war} is "8":
+			# set {currentmap.war} to "20"
+			# set {gamemode} to "valen"
+			# set {mapname} to "Valentine Map"
+
+		# else if {currentmap.war} is "20":
+			# set {currentmap.war} to "1"
+			# set {gamemode} to "bomb"
+			# set {mapname} to "School (Bomb)"
+
+		# if {warbreak} is not 1:
+		# chance of 7.5%:
+		chance of 50%:
+			execute console command "/wither2"
+			
+command /currentwar:
+	trigger:
+		player is op
+		send "tempwar = %{tempwar.war}%"
+		send "tempwar1 = %{tempwar.war1}%"
+		send "tempwar2 = %{tempwar.war2}%"
+		send "tempwar3 = %{tempwar.war3}%"
+		send "currentwar = %{currentmap.war}%"
+		send "gamemode = %{gamemode}%"
+		
+command /nextwar:
+	executable by: console
+	trigger:
+		loop all players:
+			remove unluck from loop-player
+		set {_therollednumber} to random integer between 1 and 23
+		set {tempwar.war} to {_therollednumber}
+		
+		# set {_t} to {tempwar.war}
+		# set {tempwar.war} to random integer between 1 and 18
+		if {tempwar.war1} = {_therollednumber}:
+			execute console command "/nextwar"
+			stop
+		if {tempwar.war2} = {_therollednumber}:
+			execute console command "/nextwar"
+			stop
+		if {tempwar.war3} = {_therollednumber}:
+			execute console command "/nextwar"
+			stop
+			
+		if {tempwar.war} is 1:
+			set {currentmap.war} to "1"
+			set {gamemode} to 0
+			set {mapname} to "School (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+		
+		else if {tempwar.war} is 2:
+			set {currentmap.war} to "2"
+			set {gamemode} to 1
+			set {mapname} to "Restaurant (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 3:
+			set {currentmap.war} to "3"
+			set {gamemode} to 0
+			set {mapname} to "Railyard (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 4:
+			set {currentmap.war} to "4"
+			set {gamemode} to 1
+			set {mapname} to "Sunset (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 5:
+			set {currentmap.war} to "5"
+			set {gamemode} to 0
+			set {mapname} to "Community ##1 (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 6:
+			set {currentmap.war} to "6"
+			set {gamemode} to 2
+			set {mapname} to "Hospital (DOM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 7:
+			set {currentmap.war} to "7"
+			set {gamemode} to 0
+			set {mapname} to "Museum (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 8:
+			set {currentmap.war} to "8"
+			set {gamemode} to 1
+			set {mapname} to "Garden (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 9:
+			set {currentmap.war} to "9"
+			set {gamemode} to 2
+			set {mapname} to "Moriland (DOM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 10:
+			set {currentmap.war} to "10"
+			set {gamemode} to 2
+			set {mapname} to "Marsh (DOM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 11:
+			set {currentmap.war} to "11"
+			set {gamemode} to 0
+			set {mapname} to "Mall (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 12:
+			set {currentmap.war} to "13"
+			set {gamemode} to 1
+			set {mapname} to "Bombered (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+
+		else if {tempwar.war} is 13:
+			execute console command "/nextwar"
+			stop
+			# set {currentmap.war} to "13"
+			# set {gamemode} to 1
+			# set {mapname} to "Bombered (TDM)"
+			# broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 14:
+			set {currentmap.war} to "14"
+			set {gamemode} to 0
+			set {mapname} to "Grimoire (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 15:
+			set {currentmap.war} to "15"
+			set {gamemode} to 1
+			set {mapname} to "Broken Town (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 16:
+			set {currentmap.war} to "16"
+			set {gamemode} to 2
+			set {mapname} to "Zavod (DOM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 17:
+			set {currentmap.war} to "17"
+			set {gamemode} to 1
+			set {mapname} to "Candoria (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 18:
+			execute console command "/nextwar"
+			stop
+			# set {currentmap.war} to "18"
+			# set {gamemode} to 1
+			# set {mapname} to "Rutie (TDM)"
+			# broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 19:
+			set {currentmap.war} to "19"
+			set {gamemode} to 0
+			set {mapname} to "Mine (Bomb)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 20:
+			set {currentmap.war} to "20"
+			set {gamemode} to 2
+			set {mapname} to "Strike (DOM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 21:
+			set {currentmap.war} to "21"
+			set {gamemode} to 1
+			set {mapname} to "Tower (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 22:
+			set {currentmap.war} to "22"
+			set {gamemode} to 1
+			set {mapname} to "Big House (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		else if {tempwar.war} is 23:
+			set {currentmap.war} to "23"
+			set {gamemode} to 1
+			set {mapname} to "Courtyard (TDM)"
+			broadcast "&7The next map is: %{mapname}% !!"
+			
+		set {tempwar.war3} to {tempwar.war2}
+		set {tempwar.war2} to {tempwar.war1}
+		set {tempwar.war1} to {tempwar.war}
+			
+		set {the.person.who.set.A} to "Nobody"
+		set {the.person.who.set.B} to "Nobody"
+		set {wartopkd.creeper.current} to 0
+		set {wartopkd.moosh.current} to 0
+
+		loop all players:
+			execute loop-player command "/levelreward"
+		execute console command "/reducecoinboost"
+			
+command /nextwar1111:
+	executable by: console
+	trigger:
+		set {currentmap.war} to "20"
+		set {gamemode} to 2
+		set {mapname} to "TEST (DOM)"
+		broadcast "&7The next map is: %{mapname}% !!"
+		
+		set {the.person.who.set.A} to "Nobody"
+		set {the.person.who.set.B} to "Nobody"
+		set {wartopkd.creeper.current} to 0
+		set {wartopkd.moosh.current} to 0
+
+		loop all players:
+			execute loop-player command "/levelreward"
+		
+		execute console command "/reducecoinboost"
+		#めも： /setwarp 1～5 e マップ番号
+
+
+# on death of zombie:
+	# add 1 to {valentscore}
+
+	# if {valentscore} is 60 or 120 or 180 or 240 or 300 or 360 or 420 or 480 or 540 or 600:
+		# loop 20 times:
+			# spawn zombies at block at {locvalen1}
+			# set name of last spawned entity to "<green>リアじゅう"
+			# set max health of last spawned entity to 100
+			# heal the last spawned entity
+			# apply speed 2 to last spawned entity for 1 day
+			# spawn zombies at block at {locvalen2}
+			# set name of last spawned entity to "<green>リアじゅう"
+			# set max health of last spawned entity to 100
+			# apply speed 2 to last spawned entity for 1 day
+			# heal the last spawned entity
+			# spawn zombies at block at {locvalen3}
+			# set name of last spawned entity to "<green>リアじゅう"
+			# set max health of last spawned entity to 100
+			# heal the last spawned entity
+			# apply speed 2 to last spawned entity for 1 day

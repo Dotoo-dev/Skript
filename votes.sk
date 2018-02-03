@@ -1,0 +1,169 @@
+options:
+	Amount_of_chests_per_vote: 10
+	
+
+	
+command /vote:
+	trigger:
+		# send "&7&m&l----------------------------------"
+		# send "&7下のサイトで投票するとVote Crate Keyがもらえます！"
+		# send "&7https://minecraft.jp/servers/thewar2.ddns.net"
+		# send "&7&m&l----------------------------------"
+		if difference between {votecommand1%player%} and now is less than 20 hour:
+			send "さいごに/voteって打ってから24時間たってないよー"
+			stop
+		else:
+			execute console command "/cc give physical Basic 5 %player%"
+			set {votecommand1%player%} to now
+			broadcast "/voteって%player%さんが打ってVote鍵もらったよー"
+			
+command /voteforall:
+	trigger:
+		player is op
+		loop all players:
+			add 8 chest named "<white>Vote Chest" to loop-player
+
+
+command /votedekinai:
+	trigger:
+		name of player is "Dotoo" or "akaneko1106"
+		if difference between {votedekinai%player%} and now is less than 24 hours:
+			stop
+		set {votedekinai%player%} to now
+		add 1 to {totalvotecount}
+		broadcast "&7%player% got a &fVote Chest&7 for voting !!"
+		broadcast "&7This server has been voted %{totalvotecount}% times on record!"
+		add {@Amount_of_chests_per_vote} chest named "<white>Vote Chest" to player
+		send message "&7You have got a Vote Chest. Thanks for voting!" to player
+		
+command /moraenai <player>:
+	trigger:
+		name of player is "Dotoo"
+		add 1 to {totalvotecount}
+		broadcast "&7%player-arg% got a &fVote Chest&7 for voting !!"
+		broadcast "&7This server has been voted %{totalvotecount}% times on record!"
+		add {@Amount_of_chests_per_vote} chest named "<white>Vote Chest" to player-arg
+		send message "&7You have got a Vote Chest. Thanks for voting!" to player-arg
+		
+command /legendarytoolbox <player> <number>:
+	executable by: console
+	trigger:
+		if arg-2 is 1:
+			give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player-arg
+		if arg-2 is 2:
+			give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player-arg
+		if arg-2 is 3:
+			give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player-arg
+		if arg-2 is 4:
+			give 3 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player-arg
+		if arg-2 is 5:
+			give 5 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player-arg
+		if arg-2 is 6:
+			give 15 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player-arg
+		if arg-2 is 7:
+			give 30 iron ingot named "&fToolbox" to player-arg
+		if arg-2 is 8:
+			give 30 lapis lazuli named "&fMagic Stone" to player-arg
+		if arg-2 is 9:
+			give 437 named "&fPotion of Experience" with lore "&7Drinking this potion||&7gives you &e+15 exp&7." to player-arg
+
+
+# every 18 minutes:
+	# broadcast "&7&m&l----------------------------------"
+	# broadcast "&fなんと今だけ投票ボーナスのVote Crate Keyが"
+	# broadcast "投票一回につき&6{@Amount_of_chests_per_vote}個&fもらえます！ 大量のコインや"
+	# broadcast "強化材料、さらに&6レジェ確定ツール&fが当たるかも！！"
+	# broadcast "投票は右のリンクをクリック！  https://goo.gl/oedSIo "
+	# broadcast "&7&m&l----------------------------------"
+
+command /showvotepoints <offline player>:
+	trigger:
+		send "Votepoints = %{votepoints.%uuid of arg-1%}%"
+		if {totalvotecount} is 1100 or 1200 or 1300 or 1400 or 1500 or 1600 or 1700 or 1800 or 1900 or 2000 or 2100 or 2200 or 2300 or 2400 or 2500:
+			broadcast "&f&m&l✫----------------------------------✫"
+			broadcast "&dWe got voted %{totalvotecount}%&f times on record"
+			broadcast "&fGiving 16 Diamond Coins, 64 toolbox and 64 Magic stones"
+			broadcast "&fto all players online! Thanks! :D"
+			broadcast "&f&m&l✫----------------------------------✫"
+
+command /votepoints <text>:
+	executable by: console
+	trigger:
+		if {votepoints.%arg-1%} is not set:
+			set {votepoints.%arg-1%} to 0
+		add 1 to {votepoints.%arg-1%}
+		add 1 to {totalvotecount}
+		broadcast "&7This server has been voted <white>%{totalvotecount}%&7 times on record!"
+		
+on join:
+	if player can hold 3 wooden axe:
+		if {votepoints.%name of player%} is not 0:
+			set {_t} to {votepoints.%name of player%}*10
+			execute console command "cc give p basic %{_t}% %player%"
+			# add {votepoints.%name of player%}*{@Amount_of_chests_per_vote} of chest named "<white>Vote Chest" to player
+			message "&7You got Vote Crate Keys for voting! Thanks!"
+			set {votepoints.%name of player%} to 0
+	else:
+		if {votepoints.%name of player%} is 0:
+			stop
+		else:
+			message "&7You have no space to get the &fVote Crate Keys&7 for reward of voting. Put some items into Ender Chest and try relog!"
+
+command /voteitem <player>:
+	executable by: console
+	trigger:
+		add 1 to {totalvotecount}
+		broadcast "&7This server has been voted %{totalvotecount}% times on record!"
+		if player-arg can hold 1 wooden axe:
+			execute console command "cc give p basic 10 %player-arg%"
+			send "&7You have got &fVote Crate Keys&7. Thanks for voting!" to player-arg
+		else:
+			add 1 to {votepoints.%name of player-arg%}
+			message "&7You have no space to get the &fVote Crate Keyst&7 for reward of voting. Put some items into Ender Chest and try relog!" to player-arg
+
+
+on rightclick:
+	clicked block is a sign
+	if line 1 of clicked block is "&lVote 1":
+		if difference between {vote.%player%} and now is less than 100 hour:
+			message "&f============Vote results============"
+			message "&fVote 1: %{vote_result1}%"
+			message "&fVote 2: %{vote_result2}%"
+			message "&fVote 3: %{vote_result3}%"
+			message "&fThanks for voting!"
+			stop
+		give player 1 emerald named "<white>Mana Stone"
+		add 1 to {vote_result1}
+		message "&fThanks! a <white>Mana Stone for you!"
+		set {vote.%player%} to now
+	else if line 1 of clicked block is "&lVote 2":
+		if difference between {vote.%player%} and now is less than 100 hour:
+			message "&f============Vote results============"
+			message "&fVote 1: %{vote_result1}%"
+			message "&fVote 2: %{vote_result2}%"
+			message "&fVote 3: %{vote_result3}%"
+			message "&fThanks for voting!"
+			stop
+		give player 1 emerald named "<white>Mana Stone"
+		add 1 to {vote_result2}
+		message "&fThanks! a <white>Mana Stone for you!"
+		set {vote.%player%} to now
+	else if line 1 of clicked block is "&lVote 3":
+		if difference between {vote.%player%} and now is less than 100 hour:
+			message "&f============Vote results============"
+			message "&fVote 1: %{vote_result1}%"
+			message "&fVote 2: %{vote_result2}%"
+			message "&fVote 3: %{vote_result3}%"
+			message "&fThanks for voting!"
+			stop
+		give player 1 emerald named "<white>Mana Stone"
+		add 1 to {vote_result3}
+		message "&fThanks! a <white>Mana Stone for you!"
+		set {vote.%player%} to now
+command /voteresult:
+	trigger:
+		message "&f============Vote results============"
+		message "&fVote 1: %{vote_result1}%"
+		message "&fVote 2: %{vote_result2}%"
+		message "&fVote 3: %{vote_result3}%"
+		message "&fThanks for voting!"

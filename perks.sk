@@ -1,0 +1,667 @@
+command /mana:
+	trigger:
+		player is op
+		set level progress of player to 0.9999
+
+on sneak toggle:
+	if difference between {gerigimiplayer%player%} and now is less than 10 seconds:
+		stop
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is not golden axe or diamond pickaxe:
+		player is not sneaking
+		set {gerigimiplayer%player%} to now
+		send "&7&m&l----------------------------------" to player
+		send "%player%さん、このサーバーではしゃがむことで" to player
+		send "精度が上がったりネームプレートが隠せたりしません！" to player
+		send "オフハンドアイテムを手に入れて装備すると" to player
+		send "しゃがみキーで効果を発動させることができます！" to player
+		send "&7&m&l----------------------------------" to player
+# command /mana:
+	# trigger:
+		# player is op
+		# set level progress of the player to 0.9999
+		
+#tomo missile
+# on sneak toggle:
+	# player is op
+	# player's gamemode is survival:
+		# player is not sneaking:
+			# slot 40 of player is potato:
+				# level progress of player is bigger than 0.80:
+					# set {offhand.predator.missile.active.%player%} to 1
+					# set {offhand.predator.missile.player.loc.%player%} to location of player
+					# subtract 0.7999 from player's level progress
+					# teleport player to block 50 above {offhand.predator.missile.playerspawn.loc.%player's world%}
+					# apply invisibility 1 to player for 10 hours
+					# loop 99999 times:
+						# player is not in "spawn"
+						# loop all players:
+							# loop-player is in "world": # << world name
+								# show 10 "lava" particles at location of player for loop-player offset by 0.1, 1, 0.1
+						# block 1 below the player is not air:
+							# execute console command "/mogexplosion %victim% grenade <>" # <<
+							# send "bakuhatu sitayo!"
+							# teleport player to {offhand.predator.missile.player.loc.%player%}
+							# remove invisibility from player
+							# stop
+						# wait 0.05 seconds
+# on damage:
+	# damage cause is fall:
+		# {offhand.predator.missile.active.%victim%} is 1:
+			# delete {offhand.predator.missile.active.%victim%}
+			# cancel event
+
+# command /offhandpredatormissilespawnloc:
+	# trigger:
+		# player is op:
+			# set {offhand.predator.missile.playerspawn.loc.%player's world%} to location of player
+			# send "&a%player's world% &f%location of player%"
+command /bliss <player>:
+	executable by: console
+	trigger:
+		if lore of tool of player-arg contains "Bliss III":
+			if level progress of player-arg is smaller than 0.750:
+				increase level progress of the player-arg by 0.249
+			else:
+				set level progress of the player-arg to 0.9999
+			
+		else if lore of tool of player-arg contains "Bliss II":
+			if level progress of player-arg is smaller than 0.8500:
+				increase level progress of the player-arg by 0.149
+			else:
+				set level progress of the player-arg to 0.9999
+		else if lore of tool of player-arg contains "Bliss I":
+			if level progress of player-arg is smaller than 0.9000:
+				increase level progress of the player-arg by 0.099
+			else:
+				set level progress of the player-arg to 0.9999
+		if {switchofsystem%player-arg%} is 1:
+			send "&7Bliss effect has negated enchant damage (Bliss Effect) !!" to player-arg
+		execute console command "mogsound %player-arg% entity.experience_orb.pickup 2 1"
+		wait 2 tick
+		execute console command "mogsound %player-arg% entity.player.levelup 2 2"
+#------------------------ mana regen
+every 2 seconds:
+	loop all players:
+		if loop-player has unluck:
+			exit 1 section
+		else:
+
+			if lore of tool of loop-player contains "Mana Spring III" or "Mana Fountain III":
+				if level progress of loop-player is smaller than 0.920:
+					increase level progress of the loop-player by 0.079
+				else:
+					set level progress of the loop-player to 0.9999
+				
+			else if lore of tool of loop-player contains "Mana Spring II" or "Mana Fountain II":
+				if level progress of loop-player is smaller than 0.9400:
+					increase level progress of the loop-player by 0.059
+				else:
+					set level progress of the loop-player to 0.9999
+			else if lore of tool of loop-player contains "Mana Spring I" or "Mana Fountain I":
+				if level progress of loop-player is smaller than 0.9600:
+					increase level progress of the loop-player by 0.039
+				else:
+					set level progress of the loop-player to 0.9999
+
+			else if level progress of loop-player is smaller than 0.9800:
+				increase level progress of the loop-player by 0.019
+			else:
+				set level progress of the loop-player to 0.9999
+			
+on damage:
+	damage cause is fall:
+		cancel the event
+		
+	
+	
+	
+	
+	
+#------------------------ healing orb
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if difference between {runeofchargeused%player%} and now is less than 1 seconds:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "Healing Orb":
+		
+			player is not sneaking
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.1875:
+					stop
+				else:
+					subtract 0.1874 from level progress of the player
+					execute console command "/execute %player% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 3 1 0.01 50"
+
+
+					heal player by 4 hearts
+					if lore of held item of player contains "Everlasting Life":
+						apply absorption 4 to the player
+					else:
+						apply absorption 2 to the player
+					set {runeofchargeused%player%} to now
+
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.3"
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.6"
+			else:
+				level progress of player is smaller than 0.2500:
+					stop
+				else:
+					subtract 0.2499 from level progress of the player
+			
+
+					execute console command "/execute %player% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 3 1 0.01 50"
+
+
+					heal player by 4 hearts
+					if lore of held item of player contains "Everlasting Life":
+						apply absorption 4 to the player
+					else:
+						apply absorption 2 to the player
+					set {runeofchargeused%player%} to now
+
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.3"
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.6"
+			
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if difference between {runeofchargeused%player%} and now is less than 1 seconds:
+		stop
+	if slot 40 of player is diamond pickaxe:
+		# send "hey"
+		name of slot 40 of player contains "Warblade of Hypnos":
+		
+			player is not sneaking
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.1875:
+					stop
+				else:
+					subtract 0.1874 from level progress of the player
+					execute console command "/execute %player% ~ ~ ~ /particle fallingdust ~ ~ ~ 1 3 1 0.00001 100"
+
+
+					heal player by 4 hearts
+					if lore of held item of player contains "Everlasting Life":
+						apply absorption 4 to the player
+					else:
+						apply absorption 2 to the player
+					set {runeofchargeused%player%} to now
+					execute console command "/mogsound %player% promagic1 1 0.8"
+					
+			else:
+				level progress of player is smaller than 0.2500:
+					stop
+				else:
+					subtract 0.2499 from level progress of the player
+					execute console command "/execute %player% ~ ~ ~ /particle fallingdust ~ ~ ~ 1 3 1 0.00001 100"
+
+
+					heal player by 4 hearts
+					if lore of held item of player contains "Everlasting Life":
+						apply absorption 4 to the player
+					else:
+						apply absorption 2 to the player
+					set {runeofchargeused%player%} to now
+					execute console command "/mogsound %player% promagic1 1 0.8"
+					
+			
+#------------------------ rune of charge
+
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "Rune of Levitation":
+		
+			player is not sneaking
+			
+			if player has unluck:
+				# if difference between {shadowmelding%player%} and now is less than 10 seconds:
+				send "&7You can't use Rune of Levitation because you have unluck !!"
+				stop
+			
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.5625:
+					stop
+				else:
+					subtract 0.5624 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+
+					if lore of held item of player contains "Amplify Magic":
+						execute console command "effect %player% minecraft:levitation 2 15"
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 seconds
+					else:
+						execute console command "effect %player% minecraft:levitation 2 7"
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+					set {runeofchargeused%player%} to now
+					apply unluck to player for 10 second
+			else:
+				level progress of player is smaller than 0.7500:
+					stop
+				else:
+					subtract 0.7499 from level progress of the player
+
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+
+					if lore of held item of player contains "Amplify Magic":
+						execute console command "effect %player% minecraft:levitation 2 15"
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 seconds
+					else:
+						execute console command "effect %player% minecraft:levitation 2 7"
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+						wait 2 tick
+						execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+					set {runeofchargeused%player%} to now
+					apply unluck to player for 10 second
+				
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is diamond pickaxe:
+		name of slot 40 of player contains "Aegis of Purity":
+		
+			player is not sneaking
+			
+			if player has unluck:
+				# if difference between {shadowmelding%player%} and now is less than 10 seconds:
+				send "&7You can't fly because you have unluck !!"
+				stop
+			
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.5625:
+					stop
+				else:
+					subtract 0.5624 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+
+					if lore of held item of player contains "Amplify Magic":
+						execute console command "effect %player% minecraft:levitation 2 15"
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 seconds
+					else:
+						execute console command "effect %player% minecraft:levitation 2 7"
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+					set {runeofchargeused%player%} to now
+					apply unluck to player for 10 second
+			else:
+				level progress of player is smaller than 0.7500:
+					stop
+				else:
+					subtract 0.7499 from level progress of the player
+
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+
+					if lore of held item of player contains "Amplify Magic":
+						execute console command "effect %player% minecraft:levitation 2 15"
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 seconds
+					else:
+						execute console command "effect %player% minecraft:levitation 2 7"
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+						wait 4 tick
+						execute console command "/mogsound %player% entity.enderdragon.flap 1 1.4"
+					set {runeofchargeused%player%} to now
+					apply unluck to player for 10 second
+#------------------------ scroll of glowing
+
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "Scroll of Glowing":
+		
+			player is not sneaking
+			
+			if player has unluck:
+				# if difference between {shadowmelding%player%} and now is less than 10 seconds:
+				send "&7You can't use Scroll of Glowing tet because you have unluck !!"
+				stop
+					
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.675:
+					stop
+				else:
+					subtract 0.674 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle endRod ~ ~ ~ 1 3 1 0.01 30"
+					if {war.inteam.creeper.%player%} is 1:
+						loop all players:
+							if {war.inteam.moosh.%loop-player%} is 1:
+								if lore of tool of loop-player contains "Shadowmeld III" or "Night Stalker III":
+									set level progress of loop-player to 0.99
+									execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld II" or "Night Stalker II":
+									if level progress of loop-player is smaller than 0.699:
+										increase level progress of the loop-player by 0.300
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld I" or "Night Stalker I":
+									if level progress of loop-player is smaller than 0.899:
+										increase level progress of the loop-player by 0.100
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else:
+									if loop-player has glowing:
+										execute console command "effect %loop-player% minecraft:glowing 0"
+									if lore of held item of player contains "Amplify Magic":
+										wait 1 tick
+										execute console command "effect %loop-player% minecraft:glowing 9 1"
+									else:
+										wait 1 tick
+										execute console command "effect %loop-player% minecraft:glowing 4 1"
+										
+					if {war.inteam.moosh.%player%} is 1:
+						loop all players:
+							if {war.inteam.creeper.%loop-player%} is 1:
+								if lore of tool of loop-player contains "Shadowmeld III" or "Night Stalker III":
+									set level progress of loop-player to 0.999
+									execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld II" or "Night Stalker II":
+									if level progress of loop-player is smaller than 0.699:
+										increase level progress of the loop-player by 0.300
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld I" or "Night Stalker I":
+									if level progress of loop-player is smaller than 0.899:
+										increase level progress of the loop-player by 0.100
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else:
+									if loop-player has glowing:
+										execute console command "effect %loop-player% minecraft:glowing 0"
+									if lore of held item of player contains "Amplify Magic":
+										wait 1 tick
+										execute console command "effect %loop-player% minecraft:glowing 9 1"
+									else:
+										wait 1 tick
+										execute console command "effect %loop-player% minecraft:glowing 4 1"
+					
+					execute console command "mogsound %player% minecraft:block.portal.travel 1.3 1.2"
+			else:
+				level progress of player is smaller than 0.9000:
+					stop
+				else:
+					subtract 0.8999 from level progress of the player
+
+					execute console command "execute %player% ~ ~ ~ /particle endRod ~ ~ ~ 1 3 1 0.01 30"
+					if {war.inteam.creeper.%player%} is 1:
+						loop all players:
+							if {war.inteam.moosh.%loop-player%} is 1:
+								if lore of tool of loop-player contains "Shadowmeld III" or "Night Stalker III":
+									set level progress of loop-player to 0.99
+									execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld II" or "Night Stalker II":
+									if level progress of loop-player is smaller than 0.699:
+										increase level progress of the loop-player by 0.300
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld I" or "Night Stalker I":
+									if level progress of loop-player is smaller than 0.899:
+										increase level progress of the loop-player by 0.100
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else:
+									if loop-player has glowing:
+										execute console command "effect %loop-player% minecraft:glowing 0"
+									if lore of held item of player contains "Amplify Magic":
+										execute console command "effect %loop-player% minecraft:glowing 9 1"
+									else:
+										execute console command "effect %loop-player% minecraft:glowing 4 1"
+										
+					if {war.inteam.moosh.%player%} is 1:
+						loop all players:
+							if {war.inteam.creeper.%loop-player%} is 1:
+								if lore of tool of loop-player contains "Shadowmeld III" or "Night Stalker III":
+									set level progress of loop-player to 0.999
+									execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld II" or "Night Stalker II":
+									if level progress of loop-player is smaller than 0.699:
+										increase level progress of the loop-player by 0.300
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else if lore of tool of loop-player contains "Shadowmeld I" or "Night Stalker I":
+									if level progress of loop-player is smaller than 0.899:
+										increase level progress of the loop-player by 0.100
+										execute console command "effect %loop-player% minecraft:unluck 10 0"
+								else:
+									if loop-player has glowing:
+										execute console command "effect %loop-player% minecraft:glowing 0"
+									if lore of held item of player contains "Amplify Magic":
+										execute console command "effect %loop-player% minecraft:glowing 9 1"
+									else:
+										execute console command "effect %loop-player% minecraft:glowing 4 1"
+					
+					execute console command "mogsound %player% minecraft:block.portal.travel 1.3 1.2"
+		
+#--------------------------------MAGICL SHOES
+		
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "Magical Shoes":
+		
+			player is not sneaking
+			
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.2625:
+					stop
+				else:
+					subtract 0.2624 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+					if lore of held item of player contains "Everlasting Life":
+						heal player by 5 hearts
+					
+					set {magicalshoesused%player%} to now
+
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+			else:
+				level progress of player is smaller than 0.3500:
+					stop
+				else:
+					subtract 0.3499 from level progress of the player
+			
+
+					execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+					if lore of held item of player contains "Everlasting Life":
+						heal player by 5 hearts
+					
+					set {magicalshoesused%player%} to now
+
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+					wait 2 tick
+					execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+		
+				# wait 15 seconds
+				# set {magicalshoesused%player%} to 0
+				
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "Ender Teleporter":
+		
+			player is not sneaking
+			
+			if lore of held item of player contains "Mana Efficiency":
+				level progress of player is smaller than 0.4875:
+					stop
+				else:
+					subtract 0.4874 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle witch_magic ~ ~ ~ 1 3 1 0.01 30"
+				
+					shoot an ender pearl from player at speed 1.4
+					
+					if player is not in world "spawn":
+						set {enderteleportershoottimer%player%} to now
+						set {enderteleportershootloc%player%} to location of player
+
+					execute console command "mogsound %player% entity.enderpearl.throw 2 1.2"
+			else:
+				level progress of player is smaller than 0.6500:
+					stop
+				else:
+					subtract 0.6499 from level progress of the player
+					execute console command "execute %player% ~ ~ ~ /particle witch_magic ~ ~ ~ 1 3 1 0.01 30"
+					
+					shoot an ender pearl from player at speed 1.4
+					
+					if player is not in world "spawn":
+						set {enderteleportershoottimer%player%} to now
+						set {enderteleportershootloc%player%} to location of player
+
+					execute console command "mogsound %player% entity.enderpearl.throw 2 1.2"
+				
+# On Projectile Hit:
+	# if projectile is a ender pearl:
+		wait 1 tick
+		# execute console command "execute %shooter% ~ ~ ~ /particle witch_magic ~ ~ ~ 1 3 1 0.01 30"
+		# execute console command "mogsound %shooter% entity.endermen.teleport 1.2 1"
+on damage:
+	damage cause is fall:
+		cancel event
+on damage of player:
+	damage cause is suffocation
+	cancel event
+	if difference between {enderteleportershoottimer%victim%} and now is less than 10 seconds:
+		teleport victim to {enderteleportershootloc%victim%}
+		send "&7You've forced to teleport back to avoid being stuck." to victim
+		if level progress of victim is smaller than 0.1499:
+			increase level progress of the victim by 0.85
+		else:
+			set level progress of the victim to 0.9999
+		
+		
+		
+		
+		
+on sneak toggle:
+	if player's gamemode is not survival:
+		stop
+	if slot 40 of player is a diamond ore:
+		set {_currentloc} to location of player
+		set level progress of player to 0.01
+		loop entities in radius 20 of block at {_currentloc}:
+			damage loop-entity by 2 hearts
+		loop 6 times:
+			set {_randomx} to a random integer between -10 and 10
+			set {_randomz} to a random integer between 1 and 2
+			if {_randomz} is 1:
+				set {_destx} to the block {_randomx} east of the block at {_currentloc}
+				strike lightning effect at {_destx}
+				wait 8 tick
+			else if {_randomz} is 2:
+				set {_destx} to the block {_randomx} south of the block at {_currentloc}
+				strike lightning effect at {_destx}
+				wait 8 tick
+				
+on sneak toggle:
+	if player's gamemode is not survival:
+		stop
+	if slot 40 of player is a diamond ore:
+		player's level progress is greater than 0.99
+		player is sneaking
+		set {_targetpalperk.%player%} to the targeted block
+		create a safe explosion of force 0 5 meters above {_targetpalperk.%player%}
+		wait 2 ticks
+		create a safe explosion of force 0 4 meters above {_targetpalperk.%player%}
+		wait 2 ticks
+		create a safe explosion of force 0 3 meters above {_targetpalperk.%player%}
+		wait 2 ticks
+		create a safe explosion of force 0 2 meters above {_targetpalperk.%player%}
+		wait 2 ticks
+		create a safe explosion of force 0 1 meters above {_targetpalperk.%player%}
+		wait 2 ticks
+		create a fake explosion at {_targetpalperk.%player%}
+		loop blocks in radius 5 around {_targetpalperk.%player%}:
+			loop-block is air:
+				block below loop-block is not air
+				chance of 30%
+				add location of loop-block to {_blocks::*}
+				set the player's level progress to 0.25
+				set loop-block to fire
+		apply fire resistance 5 to the player for 12 seconds
+		wait 3 seconds
+		loop {_blocks::*}:
+			set block at loop-value to air
+# spawn a skeleton horse at event-location
+    # tame last spawned entity to event-entity
+    # make the last spawned entity wear a saddle
+    # wait 1 tick
+    # make the event-entity ride last spawned entity
+    # stop
+on sneak toggle:
+	if gamemode of player is not survival:
+		stop
+	if slot 40 of player is golden axe:
+		name of slot 40 of player contains "test":
+		
+			player is not sneaking
+			
+			level progress of player is smaller than 0.65:
+				stop
+			else:
+				subtract 0.6499 from level progress of the player
+			
+
+				# execute console command "execute %player% ~ ~ ~ /particle cloud ~ ~ ~ 1 3 1 0.01 30"
+				
+				# execute player command "/summon EntityHorse ~0 ~1 ~0 {Type:0,Tame:1,SaddleItem:{id:329},CustomName:&6&l%player%'s Horse}"
+				# execute player command "/summon EntityHorse ~0 ~1 ~0 {Tame:1,SaddleItem:{id:saddle,Count:1}}"
+				spawn a adult horse
+				equip the last spawned entity with saddle
+				
+				wait 1 tick
+				# set age of last spawned horse to adult
+				make player ride last spawned entity
+				# /summon minecraft:skeleton_horse ~ ~1 ~ {Health:1,Attributes:[{Name:"generic.movementSpeed",Base:0.5f}],SaddleItem:{id:saddle},Tame:1}
+				
+
+				execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2" 
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+				wait 2 tick
+				execute console command "mogsound %player% minecraft:entity.player.big_fall 1.3 1.2"
+				
+on vehicle exit:
+	loop all entities in radius 2 of location of player:
+		loop-entity is skeleton horse or donkey
+		kill loop-entity

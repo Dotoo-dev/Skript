@@ -1,0 +1,32 @@
+# Online Player List By Khai_MC
+# IP: Play.LavaNaCraft.Com
+
+# Server Name
+# Replace MyNetwork to your server name"
+options:
+	servername: The player list
+
+
+# PERMISSIONS #
+# You can change permission here #
+# options:
+	# permplayer: rank.player
+	# permvip: rank.vip
+	# permmvp: rank.mvp
+	# permelite: rank.elite
+	# permtitan: rank.titan
+	# permyoutube: rank.youtube
+	# permhelper: rank.helper
+	# permmod: rank.mod
+	# permadmin: rank.admin
+
+	
+# Do not touch this else you know what to do #
+# command /list:
+	# aliases: /who
+	# trigger:
+		# set {_num} to -1
+		# open chest with 6 rows named "&e{@servername}" to player
+		# loop all players:
+			# add 1 to {_num}
+			# format slot {_num} of player with skull of ("%loop-player%" parsed as offline player) named "&f%loop-player%" with lore "||&7&m&l------------------||&ePlayer stats||&f● &eLevel: &a%{lvlof%UUID of loop-player%}% &7(%{expnew%UUID of loop-player%}% exp)||&f● &eHours: &a%rounded {playedminutes%loop-player%}/60% hours played||&f● &eTotal kills: &a%{expof%UUID of loop-player%}% kills||&f● &eK/D Ratio: &a%{kdratio%UUID of loop-player%}%/%{kdbest%UUID of loop-player%}%||&f● &eMoney: &a%loop-player's balance%||&7&m&l------------------||" to be unstealable

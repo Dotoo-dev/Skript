@@ -1,0 +1,309 @@
+﻿command /showchesttable:
+	trigger:
+		player is op
+		send "%{chests.tier1::*}%"
+
+on script load:
+	delete {chests.tier1::*}
+	if {chests.tier1::*} does not exist:
+	
+		add brewing stand to {chests.tier1::*}
+
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+		add iron ingot named "&fToolbox" to {chests.tier1::*}
+
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		add Lapis Lazuli named "&fMagic Stone" to {chests.tier1::*}
+		
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+		add quartz block named "&fBlank Block" to {chests.tier1::*}
+
+
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add torch to {chests.tier1::*}
+		add stone to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		add trapped chest named "&fStorage Chest" to {chests.tier1::*}
+		
+		add 171:0 to {chests.tier1::*}
+		add 171:1 to {chests.tier1::*}
+		add 171:2 to {chests.tier1::*}
+		add 171:3 to {chests.tier1::*}
+		add 171:4 to {chests.tier1::*}
+		add 171:5 to {chests.tier1::*}
+		add 171:6 to {chests.tier1::*}
+		add 171:7 to {chests.tier1::*}
+		add 171:8 to {chests.tier1::*}
+		add 171:9 to {chests.tier1::*}
+		add 171:10 to {chests.tier1::*}
+		add 171:11 to {chests.tier1::*}
+		add 171:12 to {chests.tier1::*}
+		add 171:13 to {chests.tier1::*}
+		add 171:14 to {chests.tier1::*}
+		add 171:15 to {chests.tier1::*}
+		
+		add 123 to {chests.tier1::*}
+		
+		#door
+		add 427 to {chests.tier1::*}
+		add 428 to {chests.tier1::*}
+		add 429 to {chests.tier1::*}
+		add 430 to {chests.tier1::*}
+		add 431 to {chests.tier1::*}
+		
+		add trapdoor to {chests.tier1::*}
+		add 167 to {chests.tier1::*}
+		add redstone lamp to {chests.tier1::*}
+		add redstone repeater to {chests.tier1::*}
+		add string to {chests.tier1::*}
+		add water bucket to {chests.tier1::*}
+		add seeds to {chests.tier1::*}
+		add melon seeds to {chests.tier1::*}
+		add potato to {chests.tier1::*}
+		add carrot to {chests.tier1::*}
+		add 427 to {chests.tier1::*}
+		add enchantment table to {chests.tier1::*}
+		add stone:1 to {chests.tier1::*}
+		add stone:3 to {chests.tier1::*}
+		add grass block to {chests.tier1::*}
+		add dirt to {chests.tier1::*}
+		add dirt:1 to {chests.tier1::*}
+		add dirt:2 to {chests.tier1::*}
+		add cobblestone to {chests.tier1::*}
+		add oak wood plank to {chests.tier1::*}
+		add spruce wood plank to {chests.tier1::*}
+		add birch wood plank to {chests.tier1::*}
+		add jungle wood plank to {chests.tier1::*}
+		add acacia wood plank to {chests.tier1::*}
+		add dark oak wood plank to {chests.tier1::*}
+		add sand to {chests.tier1::*}
+		add red sand to {chests.tier1::*}
+		add gravel to {chests.tier1::*}
+		add oak wood to {chests.tier1::*}
+		add spruce wood to {chests.tier1::*}
+		add birch wood to {chests.tier1::*}
+		add jungle wood to {chests.tier1::*}
+		add glass to {chests.tier1::*}
+		add block of iron to {chests.tier1::*}
+		add stone slab to {chests.tier1::*}
+		add brick slab item to {chests.tier1::*}
+		add brick block to {chests.tier1::*}
+		add bookshelf to {chests.tier1::*}
+		add 48 to {chests.tier1::*}
+		add obsidian to {chests.tier1::*}
+		add soul sand to {chests.tier1::*}
+		add glowstone to {chests.tier1::*}
+		add end stone to {chests.tier1::*}
+		add spruce wood stair to {chests.tier1::*}
+		add birch wood stair to {chests.tier1::*}
+		add jungle wood stair to {chests.tier1::*}
+		
+		add 170 to {chests.tier1::*}#-----hay bale
+		add 213 to {chests.tier1::*}#-----magma block
+		add 216 to {chests.tier1::*}#-----bone block
+		add oak leaves to {chests.tier1::*}
+		add cobweb to {chests.tier1::*}
+		add grass to {chests.tier1::*}
+		add dandelion to {chests.tier1::*}
+		add dandelion to {chests.tier1::*}
+		add dandelion to {chests.tier1::*}
+		add poppy to {chests.tier1::*}
+		add poppy to {chests.tier1::*}
+		add blue orchid to {chests.tier1::*}
+		add blue orchid to {chests.tier1::*}
+		add blue orchid to {chests.tier1::*}
+		add allium to {chests.tier1::*}
+		add allium to {chests.tier1::*}
+		add allium to {chests.tier1::*}
+		add azure bluet to {chests.tier1::*}
+		add azure bluet to {chests.tier1::*}
+		add azure bluet to {chests.tier1::*}
+		add red tulip to {chests.tier1::*}
+		add orange tulip to {chests.tier1::*}
+		add orange tulip to {chests.tier1::*}
+		add orange tulip to {chests.tier1::*}
+		add white tulip to {chests.tier1::*}
+		add pink tulip to {chests.tier1::*}
+		add pink tulip to {chests.tier1::*}
+		add pink tulip to {chests.tier1::*}
+		add oxeye daisy to {chests.tier1::*}
+		add oxeye daisy to {chests.tier1::*}
+		add oxeye daisy to {chests.tier1::*}
+		
+		add ladder to {chests.tier1::*}
+		add ladder to {chests.tier1::*}
+		add fence to {chests.tier1::*}
+		add iron bars to {chests.tier1::*}
+		add iron door to {chests.tier1::*}
+		add glass pane to {chests.tier1::*}
+		add vines to {chests.tier1::*}
+		add lily pad to {chests.tier1::*}
+		add nether brick fence to {chests.tier1::*}
+		add ender chest to {chests.tier1::*}
+		add cobblestone wall to {chests.tier1::*}
+		add mossy cobblestone wall to {chests.tier1::*}
+		add anvil to {chests.tier1::*}
+		add sunflower to {chests.tier1::*}
+		add 198 to {chests.tier1::*}#-----end rod
+		add sign to {chests.tier1::*}
+		add sign to {chests.tier1::*}
+		add sign to {chests.tier1::*}
+		add sign to {chests.tier1::*}
+		add flower pot to {chests.tier1::*}
+		add lever to {chests.tier1::*}
+		add stone pressure plate to {chests.tier1::*}
+		add wooden pressure plate to {chests.tier1::*}
+		add button to {chests.tier1::*}
+		add 96 to {chests.tier1::*}
+		add 167 to {chests.tier1::*}
+		add 107 to {chests.tier1::*}
+		add tripwire hook to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add redstone to {chests.tier1::*}
+		add piston to {chests.tier1::*}
+		add sticky piston to {chests.tier1::*}
+		add dispenser to {chests.tier1::*}
+		add 427 to {chests.tier1::*}#spruce door
+		add 428 to {chests.tier1::*}#birch door
+		add 429 to {chests.tier1::*}#jungle door
+		add 420 to {chests.tier1::*}#acacia door
+		add 431 to {chests.tier1::*}#dark oak door
+		add nether quartz named "&fMoosh Coin" to {chests.tier1::*}
+		add nether brick named "&fCreeper Coin" to {chests.tier1::*}
+		
+		add 159:0 to {chests.tier1::*}
+		add 159:1 to {chests.tier1::*}
+		add 159:2 to {chests.tier1::*}
+		add 159:3 to {chests.tier1::*}
+		add 159:4 to {chests.tier1::*}
+		add 159:5 to {chests.tier1::*}
+		add 159:6 to {chests.tier1::*}
+		add 159:7 to {chests.tier1::*}
+		add 159:8 to {chests.tier1::*}
+		add 159:9 to {chests.tier1::*}
+		add 159:10 to {chests.tier1::*}
+		add 159:11 to {chests.tier1::*}
+		add 159:12 to {chests.tier1::*}
+		add 159:13 to {chests.tier1::*}
+		add 159:14 to {chests.tier1::*}
+		add 159:15 to {chests.tier1::*}
+		
+		add 160:0 to {chests.tier1::*}
+		add 160:1 to {chests.tier1::*}
+		add 160:2 to {chests.tier1::*}
+		add 160:3 to {chests.tier1::*}
+		add 160:4 to {chests.tier1::*}
+		add 160:5 to {chests.tier1::*}
+		add 160:6 to {chests.tier1::*}
+		add 160:7 to {chests.tier1::*}
+		add 160:8 to {chests.tier1::*}
+		add 160:9 to {chests.tier1::*}
+		add 160:10 to {chests.tier1::*}
+		add 160:11 to {chests.tier1::*}
+		add 160:12 to {chests.tier1::*}
+		add 160:13 to {chests.tier1::*}
+		add 160:14 to {chests.tier1::*}
+		add 160:15 to {chests.tier1::*}
+		
+		add 48 to {chests.tier1::*}
+		add 167 to {chests.tier1::*}
+		add 169 to {chests.tier1::*}
+		add 213 to {chests.tier1::*}
+		add 48 to {chests.tier1::*}
+		add 324 to {chests.tier1::*}
+		add 427 to {chests.tier1::*}
+		add 428 to {chests.tier1::*}
+		add 429 to {chests.tier1::*}
+		add 430 to {chests.tier1::*}
+		add 431 to {chests.tier1::*}
+		add 427 to {chests.tier1::*}
+		add 101 to {chests.tier1::*}
+		add 31:1 to {chests.tier1::*}
+		add button named "&cBell" to {chests.tier1::*}
+		
+		
+		set {chests.tier1.max} to 3

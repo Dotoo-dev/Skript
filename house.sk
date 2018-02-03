@@ -1,0 +1,74 @@
+# command /te:
+	# trigger:
+		# set {test%player%} to location of player
+		# add 8 to x coordinate of {test%player%}
+		# add 8 to z coordinate of {test%player%}
+		# add 8 to y coordinate of {test%player%}
+		# loop 16 times:#------A
+			# make player see block at {test%player%} as stone
+			# subtract 1 from x coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+		# add 16 to x coordinate of {test%player%}
+		# wait 1 tick
+		# loop 16 times:#------A
+			# make player see block at {test%player%} as stone
+			# subtract 1 from y coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+		# add 16 to y coordinate of {test%player%}
+		# wait 1 tick
+		# loop 16 times:#------A
+			# make player see block at {test%player%} as stone
+			# subtract 1 from z coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+		# subtract 16 from y coordinate of {test%player%}
+		# wait 1 tick
+		# loop 16 times:#------B
+			# make player see block at {test%player%} as stone
+			# add 1 to y coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+		# subtract 16 from y coordinate of {test%player%}
+		# loop 16 times:#------B
+			# make player see block at {test%player%} as stone
+			# subtract 1 from x coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+		# add 16 to x coordinate of {test%player%}
+		# wait 1 tick
+		
+		# wait 1 tick
+		# loop 16 times:#------B
+			# make player see block at {test%player%} as stone
+			# add 1 to z coordinate of {test%player%}
+			# broadcast "%{test%player%}%"
+
+# command /protect:
+	# trigger:
+		# set {_locx} to x coordinate of player
+		# set {_locx} to rounded {_locx}
+		# set {_locy} to y coordinate of player
+		# set {_locy} to rounded {_locy}
+		# set {_locz} to z coordinate of player
+		# set {_locz} to rounded {_locz}
+		# replace all "," with "." in {_locx}
+		# replace all "," with "." in {_locy}
+		# replace all "," with "." in {_locz}
+		# message "%{_locx}%"
+		# message "%{_locy}%"
+		# message "%{_locz}%"
+		# op player#-----------------------------------------------OP!!!!!!!!!!!!!!!!!!
+		# add 8 to {_locx}
+		# add 8 to {_locz}
+		# add 8 to {_locy}
+		# # if player cannot build at "{_locx}":
+			# # message "You do not have permission to change blocks there!"
+			# # stop
+		# execute player command "//pos1 %{_locx}%,%{_locy}%,%{_locz}%"
+		# subtract 16 from {_locx}
+		# subtract 16 from {_locz}
+		# subtract 16 from {_locy}
+		# execute player command "//pos2 %{_locx}%,%{_locy}%,%{_locz}%"
+		# # execute player command "//outline glass"
+		# loop 16 times:
+			# add 1 to {_locx}
+			# make player see block at {_locx} as stone
+			# # add {_locx} to {fakeprotect%player%::*}
+		# # make player see block at {fakeprotect%player%::*} as stone

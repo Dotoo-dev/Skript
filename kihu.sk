@@ -1,0 +1,403 @@
+command /morizonpack <player> <text>:
+	executable by: console
+	trigger:
+		if arg-2 is "hanabi1":
+			give 1 diamond named "&6Morizon Package: Trial Set" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b1 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: Trial Set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi2":
+			give 1 diamond named "&6Morizon Package: Modding Set" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b5 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: Modding Set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi3":
+			give 1 diamond named "&6Morizon Package: Unbreaking Set" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b5 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: Unbreaking Set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi4":
+			give 1 diamond named "&6Morizon Package: Mega Pack" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b9 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: Mega Pack !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi5":
+			give 1 diamond named "&6Morizon Package: Giga Pack" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b18 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: Giga Pack !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi6":
+			give 1 diamond named "&6Morizon Package: WAR Boost Trial" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b6 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: WAR Boost Trial !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi7":
+			give 1 diamond named "&6Morizon Package: WAR Boost Mega Pack" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b45 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: WAR Boost Mega Pack !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hanabi8":
+			give 1 diamond named "&6Morizon Package: WAR Boost Giga Pack" with lore "&fRight click to unpack the ||&fFireworks one by one!||&b95 &fitems left" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6We've delivered Morizon Package: WAR Boost Giga Pack !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		
+			
+command /donorperm <player> <text>:
+	executable by: console
+	trigger:
+		if arg-2 is "morimahou":
+			execute console command "pex user %player-arg% add donor.Magicianset"
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6You've unlocked Magical weapon set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "hunterset":
+			execute console command "pex user %player-arg% add donor.HunterSet"
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6You've unlocked Hunter weapon set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "pirateset":
+			execute console command "pex user %player-arg% add donor.PirateSet"
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6You've unlocked Pirate weapon set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+		if arg-2 is "valset":
+			execute console command "pex user %player-arg% add donor.ValkyrieSet"
+			send "&7&m&l----------------------------------" to player-arg
+			send "&6You've unlocked Valkyrie weapon set !!" to player-arg
+			send "&6Thanks for donating %player-arg% <3" to player-arg
+			send "&7&m&l----------------------------------" to player-arg
+			
+			
+
+on right click holding diamond:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	# player is op
+	if player can hold 3 wooden axe:
+		if difference between {elixircd%player%} and now is less than 0.5 seconds:
+			stop
+		
+		if amount of player's held item in player's inventory is more than 1:
+			send "&7You can't open packages if you have same package in inventory. Please put one in Ender Chest and try again !!"
+			stop
+			
+		if name of held item contains "War Boost":
+			if name of held item contains "WAR Boost Trial":
+				execute console command "/givefirew %player% 5"
+			if name of held item contains "WAR Boost Mega Pack":
+				execute console command "/givefirew %player% 5"
+			if name of held item contains "WAR Boost Giga Pack":
+				execute console command "/givefirew %player% 5"
+		else:
+			
+			if name of held item contains "Trial Set":
+				execute console command "/givefirew %player% 1"
+				execute console command "/givefirew %player% 2"
+				execute console command "/givefirew %player% 3"
+			if name of held item contains "Modding Set":
+				execute console command "/givefirew %player% 1"
+				execute console command "/givefirew %player% 2"
+			if name of held item contains "Unbreaking Set":
+				execute console command "/givefirew %player% 3"
+			if name of held item contains "Mega Pack":
+				execute console command "/givefirew %player% 1"
+				execute console command "/givefirew %player% 2"
+				execute console command "/givefirew %player% 3"
+			if name of held item contains "Giga Pack":
+				execute console command "/givefirew %player% 1"
+				execute console command "/givefirew %player% 2"
+				execute console command "/givefirew %player% 3"
+			if name of held item contains "EXP Potion Pack":
+				execute console command "/givefirew %player% 1"
+				execute console command "/givefirew %player% 2"
+				execute console command "/givefirew %player% 3"
+			
+		
+			
+		if name of tool of player contains "Morizon Package:":
+			
+			set {_temp} to uncolored line 3 of lore of held item
+			replace all "items left" in {_temp} with ""
+			replace all " " in {_temp} with ""
+			set {_temp2} to {_temp} parsed as number
+			
+			subtract 1 from {_temp2}
+			if {_temp2} is less than 1:
+				remove 1 of held item from player
+				
+				
+			else:
+				set line 3 of lore of held item to "&b%{_temp2}% &fitems left"
+			
+			# if line 3 of lore of tool of player contains "&b18 &fitems left":
+				# set line 3 of lore of tool of player to "&b17 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b17 &fitems left":
+				# set line 3 of lore of tool of player to "&b16 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b16 &fitems left":
+				# set line 3 of lore of tool of player to "&b15 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b15 &fitems left":
+				# set line 3 of lore of tool of player to "&b14 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b14 &fitems left":
+				# set line 3 of lore of tool of player to "&b13 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b13 &fitems left":
+				# set line 3 of lore of tool of player to "&b12 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b12 &fitems left":
+				# set line 3 of lore of tool of player to "&b11 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b11 &fitems left":
+				# set line 3 of lore of tool of player to "&b10 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b10 &fitems left":
+				# set line 3 of lore of tool of player to "&b9 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b9 &fitems left":
+				# set line 3 of lore of tool of player to "&b8 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b8 &fitems left":
+				# set line 3 of lore of tool of player to "&b7 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b7 &fitems left":
+				# set line 3 of lore of tool of player to "&b6 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b6 &fitems left":
+				# set line 3 of lore of tool of player to "&b5 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b5 &fitems left":
+				# set line 3 of lore of tool of player to "&b4 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b4 &fitems left":
+				# set line 3 of lore of tool of player to "&b3 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b3 &fitems left":
+				# set line 3 of lore of tool of player to "&b2 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b2 &fitems left":
+				# set line 3 of lore of tool of player to "&b1 &fitems left"
+			# else if line 3 of lore of tool of player contains "&b1 &fitems left":
+				# remove 1 of held item from player
+				
+			set {elixircd%player%} to now
+
+			execute console command "/execute %player% ~ ~ ~ /particle witchMagic ~ ~ ~ 1 3 1 0.01 50"
+			execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.5" 
+			wait 2 tick
+			execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.2"
+			wait 2 tick
+			execute console command "mogsound %player% minecraft:entity.experience_orb.pickup 1.3 1.65"
+
+on right click holding golden axe:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if name of held item contains "Magical Firework of WAR Reward Boost":
+		# if {kihuhanabi_warcoin} is more than 0:
+			# send "&7まだサーバーに&6Magical Firework of WAR Boost&7の効果が"
+			# send "&7残っているため使用を中止します。"
+			# stop
+		# else:
+		execute console command "/str %player%"
+		execute console command "/setrewardboost 1"
+		add 3 to {kihuhanabi_warcoin}
+		set {kihuhanabi_warcoin_nameofplayer} to name of player
+		remove 1 of held item from player
+		wait 1 tick
+		broadcast "&7&m&l----------------------------------"
+		broadcast " "
+		broadcast "&a%player%&fさんが&6Magical Firework of WAR Reward Boost&fを"
+		broadcast "&f使いました！今から%{kihuhanabi_warcoin}%試合の間、WARのコイン報酬が&a5&f倍！"
+		broadcast "&f勝利時&6%{warwincoins}%枚、&f敗北時は&6%{warlosecoins}%&fになり、"
+		broadcast "&fさらにWARの終了時に&6Lucky Bag&fもプレゼントされるようになります！"
+		broadcast " "
+		broadcast "&7&m&l----------------------------------"
+		execute console command "/str %player%"
+		# execute console command "/toggleevent mod3 enable"
+		
+			
+command /reducecoinboost:
+	trigger:
+		# broadcast "Debug: reducecoinboost - complete"
+	# if {kihuhanabi_warcoin} is more than 0:
+		subtract 1 from {kihuhanabi_warcoin}
+		if {kihuhanabi_warcoin} is less than 1:
+			set {kihuhanabi_warcoin} to 0
+		if {kihuhanabi_warcoin} is more than 0:
+			broadcast "&7&m&l----------------------------------"
+			broadcast " "
+			broadcast "&a%{kihuhanabi_warcoin_nameofplayer}%&fさんが使った&6Magical Firework of WAR Reward Boost&fは"
+			broadcast "&fあと%{kihuhanabi_warcoin}%試合ぶん効果が残っています！"
+			broadcast "&f効果中はWARの報酬が更に&a5倍&fになり、しかもさらに"
+			broadcast "&fWARの終了時に&6Lucky Bag&fもプレゼントされます！！！！"
+			broadcast " "
+			broadcast "&7&m&l----------------------------------"
+			# broadcast "&7以下デバッグメッセージですので気にしないでね"
+			# broadcast "&7lastlaunchedplayer: %{kihuhanabi_warcoin_nameofplayer}%, rest: %{kihuhanabi_warcoin}%, curr: %{warwincoins}%"
+		else if {kihuhanabi_warcoin} is 0:
+			execute console command "/setrewardboost 0"
+			# wait 1 tick
+			# broadcast "&7&m&l----------------------------------"
+			# broadcast "&6Magical Firework of WAR Boost&fの効果が消滅しました。"
+			# broadcast "&f報酬が勝利時&f%{warwincoins}%枚、&f敗北時&f%{warlosecoins}%&fに戻りました。"
+			# broadcast "&7&m&l----------------------------------"
+			
+command /check:
+	trigger:
+		send "%{kihuhanabi_warcoin}%"
+			
+
+command useserial <player>:
+	executable by: console
+	trigger:
+		execute console command "pex user %player-arg% add donor.Stormfury"
+		execute console command "pex user %player-arg% add donor.Morianagan"
+		set {kihuline1%player-arg%} to 1
+		send "&7&m&l----------------------------------" to player-arg
+		send "&aLINE特典をアクティベートしました！特典アイテムの購入は" to player-arg
+		send "&a/spawnコマンドを打った後に後ろにある建物に入って" to player-arg
+		send "&aLINE Sticker RewardというNPCがいるポータルに" to player-arg
+		send "&a入ったところのお店で買ってね！！" to player-arg
+		send "&7&m&l----------------------------------" to player-arg
+		
+command /givefirew <player> <number>:
+	executable by: console
+	trigger:
+		if arg-2 is 1:
+			execute console command "give %player-arg% minecraft:golden_axe 1 14 {Unbreakable:1,display:{Name:""§6Magical Firework of Modding"",Lore:[""§fRight click while in lobby"",""§fto launch magical fireworks"",""§fso all players in the server"",""§fwill have §cx3 §fchance to get"",""§6legendary mods §f!!""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+			send "&6Magical Firework of Modding&7を手に入れました！"
+		if arg-2 is 2:
+			execute console command "give %player-arg% minecraft:golden_axe 1 16 {Unbreakable:1,display:{Name:""§6Magical Firework of Enchanting"",Lore:[""§fRight click while in lobby"",""§fto launch magical fireworks"",""§fso all players in the server"",""§fwill have §cx3 §fchance to get"",""§5level III enchants §f!!""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+			send "&6Magical Firework of Enchanting&7を手に入れました！"
+		if arg-2 is 3:
+			execute console command "give %player-arg% minecraft:golden_axe 1 15 {Unbreakable:1,display:{Name:""§6Magical Firework of Unbreaking"",Lore:[""§fRight click while in lobby"",""§fto launch magical fireworks"",""§fso all players in the server"",""§fwill have §c50%% less §fchance to"",""§fdestroy weapons when"",""§fCustomizing or Enchanting !!""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+			send "&6Magical Firework of Unbreaking&7を手に入れました！"
+		if arg-2 is 4:
+			execute console command "give %player-arg% minecraft:golden_axe 1 20 {Unbreakable:1,display:{Name:""§6Huge Potion of Experience"",Lore:[""§fRight click while in lobby"",""§fto use the Potion"",""§fso all players in the server"",""§fwill have §cx5 more EXP §ffrom"",""§fall actions and §cx10 EXP §ffrom"",""§fall customizations !!""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+			send "&6Magical Firework of Unbreaking&7を手に入れました！"
+		if arg-2 is 5:
+			execute console command "give %player-arg% minecraft:golden_axe 1 23 {Unbreakable:1,display:{Name:""§6Magical Firework of WAR Reward Boost"",Lore:[""§fRight click while in lobby"",""§fto launch magical fireworks"",""§fso all players in the server"",""§fwill have §cx5 §fmore coins"",""§fwhen they finishes WAR !!""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+			send "&6Magical Firework of WAR Reward Boost&7を手に入れました！"
+			
+command /givethehat <player> <number>:
+	executable by: console
+	trigger:
+		execute console command "give %player-arg% minecraft:stone_axe 1 %arg-2% {Unbreakable:1,HideFlags:7}"
+		send "&f手に入れました！"
+		
+command /hatname <text>:
+	trigger:
+		player is op
+		set the name of held item to colored arg-1
+		set the lore of held item to "&7This item is a &fHat&7 item.|| ||&fShift + Click &7in inventory or||&fRight Click&7 while holding to||&7equip the hats."
+			
+on right click holding a golden axe:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if name of held item contains "Magical Firework of Modding":
+		if {kihuhanabi_mod} is more than 0:
+			send "&7まだサーバーに&6Magical Firework of Modding&7の効果が"
+			send "&7残っているため使用を中止します。"
+			stop
+		else:
+			set {kihuhanabi_mod} to 300
+			broadcast "&7&m&l----------------------------------"
+			broadcast " "
+			broadcast "&a%player%&fさんが&6Magical Firework of Modding&fを"
+			broadcast "&f使いました！今から5分間&6レジェンダリー改造&fの出現率が"
+			broadcast "&fなんと&c3倍&fになります！"
+			broadcast " "
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/str %player%"
+			execute console command "/toggleevent mod3 enable"
+			remove 1 of held item from player
+			
+	if name of held item contains "Magical Firework of Enchanting":
+		if {kihuhanabi_ench} is more than 0:
+			send "&7まだサーバーに&6Magical Firework of Enchanting&7の効果が"
+			send "&7残っているため使用を中止します。"
+			stop
+		else:
+			set {kihuhanabi_ench} to 300
+			broadcast "&7&m&l----------------------------------"
+			broadcast " "
+			broadcast "&a%player%&fさんが&6Magical Firework of Enchanting&fを"
+			broadcast "&f使いました！今から5分間&5レベル3エンチャント&fの出現率が"
+			broadcast "&fなんと&c3倍&fになります！"
+			broadcast " "
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/str %player%"
+			execute console command "/toggleevent ench3 enable"
+			remove 1 of held item from player
+			
+	if name of held item contains "Magical Firework of Unbreaking":
+		if {kihuhanabi_unb} is more than 0:
+			send "&7まだサーバーに&6Magical Firework of Unbreaking&7の効果が"
+			send "&7残っているため使用を中止します。"
+			stop
+		else:
+			set {kihuhanabi_unb} to 300
+			broadcast "&7&m&l----------------------------------"
+			broadcast " "
+			broadcast "&a%player%&fさんが&6Magical Firework of Unbreaking&fを"
+			broadcast "&f使いました！今から5分間、改造とエンチャント中に武器が"
+			broadcast "&f壊れてしまう確率がなんと&c半分&fになります！"
+			broadcast " "
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/str %player%"
+			execute console command "/toggleevent delhalf enable"
+			remove 1 of held item from player
+		
+every 1 second:
+	if {kihuhanabi_mod} is more than 0:
+		subtract 1 from {kihuhanabi_mod}
+		if {kihuhanabi_mod} is 0:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&6Magical Firework of Modding&fの効果が消滅しました。"
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/toggleevent mod3 disable"
+	if {kihuhanabi_ench} is more than 0:
+		subtract 1 from {kihuhanabi_ench}
+		if {kihuhanabi_ench} is 0:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&6Magical Firework of Enchanting&fの効果が消滅しました。"
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/toggleevent ench3 disable"
+	if {kihuhanabi_unb} is more than 0:
+		subtract 1 from {kihuhanabi_unb}
+		if {kihuhanabi_unb} is 0:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&6Magical Firework of Unbreaking&fの効果が消滅しました。"
+			broadcast "&7&m&l----------------------------------"
+			execute console command "/toggleevent delhalf disable"
+		
+command /str <player>:
+	trigger:
+		execute console command "mogsound %player-arg% block.portal.travel 1.4 1.1"
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:32,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:0,Flicker:0,Trail:0,Colors:[16777215],FadeColors:[16777215]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:30,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:0,Flicker:0,Trail:1,Colors:[11743532,15435844],FadeColors:[14602026]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:31,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:2,Flicker:0,Trail:1,Colors:[16775206],FadeColors:[16775887]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:28,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[7995154],FadeColors:[16761218]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:25,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:3,Flicker:0,Trail:1,Colors:[1376114],FadeColors:[6733311]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:35,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:0,Trail:1,Colors:[16776968],FadeColors:[16736609]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:20,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:4,Flicker:1,Trail:1,Colors:[16734708],FadeColors:[15204208]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:33,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[5382691],FadeColors:[2180863]}]}}}}"
+		wait 5 tick
+		set {_t} to random integer between -7 and 7
+		execute console command "execute %player-arg% ~ ~ ~ /summon FireworksRocketEntity ~%{_t}% ~ ~%{_t}% {LifeTime:28,FireworksItem:{id:fireworks,Count:1,tag:{Fireworks:{Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[16715061],FadeColors:[12451658]}]}}}}"

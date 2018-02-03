@@ -1,0 +1,647 @@
+on right click on beacon:
+	if player's gamemode is spectator:
+		stop
+	if {allowinteractbomb%player%} is 1:#----ボムキットチェック
+
+		if {war.inteam.creeper.%player%} is 1:#-----攻め側の時
+
+			set {bombstopaftergame} to {currentmap.war}
+
+			if {bombactionbarof%player%A} is not 0:#-----つまり爆弾設置とか解除中に再度interact不可
+				stop
+			if block below block is diamond block:#-----つまりAサイト
+				if {bombsetA} is 1:#-----もしすでに爆弾があったらストップ
+					set {bombactionbarof%player%A} to 0
+					stop
+
+				loop 11 times:
+					if {allowinteractbomb%player%} is 0:
+						set {bombactionbarof%player%A} to 0
+						stop
+					if {bombstopaftergame} is not equal to {currentmap.war}:
+						set block at {bomblocA} to beacon
+						set block at {bomblocB} to beacon
+						set {bombsetA} to 0
+						set {bombsetB} to 0
+						set {bombtimerA} to 0
+						set {bombtimerB} to 0
+						set {bombdoneA} to 0
+						set {bombdoneB} to 0
+						stop
+					if distance between player and clicked block is greater than 4:
+						set {bombactionbarof%player%A} to 0
+						stop
+					if {bombsetA} is 1:#-----爆弾設置されているなら自動ストップ
+						set {bombactionbarof%player%A} to 0
+						stop
+					if {imghost%player%} is 1:
+						stop
+
+					add 1 to {bombactionbarof%player%A}
+
+					if {bombactionbarof%player%A} is 1:
+						set action bar of player to "&7Setting Bomb... &4██████████"
+					if {bombactionbarof%player%A} is 2:
+						set action bar of player to "&7Setting Bomb... &7█&4█████████"
+					if {bombactionbarof%player%A} is 3:
+						set action bar of player to "&7Setting Bomb... &7██&4████████"
+					if {bombactionbarof%player%A} is 4:
+						set action bar of player to "&7Setting Bomb... &7███&4███████"
+					if {bombactionbarof%player%A} is 5:
+						set action bar of player to "&7Setting Bomb... &7████&4██████"
+					if {bombactionbarof%player%A} is 6:
+						set action bar of player to "&7Setting Bomb... &7█████&4█████"
+					if {bombactionbarof%player%A} is 7:
+						set action bar of player to "&7Setting Bomb... &7██████&4████"
+					if {bombactionbarof%player%A} is 8:
+						set action bar of player to "&7Setting Bomb... &7███████&4███"
+					if {bombactionbarof%player%A} is 9:
+						set action bar of player to "&7Setting Bomb... &7████████&4██"
+					if {bombactionbarof%player%A} is 10:
+						set action bar of player to "&7Setting Bomb... &7█████████&4█"
+					if {bombactionbarof%player%A} is 11:
+						set action bar of player to "&7Setting Bomb... &7██████████"
+
+					wait 6 tick
+					if {bombactionbarof%player%A} is 11:
+						if {bombsetA} is 1:
+							stop
+						else:
+							set {bombactionbarof%player%A} to 12
+
+				if {bombactionbarof%player%A} is 12:
+					loop blocks in radius 1 around clicked block:
+						loop-block is air:
+							if {_i} <= 3:
+								add 1 to {_i}
+								set loop-block to TNT
+								add location of loop-block to {blocks1::*}
+							if {_i}  is not set:
+								add 1 to {_i}
+								set loop-block to TNT
+								add location of loop-block to {blocks1::*}
+					add 1 to {bombsetcount%uuid of player%}
+					set {bombsetA} to 1
+					set {bomblocA} to location of clicked block#-----マップが終わった時にビーコン設置用
+					set {the.person.who.set.A} to name of player
+
+					loop all players:
+						if {war.inteam.creeper.%loop-player%} is 1:
+							send "&4Bomb has been &aplaced&4 by %player% at &bA Site&4 !!" to loop-player
+						else if {war.inteam.moosh.%loop-player%} is 1:
+							send "&4Bomb has been &aplaced&4 by %player% at &bA Site&4 !!" to loop-player
+
+					if {countdown} is smaller than 10:
+						set {countdown} to 15
+					set {bombactionbarof%player%A} to 0
+
+	#-----------------------------------------------------------------------------------------------
+
+			if {bombactionbarof%player%B} is not 0:#-----つまり爆弾設置とか解除中に再度interact不可
+				stop
+			if block below block is gold block:#-----つまりBサイト
+				if {bombsetB} is 1:#-----もしすでに爆弾があったらストップ
+					set {bombactionbarof%player%B} to 0
+					stop
+
+				loop 11 times:
+					if {allowinteractbomb%player%} is 0:
+						set {bombactionbarof%player%B} to 0
+						stop
+					if {bombstopaftergame} is not equal to {currentmap.war}:
+						set block at {bomblocA} to beacon
+						set block at {bomblocB} to beacon
+						set {bombsetA} to 0
+						set {bombsetB} to 0
+						set {bombtimerA} to 0
+						set {bombtimerB} to 0
+						set {bombdoneA} to 0
+						set {bombdoneB} to 0
+						set {war.teamnumber.creeper} to 0
+						set {war.teamnumber.moosh} to 0
+						set {wartimer} to 0
+						set {countdown} to 200
+						set block at {bomblocA} to beacon
+						set block at {bomblocB} to beacon
+						stop
+					if distance between player and clicked block is greater than 4:
+						set {bombactionbarof%player%B} to 0
+						stop
+					if {bombsetB} is 1:#-----爆弾設置されているなら自動ストップ
+						set {bombactionbarof%player%B} to 0
+						stop
+					if {imghost%player%} is 1:
+						stop
+
+					add 1 to {bombactionbarof%player%B}
+
+					if {bombactionbarof%player%B} is 1:
+						set action bar of player to "&7Setting Bomb... &4██████████"
+					if {bombactionbarof%player%B} is 2:
+						set action bar of player to "&7Setting Bomb... &7█&4█████████"
+					if {bombactionbarof%player%B} is 3:
+						set action bar of player to "&7Setting Bomb... &7██&4████████"
+					if {bombactionbarof%player%B} is 4:
+						set action bar of player to "&7Setting Bomb... &7███&4███████"
+					if {bombactionbarof%player%B} is 5:
+						set action bar of player to "&7Setting Bomb... &7████&4██████"
+					if {bombactionbarof%player%B} is 6:
+						set action bar of player to "&7Setting Bomb... &7█████&4█████"
+					if {bombactionbarof%player%B} is 7:
+						set action bar of player to "&7Setting Bomb... &7██████&4████"
+					if {bombactionbarof%player%B} is 8:
+						set action bar of player to "&7Setting Bomb... &7███████&4███"
+					if {bombactionbarof%player%B} is 9:
+						set action bar of player to "&7Setting Bomb... &7████████&4██"
+					if {bombactionbarof%player%B} is 10:
+						set action bar of player to "&7Setting Bomb... &7█████████&4█"
+					if {bombactionbarof%player%B} is 11:
+						set action bar of player to "&7Setting Bomb... &7██████████"
+
+					wait 6 tick
+					if {bombactionbarof%player%B} is 11:
+						if {bombsetB} is 1:
+							stop
+						else:
+							set {bombactionbarof%player%B} to 12
+
+				if {bombactionbarof%player%B} is 12:
+					loop blocks in radius 1 around clicked block:
+						loop-block is air:
+							if {_i} <= 3:
+								add 1 to {_i}
+								set loop-block to TNT
+								add location of loop-block to {blocks2::*}
+							if {_i}  is not set:
+								add 1 to {_i}
+								set loop-block to TNT
+								add location of loop-block to {blocks2::*}
+					add 1 to {bombsetcount%uuid of player%}
+					set {bombsetB} to 1
+					set {bomblocB} to location of clicked block#-----マップが終わった時にビーコン設置用
+					set {the.person.who.set.B} to name of player
+
+					loop all players:
+						if {war.inteam.creeper.%loop-player%} is 1:
+							send "&4TNT has been &aplaced&4 by %player% at &eB Site&4 !!" to loop-player
+						else if {war.inteam.moosh.%loop-player%} is 1:
+							send "&4TNT has been &aplaced&4 by %player% at &eB Site&4 !!" to loop-player
+
+					if {countdown} is smaller than 10:
+						set {countdown} to 15
+					set {bombactionbarof%player%B} to 0
+
+	#-----------------------------------------------------------------------------------------------
+		if {war.inteam.moosh.%player%} is 1:
+
+			set {bombstopaftergame} to {currentmap.war}
+
+			if {bombsetA} is 1:
+				if {bombactionbarof%player%A} is not 0:#-----つまり爆弾設置とか解除中に再度interact不可
+					stop
+				if block below block is diamond block:
+					loop 11 times:
+						if {allowinteractbomb%player%} is 0:
+							set {bombactionbarof%player%A} to 0
+							stop
+						if {bombstopaftergame} is not equal to {currentmap.war}:
+							set block at {bomblocA} to beacon
+							set block at {bomblocB} to beacon
+							set {bombsetA} to 0
+							set {bombsetB} to 0
+							set {bombtimerA} to 0
+							set {bombtimerB} to 0
+							set {bombdoneA} to 0
+							set {bombdoneB} to 0
+							set {war.teamnumber.creeper} to 0
+							set {war.teamnumber.moosh} to 0
+							set {wartimer} to 0
+							set {countdown} to 200
+							set block at {bomblocA} to beacon
+							set block at {bomblocB} to beacon
+							stop
+						if distance between player and clicked block is greater than 4:
+							set {bombactionbarof%player%A} to 0
+							stop
+						if {bombsetA} is 0:#-----爆弾もうなかったら自動ストップ
+							set {bombactionbarof%player%A} to 0
+							stop
+						if {imghost%player%} is 1:
+							stop
+
+						add 1 to {bombactionbarof%player%A}
+
+						if {bombactionbarof%player%A} is 1:
+							set action bar of player to "&7Disarming Bomb... &4██████████"
+						if {bombactionbarof%player%A} is 2:
+							set action bar of player to "&7Disarming Bomb... &7█&4█████████"
+						if {bombactionbarof%player%A} is 3:
+							set action bar of player to "&7Disarming Bomb... &7██&4████████"
+						if {bombactionbarof%player%A} is 4:
+							set action bar of player to "&7Disarming Bomb... &7███&4███████"
+						if {bombactionbarof%player%A} is 5:
+							set action bar of player to "&7Disarming Bomb... &7████&4██████"
+						if {bombactionbarof%player%A} is 6:
+							set action bar of player to "&7Disarming Bomb... &7█████&4█████"
+						if {bombactionbarof%player%A} is 7:
+							set action bar of player to "&7Disarming Bomb... &7██████&4████"
+						if {bombactionbarof%player%A} is 8:
+							set action bar of player to "&7Disarming Bomb... &7███████&4███"
+						if {bombactionbarof%player%A} is 9:
+							set action bar of player to "&7Disarming Bomb... &7████████&4██"
+						if {bombactionbarof%player%A} is 10:
+							set action bar of player to "&7Disarming Bomb... &7█████████&4█"
+						if {bombactionbarof%player%A} is 11:
+							set action bar of player to "&7Disarming Bomb... &7██████████"
+
+						wait 6 tick
+						if {bombactionbarof%player%A} is 11:
+							set {bombactionbarof%player%A} to 12
+
+					if {bombactionbarof%player%A} is 12:
+						set {bombactionbarof%player%A} to 0
+						loop {blocks1::*}:
+							if loop-value is not beacon:
+								set block at loop-value to air
+						set block at {bomblocA} to beacon
+						add 1 to {bombdiscount%uuid of player%}
+						set {bombsetA} to 0
+						set {bombtimerA} to 0
+						set {the.person.who.set.A} to name of player
+
+						if {countdown} is smaller than 10:
+							set {countdown} to 15
+						loop all players:
+							if {war.inteam.creeper.%loop-player%} is 1:
+								send "&4TNT has been &cremoved&4 by %player% at &bA Site&4 !!" to loop-player
+							else if {war.inteam.moosh.%loop-player%} is 1:
+								send "&4TNT has been &cremoved&4 by %player% at &bA Site&4 !!" to loop-player
+
+
+	#-----------------------------------------------------------------------------------------------
+
+			if {bombsetB} is 1:
+				if {bombactionbarof%player%B} is not 0:#-----つまり爆弾設置とか解除中に再度interact不可
+					stop
+				if block below block is gold block:
+					loop 11 times:
+						if {allowinteractbomb%player%} is 0:
+							set {bombactionbarof%player%B} to 0
+							stop
+						if distance between player and clicked block is greater than 4:
+							set {bombactionbarof%player%B} to 0
+							stop
+						if {bombsetB} is 0:#-----爆弾もうなかったら自動ストップ
+							set {bombactionbarof%player%B} to 0
+							stop
+						if {imghost%player%} is 1:
+							stop
+
+						add 1 to {bombactionbarof%player%B}
+
+						if {bombactionbarof%player%B} is 1:
+							set action bar of player to "&7Disarming Bomb... &4██████████"
+						if {bombactionbarof%player%B} is 2:
+							set action bar of player to "&7Disarming Bomb... &7█&4█████████"
+						if {bombactionbarof%player%B} is 3:
+							set action bar of player to "&7Disarming Bomb... &7██&4████████"
+						if {bombactionbarof%player%B} is 4:
+							set action bar of player to "&7Disarming Bomb... &7███&4███████"
+						if {bombactionbarof%player%B} is 5:
+							set action bar of player to "&7Disarming Bomb... &7████&4██████"
+						if {bombactionbarof%player%B} is 6:
+							set action bar of player to "&7Disarming Bomb... &7█████&4█████"
+						if {bombactionbarof%player%B} is 7:
+							set action bar of player to "&7Disarming Bomb... &7██████&4████"
+						if {bombactionbarof%player%B} is 8:
+							set action bar of player to "&7Disarming Bomb... &7███████&4███"
+						if {bombactionbarof%player%B} is 9:
+							set action bar of player to "&7Disarming Bomb... &7████████&4██"
+						if {bombactionbarof%player%B} is 10:
+							set action bar of player to "&7Disarming Bomb... &7█████████&4█"
+						if {bombactionbarof%player%B} is 11:
+							set action bar of player to "&7Disarming Bomb... &7██████████"
+
+						wait 6 tick
+
+						if {bombactionbarof%player%B} is 11:
+							set {bombactionbarof%player%B} to 12
+
+					if {bombactionbarof%player%B} is 12:
+						set {bombactionbarof%player%B} to 0
+						loop {blocks2::*}:
+							if loop-value is not beacon:
+								set block at loop-value to air
+						set block at {bomblocB} to beacon
+						add 1 to {bombdiscount%uuid of player%}
+						set {bombsetB} to 0
+						set {bombtimerB} to 0
+						set {the.person.who.set.B} to name of player
+
+						if {countdown} is smaller than 10:
+							set {countdown} to 15
+						loop all players:
+							if {war.inteam.creeper.%loop-player%} is 1:
+								send "&4TNT has been &cremoved&4 by %player% at &eB Site&4 !!" to loop-player
+							else if {war.inteam.moosh.%loop-player%} is 1:
+								send "&4TNT has been &cremoved&4 by %player% at &eB Site&4 !!" to loop-player
+
+#-----------------------------------------------------------------------------------------------
+
+every 1 second:
+	# if {bombstopaftergame} is not equal to {currentmap.war}:
+		# set block at {bomblocA} to beacon
+		# set block at {bomblocB} to beacon
+		# set {bombsetA} to 0
+		# set {bombsetB} to 0
+		# set {bombtimerA} to 0
+		# set {bombtimerB} to 0
+		# set {bombdoneA} to 0
+		# set {bombdoneB} to 0
+		# set {bombstopaftergame} to {currentmap.war}
+		# stop
+	if {bombsetA} is 1:
+		loop all players:
+			if {war.inteam.moosh.%loop-player%} is 1:
+				execute console command "/execute %loop-player% ~ ~ ~ playsound alert1 weather %loop-player% ~ ~ ~ 3 1"
+			if {war.inteam.creeper.%loop-player%} is 1:
+				execute console command "/execute %loop-player% ~ ~ ~ playsound alert1 weather %loop-player% ~ ~ ~ 3 1"
+		add 1 to {bombtimerA}
+		if {bombtimerA} is 20:
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					send "&4!!!!!!!!!!!!!!!!!!! THE BOMB &bAT A &4IS EXPLODING !!!!!!!!!!!!!!!!!!!" to loop-player
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					send "&4!!!!!!!!!!!!!!!!!!! THE BOMB &bAT A &4IS EXPLODING !!!!!!!!!!!!!!!!!!!" to loop-player
+		if {bombtimerA} is 30:
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					send "&4The bomb at &bA site &4has exploded !!" to loop-player
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					send "&4The bomb at &bA site &4has exploded !!" to loop-player
+
+			set {bombsetA} to 0
+			set {bombtimerA} to 0
+			set {bombdoneA} to 1
+			if {countdown} is smaller than 30:
+				set {countdown} to 30
+			set block at {bomblocA} to air
+			loop {blocks1::*}:
+				set block at loop-value to air
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocA}
+			wait 5 tick
+	if {bombsetB} is 1:
+		loop all players:
+			if {war.inteam.moosh.%loop-player%} is 1:
+				execute console command "/execute %loop-player% ~ ~ ~ playsound alert2 weather %loop-player% ~ ~ ~ 3 1"
+			if {war.inteam.creeper.%loop-player%} is 1:
+				execute console command "/execute %loop-player% ~ ~ ~ playsound alert2 weather %loop-player% ~ ~ ~ 3 1"
+		add 1 to {bombtimerB}
+		if {bombtimerB} is 20:
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					send "&4!!!!!!!!!!!!!!!!!!! THE BOMB &eAT B &4IS EXPLODING !!!!!!!!!!!!!!!!!!!" to loop-player
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					send "&4!!!!!!!!!!!!!!!!!!! THE BOMB &eAT B &4IS EXPLODING !!!!!!!!!!!!!!!!!!!" to loop-player
+
+		if {bombtimerB} is 30:
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					send "&4The bomb at &eB site &4has exploded !!" to loop-player
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					send "&4The bomb at &eB site &4has exploded !!" to loop-player
+
+			set {bombsetB} to 0
+			set {bombtimerB} to 0
+			set {bombdoneB} to 1
+			if {countdown} is smaller than 30:
+				set {countdown} to 30
+			set block at {bomblocB} to air
+			loop {blocks2::*}:
+				set block at loop-value to air
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+			create safe explosion of force 2 at location of {bomblocB}
+			wait 5 tick
+	if {bombdoneA} is 1:
+		if {bombdoneB} is 1:
+
+			if {war.teamnumber.creeper} > 2:
+				if {war.teamnumber.moosh} > 2:
+					set {togglestatscount} to 1
+			else:
+				set {togglestatscount} to 0
+
+			set {bombsetA} to 0
+			set {bombsetB} to 0
+			set {bombtimerA} to 0
+			set {bombtimerB} to 0
+			set {bombdoneA} to 0
+			set {bombdoneB} to 0
+			set {war.teamnumber.creeper} to 0
+			set {war.teamnumber.moosh} to 0
+			set {wartimer} to 0
+			set {countdown} to 300
+			add 1 to {creeperwins}
+			set block at {bomblocA} to beacon
+			set block at {bomblocB} to beacon
+
+
+
+			execute console command "/title @a title ["""",{""text"":""Creeper team "",""color"":""green"",""bold"":""true""},{""text"":""wins!"",""color"":""gold"",""bold"":""true""}]"
+			execute console command "/title @a subtitle ["""",{""text"":""%{warwincoins}% Coins for Creeper team, %{warlosecoins}% for losers"",""color"":""gray"",""bold"":""false""}]"
+
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					execute console command "/warp shop %loop-player%"
+					execute console command "/scoreboard teams join default %loop-player%"
+
+			loop all players:
+				if {war.inteam.creeper.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+						add 1 to {stats_creeperwin%loop-player%}
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% Creeper Coins and +20 exp !!" to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						# loop all items of loop-player:
+							# if name of loop-item contains "Magical Coin Pouch":
+								
+								# set {_switch%loop-player%} to 1
+						# if {_switch%loop-player%} is not set:
+							# clear {_switch%loop-player%}
+							# give {warwincoins} of nether brick named "&fCreeper Coin" to loop-player
+						# else:
+							# execute console command "/wallet %loop-player% cre %{warwincoins}%"
+						# if {kihuhanabi_warcoin} is more than 0:
+							# set {_tmpO} to now
+							# give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to loop-player
+						
+						# if {winnermedal_on_off} is 1:
+							# give {winnermedal_amount} of charcoal named "&bWinner Medal" to loop-player
+						execute console command "/warreward %loop-player% cre win"
+						add 20 to {expnew%UUID of loop-player%}
+						set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+						# if {lvlof%UUID of loop-player%} is more than 500:
+							# set the loop-player's level to 500
+							# set {lvlof%UUID of loop-player%} to 500
+						# else:
+						set the loop-player's level to {lvlof%UUID of loop-player%}
+					else:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You won the WAR !!" to loop-player
+						send "&7You got %{warwincoins}% Creeper Coins !!" to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						# loop all items of loop-player:
+							# if name of loop-item contains "Magical Coin Pouch":
+								
+								# set {_switch%loop-player%} to 1
+						# if {_switch%loop-player%} is not set:
+							# clear {_switch%loop-player%}
+							# give {warwincoins} of nether brick named "&fCreeper Coin" to loop-player
+						# else:
+							# execute console command "/wallet %loop-player% cre %{warwincoins}%"
+						# if {kihuhanabi_warcoin} is more than 0:
+							# set {_tmpO} to now
+							# give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to loop-player
+								
+						# if {winnermedal_on_off} is 1:
+							# give {winnermedal_amount} of charcoal named "&bWinner Medal" to loop-player
+						execute console command "/warreward %loop-player% cre win"
+
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					execute console command "settabname %loop-player% white"
+					# set {namecolor%loop-player%} to "&f"
+					# set loop-player tab name to " &7[Lv%{lvlof%loop-player%}%] %{namecolor%loop-player%}%%loop-player%"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+
+				else if {war.inteam.moosh.%loop-player%} is 1:
+					if {togglestatscount} is 1:
+						add 1 to {gameplayed%loop-player%}
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You lost the WAR :(" to loop-player
+						send "&7You got %{warlosecoins}% Moosh Coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						# loop all items of loop-player:
+							# if name of loop-item contains "Magical Coin Pouch":
+								
+								# set {_switch%loop-player%} to 1
+						# if {_switch%loop-player%} is not set:
+							# give {warlosecoins} of nether quartz named "&fMoosh Coin" to loop-player
+						# else:
+							# execute console command "/wallet %loop-player% moo %{warlosecoins}%"
+						# if {kihuhanabi_warcoin} is more than 0:
+							# set {_tmpO} to now
+							# give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to loop-player
+						execute console command "/warreward %loop-player% moo lose"
+						
+						set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+						# if {lvlof%UUID of loop-player%} is more than 500:
+							# set the loop-player's level to 500
+							# set {lvlof%UUID of loop-player%} to 500
+						# else:
+						set the loop-player's level to {lvlof%UUID of loop-player%}
+					else:
+						send "&7&m&l----------------------------------" to loop-player
+						send "&7You lost the WAR :(" to loop-player
+						send "&7You got %{warlosecoins}% Moosh Coins." to loop-player
+						send "&7Your K/D on this WAR: %{warkill%loop-player%}/{wardead%loop-player%}% (%{warkill%loop-player%}%kills, %{wardead%loop-player%}%death)" to loop-player
+						send "&7Last person touched at A site: %{the.person.who.set.A}%" to loop-player
+						send "&7Last person touched at B site: %{the.person.who.set.B}%" to loop-player
+						send "&7&m&l----------------------------------" to loop-player
+						# loop all items of loop-player:
+							# if name of loop-item contains "Magical Coin Pouch":
+								
+								# set {_switch%loop-player%} to 1
+						# if {_switch%loop-player%} is not set:
+							# give {warlosecoins} of nether quartz named "&fMoosh Coin" to loop-player
+						# else:
+							# execute console command "/wallet %loop-player% moo %{warlosecoins}%"
+						# if {kihuhanabi_warcoin} is more than 0:
+							# set {_tmpO} to now
+							# give a coal named "&6Lucky Bag (%year from date {_tmpO}% %month name from date {_tmpO}%)" to loop-player
+							
+						execute console command "/warreward %loop-player% moo lose"
+								
+						set {lvlof%UUID of loop-player%} to rounded {expnew%UUID of loop-player%} ^ (1/1.8)
+						# if {lvlof%UUID of loop-player%} is more than 500:
+							# set the loop-player's level to 500
+							# set {lvlof%UUID of loop-player%} to 500
+						# else:
+						set the loop-player's level to {lvlof%UUID of loop-player%}
+					# if {warbreak} is not 1:
+					# else:
+						# send "&7&m&l----------------------------------" to loop-player
+						# send "Coin rewards are now &cdisabled&f. Comme back at 10am JST!" to loop-player
+						# send "WARの報酬は午前2時から午前10時までは得られません。" to loop-player
+						# send "&7&m&l----------------------------------" to loop-player
+
+					set {war.inteam.creeper.%loop-player%} to 0
+					set {war.inteam.moosh.%loop-player%} to 0
+					execute console command "settabname %loop-player% white"
+					# set {namecolor%loop-player%} to "&f"
+					# set loop-player tab name to " &7[Lv%{lvlof%loop-player%}%] %{namecolor%loop-player%}%%loop-player%"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+				else if {spectatemode%loop-player%} is 1:
+					set {spectatemode%loop-player%} to 0
+					set {togglespec%loop-player%} to 1
+					execute console command "settabname %loop-player% white"
+					# set {namecolor%loop-player%} to "&f"
+					# set loop-player tab name to " &7[Lv%{lvlof%loop-player%}%] %{namecolor%loop-player%}%%loop-player%"
+					make loop-player execute command "thisisacommandforsettingtab"
+					set chestplate of the loop-player to air
+					set boots of the loop-player to air
+					set leg of the loop-player to air
+					if gamemode of loop-player is not survival:
+						set loop-player's gamemode to survival
+					execute console command "warp shop %loop-player%"
+
+			execute console command "/nextwar"

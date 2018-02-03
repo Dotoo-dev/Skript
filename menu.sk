@@ -1,0 +1,33 @@
+﻿on inventory close:
+	set {%player%inmenu} to 0
+
+on crafting click in slot 0:
+	open chest with 1 rows named "&fSTRIFE Commands" to player
+	wait 1 tick
+	set {%player%inmenu} to 1
+	format slot 0 of player with bed item named "&fGo to lobby" with lore "&7ロビーに戻ります||&7WARにいる場合は自陣スポーンに||&71ダウンと引き換えに戻ります||&7Command: /spawn" to run [make player execute command "spawn"]
+	format slot 1 of player with paper named "&fToggle Tips" with lore "&7Tips表示をオンオフします||&7Command: /tips" to run [make player execute command "tips"]
+	format slot 2 of player with book named "&fToggle Kill Log" with lore "&7キルログ表示をオンオフします||&7Command: /log" to run [make player execute command "log"]
+	format slot 3 of player with lava bucket named "&fTrash Box" with lore "&7ゴミ箱を開きます||&7Command: /del" to run [make player execute command "del"]
+	format slot 4 of player with nether star named "&fOpen Auction" with lore "&7オークションウインドウを開きます||&7Command: /ah" to run [make player execute command "ah"]
+	format slot 5 of player with sign item named "&fStats" with lore "&7(player)の戦歴などを表示します||&7Command: /stat (player)" to run [make player execute command "stat %player%"]
+	format slot 6 of player with 166 named "&f-----" to run [make player execute command " "]
+	format slot 7 of player with 166 named "&f-----" to run [make player execute command " "]
+	format slot 8 of player with chest named "&fWeb Services" with lore "&eSTRIFE&fのWebサービスのリンクを表示します" to run [execute console command "/tellraw %player% ["""",{""text"":""----------------------------------------"",""bold"":true,""color"":""gray""},{""text"":""\n""},{""text"":""Web Services"",""color"":""yellow""},{""text"":"" of"",""color"":""gray""},{""text"":"" ""},{""text"":""STRIFE"",""color"":""yellow""},{""text"":"":\n""},{""text"":""Web site"",""color"":""gold""},{""text"":"": "",""color"":""gray""},{""text"":""http://thewar.hol.es/"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""http://thewar.hol.es/""}},{""text"":""\n""},{""text"":""Discord"",""color"":""aqua""},{""text"":"": "",""color"":""gray""},{""text"":""https://discord.me/strife_mc"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://discord.me/strife_mc""}},{""text"":""\n""},{""text"":""Twitter"",""color"":""blue""},{""text"":"": "",""color"":""gray""},{""text"":""https://twitter.com/STRIFE_mcserver"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://twitter.com/STRIFE_mcserver""}},{""text"":""\n""},{""text"":""JMS"",""color"":""light_purple""},{""text"":"": "",""color"":""gray""},{""text"":""https://minecraft.jp/servers/strifeserver.ddns.net"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://minecraft.jp/servers/strifeserver.ddns.net""}},{""text"":""\n""},{""text"":""wiki"",""color"":""yellow""},{""text"":"": "",""color"":""gray""},{""text"":""http://seesaawiki.jp/thewar2/"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""http://seesaawiki.jp/thewar2/""}},{""text"":""\n----------------------------------------"",""bold"":true,""color"":""gray""},{""text"":""\n ""}]"]
+command /menu:
+	trigger:
+		open chest with 1 rows named "&fSTRIFE Commands" to player
+		wait 1 tick
+		set {%player%inmenu} to 1
+		format slot 0 of player with bed item named "&fGo to lobby" with lore "&7ロビーに戻ります||&7WARにいる場合は自陣スポーンに||&71ダウンと引き換えに戻ります||&7Command: /spawn" to run [make player execute command "spawn"]
+		format slot 1 of player with paper named "&fToggle Tips" with lore "&7Tips表示をオンオフします||&7Command: /tips" to run [make player execute command "tips"]
+		format slot 2 of player with book named "&fToggle Kill Log" with lore "&7キルログ表示をオンオフします||&7Command: /log" to run [make player execute command "log"]
+		format slot 3 of player with lava bucket named "&fTrash Box" with lore "&7ゴミ箱を開きます||&7Command: /del" to run [make player execute command "del"]
+		format slot 4 of player with nether star named "&fOpen Auction" with lore "&7オークションウインドウを開きます||&7Command: /ah" to run [make player execute command "ah"]
+		format slot 5 of player with sign item named "&fStats" with lore "&7(player)の戦歴などを表示します||&7Command: /stat (player)" to run [make player execute command "stat %player%"]
+		format slot 6 of player with 166 named "&f-----" to run [make player execute command " "]
+		format slot 7 of player with 166 named "&f-----" to run [make player execute command " "]
+		format slot 8 of player with chest named "&fWeb Services" with lore "&eSTRIFE&fのWebサービスのリンクを表示します" to run [execute console command "/tellraw %player% ["""",{""text"":""----------------------------------------"",""bold"":true,""color"":""gray""},{""text"":""\n""},{""text"":""Web Services"",""color"":""yellow""},{""text"":"" of"",""color"":""gray""},{""text"":"" ""},{""text"":""STRIFE"",""color"":""yellow""},{""text"":"":\n""},{""text"":""Web site"",""color"":""gold""},{""text"":"": "",""color"":""gray""},{""text"":""http://thewar.hol.es/"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""http://thewar.hol.es/""}},{""text"":""\n""},{""text"":""Discord"",""color"":""aqua""},{""text"":"": "",""color"":""gray""},{""text"":""https://discord.me/strife_mc"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://discord.me/strife_mc""}},{""text"":""\n""},{""text"":""Twitter"",""color"":""blue""},{""text"":"": "",""color"":""gray""},{""text"":""https://twitter.com/STRIFE_mcserver"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://twitter.com/STRIFE_mcserver""}},{""text"":""\n""},{""text"":""JMS"",""color"":""light_purple""},{""text"":"": "",""color"":""gray""},{""text"":""https://minecraft.jp/servers/strifeserver.ddns.net"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""https://minecraft.jp/servers/strifeserver.ddns.net""}},{""text"":""\n""},{""text"":""wiki"",""color"":""yellow""},{""text"":"": "",""color"":""gray""},{""text"":""http://seesaawiki.jp/thewar2/"",""underlined"":true,""color"":""gray"",""clickEvent"":{""action"":""open_url"",""value"":""http://seesaawiki.jp/thewar2/""}},{""text"":""\n----------------------------------------"",""bold"":true,""color"":""gray""},{""text"":""\n ""}]"]
+#on inventory click:
+#	if name of event-slot is "&e&lBuy Kit Lapis":
+#		message "success"

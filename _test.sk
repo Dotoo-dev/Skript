@@ -1,0 +1,58 @@
+#test
+
+# on right click:
+	# player is holding air
+	# distance between player and targeted entity is less than 2
+	# if targeted entity is riding:
+		# send "&7You can't ride that :("
+		# stop
+	# make player ride targeted entity
+
+on right click:
+	player is holding a paper
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	name of item contains "うしさん騎乗ちけっと"
+	remove 1 of held item from player
+	spawn a cow at location of player
+	make player ride last spawned entity
+
+on right click:
+	player is holding a paper 
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	name of item contains "おとうふ騎乗ちけっと"
+	remove 1 of held item from player
+	spawn a slime at location of player
+	make player ride last spawned entity
+	
+on damage:
+	attacker is slime
+	cancel event
+
+on right click:
+	player is holding a paper 
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	name of item contains "ちゅんちゅん騎乗ちけっと"
+	remove 1 of held item from player
+	spawn a polar bear at location of player
+	make player ride last spawned entity
+
+on right click:
+	player is holding a paper 
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	name of item contains "うぃざー騎乗ちけっと"
+	remove 1 of held item from player
+	spawn a wither at location of player
+	make player ride last spawned entity
+	
+# on right click holding diamond axe:
+	# name of tool contains "ちくわボックス"
+	# execute console command "shot give %player% chikuwa"
+	# message "ちくわをだした" to player

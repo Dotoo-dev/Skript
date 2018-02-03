@@ -1,0 +1,73 @@
+command /kinokostop <number>:
+	trigger:
+		player is op
+		if arg-1 is 1:
+			set {kinoko_giveaway_stop_giveaway2} to now
+			send "&5Giveawayの配布終了時間をセットしました。今から9時間後に/kinokodaisukiは使えなくなります。"
+			
+command /kinokostream <text>:
+	usage: "/kinokostream sendenで事前の宣伝開始、/kinokostream housouで放送中のメッセージを10分ごとに流します。/kinoko stopでメッセージを流すのを終了します。"
+	trigger:
+		player is op
+		if arg-1 is "senden":
+			set {kinoko_stream_ad} to 1
+			set {kinoko_stream_ongoing} to 0
+			send "宣伝開始！！！！！！！！！！！！！！！！！！"
+		else if arg-1 is "housou":
+			set {kinoko_stream_ad} to 0
+			set {kinoko_stream_ongoing} to 1
+			send "放送開始！！！！！！！！！！！"
+		else if arg-1 is "stop":
+			set {kinoko_stream_ad} to 0
+			set {kinoko_stream_ongoing} to 0
+			send "生放送宣伝終了！"
+			
+every 5 minutes:
+	if {kinoko_stream_ad} is 1:
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&f本日18:30ごろよりSTRIFE公式生放送「生スト」を放送します。最後まで見ると素敵なアイテムがもらえるかも？？？？"
+		broadcast "&f生ストのURLはこちら！！"
+		broadcast "https://www.youtube.com/watch?v=GeryjwM68f8&feature=youtu.be"
+		broadcast "&7&m&l----------------------------------"
+	else if {kinoko_stream_ongoing} is 1:
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&fただいまSTRIFE公式生放送「生スト」が配信中です！最後まで見ると素敵なプレゼントが！！？"
+		broadcast "&f生ストのURLはこちら！！"
+		broadcast "https://www.youtube.com/watch?v=GeryjwM68f8&feature=youtu.be"
+		broadcast "&7&m&l----------------------------------"
+		
+command /kino:
+	trigger:
+		player is op
+		if {kinoko_christmas} is not set:
+			set {kinoko_christmas} to 1
+			stop
+		if {kinoko_christmas} is 1:
+			set {kinoko_christmas} to 0
+			send "&aきのこクリスマス放送のWAR報酬にケーキ追加 = オフ"
+			stop
+		if {kinoko_christmas} is 0:
+			set {kinoko_christmas} to 1
+			send "&aきのこクリスマス放送のWAR報酬にケーキ追加 = オン"
+			stop
+
+command /tokubanhappy:
+	trigger:
+		if difference between {kinoko_giveaway_stop_giveaway2} and now is more than 1 hours:
+			send "&7もうこのコードはつかえないよーごめんね！"
+			stop
+		if {kinoko_giveaway_%player%_already_got_item2} is 1:
+			send "&7キノコのひみつのコマンドが使えるのはひとり1回までですよ！"
+			stop
+		else:
+			if player can hold 4 wooden axe:
+				give 5 paper named "&bBlueprint: Helheim DMR" to player
+				give 3 gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+				give 3 gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+				give 3 gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+				set {kinoko_giveaway_%player%_already_got_item2} to 1
+				send "&7今日も放送を最後まで見てくれてありがとう！"
+				send "&7クリスマスイブの今、放送を見てくれてる人にこれをプレゼントだ！"
+			else:
+				send "&7アイテムがいっぱいになっちゃうからコマンドを中止します！"
+				send "&7インベントリにたくさん空きを作ってもう一度ためしてね！"

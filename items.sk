@@ -1,0 +1,773 @@
+on right click holding coal:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 1 wooden axe:
+		set {_t} to random integer between 1 and 100
+		
+		if {_t} is between 1 and 24:
+			set {_t2} to random integer between 5 and 16
+			give {_t2} of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+			send "&7You've got %{_t2}% of &fDiamond Coins &7!!"
+			
+		if {_t} is between 25 and 55:
+			set {_t2} to random integer between 1 and 9
+			give {_t2} of 409 named "&fAncient Stone" to player
+			send "&7You've got %{_t2}% of &fAncient Stone &7!!"
+			
+		if {_t} is between 56 and 70:
+			set {_t2} to random integer between 1 and 5
+			give {_t2} of 437 named "&fPotion of Experience" with lore "&7Drinking this potion||&7gives you &e+15 exp&7." to player
+			send "&7You've got %{_t2}% of &fPotion of Experience &7!!"
+			
+		if {_t} is between 71 and 75:
+			send "&7I just found a ordinally stone inside the bag. Great."
+			
+		if {_t} is between 76 and 80:
+			send "&7I found a paper inside. It says ""Don't drink and drive""."
+			
+		if {_t} is between 81 and 85:
+			give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+			send "&7You've got &fLegendary Toolbox: Warlord Mod &7!!"
+			# broadcast "&7&m&l----------------------------------"
+			# broadcast "&f%player% has found &6Legendary Toolbox: Warlord Mod"
+			# broadcast "&finside %name of held item of player%&f !!"
+			# broadcast "&7&m&l----------------------------------"
+		if {_t} is between 86 and 90:
+			give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+			send "&7You've got &fLegendary Toolbox: Emperor &7!!"
+			# broadcast "&7&m&l----------------------------------"
+			# broadcast "&f%player% has found &6Legendary Toolbox: Emperor Mod"
+			# broadcast "&finside %name of held item of player%&f !!"
+			# broadcast "&7&m&l----------------------------------"
+		if {_t} is between 91 and 95:
+			give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+			send "&7You've got &fLegendary Toolbox: Monarch Mod &7!!"
+			# broadcast "&7&m&l----------------------------------"
+			# broadcast "&f%player% has found &6Legendary Toolbox: Monarch Mod"
+			# broadcast "&finside %name of held item of player%&f !!"
+			# broadcast "&7&m&l----------------------------------"
+
+		if {_t} is between 96 and 97:
+			send "&7I found a paper inside. It says ""Don't drink and drive""."
+			
+		if {_t} is 98:
+			give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+			give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+			give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+			send "&7You've got &fALL of Legendary Toolboxes &7!!"
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&f%player% has found &6Legendary Toolboxes"
+			broadcast "&finside %name of held item of player%&f !!"
+			broadcast "&7&m&l----------------------------------"
+			
+		if {_t} is 99:
+			give 1 of ghast tear named "&6Ancient Crystal" with lore "&7This Crystal will be destoryed||&7instead of your weapon when||&7you failed disenchanting||&7an ancient enchantment." to player
+			send "&7You found &6Ancient Crystal&7 !!"
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&f%player% has found &6Ancient Crystal"
+			broadcast "&finside %name of held item of player%&f !!"
+			broadcast "&7&m&l----------------------------------"
+		if {_t} is 100:
+			if name of held item contains "DECEMBER":
+				execute console command "/moggive %player% magicalfeather 1"
+				broadcast "&7&m&l----------------------------------"
+				broadcast "&f%player% has found &6Magical Feather"
+				broadcast "&finside %name of held item of player%&f !!"
+				broadcast "&7&m&l----------------------------------"
+			if name of held item contains "JANUARY":
+				set {_t} to random integer between 1 and 10
+				if {_t} is 1:
+					execute console command "/moggive %player% bankchest 1"
+					broadcast "&7&m&l----------------------------------"
+					broadcast "&f%player% has found &6Portable Bank Chest"
+					broadcast "&finside %name of held item of player%&f !!"
+					broadcast "&7&m&l----------------------------------"
+			if name of held item contains "FEBRUARY":
+				set {_t} to random integer between 1 and 7
+				if {_t} is 1:
+					execute console command "/moggive %player% counterfeit 1"
+					broadcast "&7&m&l----------------------------------"
+					broadcast "&f%player% has found &6Auction License Printer"
+					broadcast "&finside %name of held item of player%&f !!"
+					broadcast "&7&m&l----------------------------------"
+				else:
+					send "&7I found this lucky bag had a hole..."
+		
+		remove 1 of held item from player
+	else:
+		send "&7You have to make more space in inventory in order to open this Lucky Bag !!"
+on right click holding diamond pickaxe:
+	name of held item contains "Auction License Printer"
+	if {auctionlicenseprinter%player%} is not set:
+		set {auctionlicenseprinter%player%} to now
+		subtract a day from {auctionlicenseprinter%player%}
+	if difference between {auctionlicenseprinter%player%} and now is more than 6 hour:
+		if player has 5 iron ingots:
+			remove 5 iron ingot from player
+			set {auctionlicenseprinter%player%} to now
+			give 1 clay item named "&fAuction License" to player
+		else:
+			send "&7You need 5 Toolboxes in order to make an Auction License !!"
+	else:
+		send "&7You can only use this printer every 6 hours. Don't ask me why because it is :("
+
+		
+on right click holding diamond pickaxe:
+	name of held item contains "Magical Feather"
+	player is in world "spawn" or "kihu"
+	send "&7You used &6Magical Feather&7 !!"
+	execute console command "/mogsound %player% entity.endermen.teleport 1 1"
+	execute console command "teleporthouse %player%"
+	wait 1 second
+	if player is not in world "city":
+		stop
+	execute console command "/mogsound %player% entity.endermen.teleport 1 1"
+	execute console command "scoreboard teams join orange %player%"
+	execute console command "/settabname %player% city"
+	
+on right click holding diamond pickaxe:
+	if event-block is chest, ender chest, anvil, enchantment table, furnace, crafting table, brewing stand, hopper or trapped chest or dropper or dispenser:
+		stop
+	name of held item contains "Portable Bank Chest"
+	
+	player is in world "spawn" or "kihu" or "city"
+	execute console command "bankdayo %player%"
+	
+on right click holding diamond pickaxe:
+	name of held item contains "Pochi Bukuro"
+	if line 1 of lore of held item contains "Contains &a$1000":
+		execute console command "eco give %player% 1000"
+		execute player command "bal"
+		execute console command "mogsound %player% entity.player.levelup 1 1.8"
+		set line 1 of lore of held item to "&7Right click to put &a$1000"
+		stop
+	if line 1 of lore of held item contains "Right click to put &a$1000":
+		if player's money is more than 1000:
+			execute console command "eco take %player% 1000"
+			execute player command "bal"
+			execute console command "mogsound %player% entity.bat.takeoff 1 1.8"
+			set line 1 of lore of held item to "&7Contains &a$1000"
+			stop
+		else:
+			send "&7You don't have &a$1000&7."
+
+on right click holding stone axe:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if helm slot of player is air:
+		set the helm slot of player to held item
+		remove held item from player
+
+on right click holding 437:
+	if name of held item contains "&fPotion of Experience":
+		if slot 40 of player is not air or golden axe or diamond pickaxe:
+			send "&7Please change your offhand to offhand item or air."
+			stop
+		cancel event
+		remove 1 of held item from player
+		add 15 to {expnew%UUID of player%}
+		send "&7You've got &e+15 exp&7 !!"
+		execute console command "mogsound %player% entity.experience_orb.pickup 1.2 0.6"
+		wait 2 tick
+		execute console command "mogsound %player% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %player% entity.experience_orb.pickup 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %player% entity.experience_orb.pickup 1.2 1.6"
+
+on right click holding a paper:
+	name of held item contains "co l"
+	if {col%player%} is not set:
+		set {col%player%} to 1
+	else:
+		add 1 to {col%player%}
+		execute player command "/co l %{col%player%}%"
+		
+on left click holding a paper:
+	name of held item contains "co l"
+	if {col%player%} is not set:
+		set {col%player%} to 1
+	else:
+		if {col%player%} is less than 0:
+			set {col%player%} to 1
+		subtract 1 from {col%player%}
+		execute player command "/co l %{col%player%}%"
+
+command /daredare:
+	trigger:
+		set {col%player%} to 0
+		if player has paper named "&fco l":
+			stop
+		give a paper named "&fco l" to player
+
+on right click holding a stick:
+	player is op
+	name of tool contains "放置キック棒"
+	kick target because "満員だから放置キック！もう一回入り直してね！"
+	broadcast "&7%player%が%target%を放置キックしました！"
+command /hkick:
+	trigger:
+		player is op
+		give a stick named "放置キック棒" to player
+		
+
+on right click holding a paper:
+	name of held item contains "ぽぽにとぶ"
+	name of player contains "xachunx"
+	execute console command "/tp xachunx dotoo"
+
+# on right click holding a diamond pickaxe:
+	
+	# if name of held item contains "Hamugotchi":
+		# if slot 40 of player is not air or golden axe or diamond pickaxe:
+			# send "&7Please change your offhand to offhand item or air."
+			# stop
+		# if player has 64 wheat item:
+			# remove 64 wheat item from player
+			# set {_esa} to 1
+		# else if player has 64 baked potato item:
+			# remove 64 baked potato from player
+			# set {_esa} to 1
+		# else if player has 64 golden carrot item:
+			# remove 64 golden carrot from player
+			# set {_esa} to 1
+		# else if player has 64 melon slice:
+			# remove 64 melon slice from player
+			# set {_esa} to 1
+		# if {_esa} is 1:
+			# chance of 5%:
+				# set {_rand} to random integer between 1 and 100
+				# if {_rand} is smaller than 2:
+					# remove 1 of held item from player
+					# message "鶴はむに進化しました！" to player
+					# message "激レアはむごっち！" to player
+					# execute console command "moggive %player% hamu6 1"
+				# else if {_rand} is smaller than 6:
+					# remove 1 of held item from player
+					# message "オカメちゃんに進化しました！" to player
+					# message "結構レアのはむごっち！" to player
+					# execute console command "moggive %player% hamu1 1"
+				# else if {_rand} is smaller than 10:
+					# remove 1 of held item from player
+					# message "インコちゃんに進化しました！" to player
+					# message "結構レアのはむごっち！" to player
+					# execute console command "moggive %player% hamu2 1"
+				# else if {_rand} is smaller than 15:
+					# remove 1 of held item from player
+					# message "ぺんはむに進化しました！" to player
+					# message "ちょっとレアのはむごっち！" to player
+					# execute console command "moggive %player% hamu3 1"
+				# else if {_rand} is smaller than 20:
+					# remove 1 of held item from player
+					# message "すずめちゅんに進化しました！" to player
+					# message "たまに出てくるはむごっち！" to player
+					# execute console command "moggive %player% hamu4 1"
+				# else if {_rand} is smaller than 25:
+					# remove 1 of held item from player
+					# message "ダチョウくんに進化しました！" to player
+					# message "たまに出てくるはむごっち！" to player
+					# execute console command "moggive %player% hamu5 1"
+				# else if {_rand} is smaller than 35:
+					# remove 1 of held item from player
+					# message "かもちゃんに進化しました！" to player
+					# message "よく出てくるはむごっち！" to player
+					# execute console command "moggive %player% hamu7 1"
+				# else if {_rand} is smaller than 45:
+					# remove 1 of held item from player
+					# message "みみずくんに進化しました！" to player
+					# message "よくでてくるはむごっち！" to player
+					# execute console command "moggive %player% hamu8 1"
+				# else if {_rand} is smaller than 55:
+					# remove 1 of held item from player
+					# message "ぴよはむに進化しました！" to player
+					# message "大きくなりそこねました！" to player
+					# execute console command "moggive %player% hamu9 1"
+				# else if {_rand} is smaller than 65:
+					# remove 1 of held item from player
+					# message "はむらいすに進化しました！" to player
+					# message "おなかがすいたので料理しました！" to player
+					# execute console command "moggive %player% hamu0 1"
+				# else:
+					# remove 1 of held item from player
+					# message "はむごっちが進化しました！" to player
+					# message "ただの量産型はむになりました" to player
+					# execute console command "moggive %player% hamu 1"
+			# else:
+				# message "はむごっちはもっとエサがほしいみたいです。" to player
+		# else:
+			# message "はむごっちを育てるには何かの野菜が1スタック必要です。" to player
+
+on right click holding a nether star:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 2 wooden axe:
+		if lore of held item contains "Right click to get 16 of":
+			give 16 nether brick named "&fCreeper Coin" to player
+			give 16 nether quartz named "&fMoosh Coin" to player
+			remove 1 nether star from player
+			message "&7You've got 16 Creeper and Moosh coins !!"
+	else:
+		message "&7You need 2 free slots before using Diamond Coin."
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Helheim DMR"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% Helheim 1"
+			send "&7You've created Helheim DMR!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% Helheim 1"
+			send "&7You've created Helheim DMR!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+
+		
+on right click holding a paper:
+	name of item contains "Blueprint: A-12 Plastic Rifle"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% weird 1"
+			send "&7You've created A-12 Plastic Rifle!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% weird 1"
+			send "&7You've created A-12 Plastic Rifle!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Staff of Vesta"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% Vesta 1"
+			send "&7You've created Staff of Vesta!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% Vesta 1"
+			send "&7You've created Staff of Vesta!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Grim Reaper"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% grimreaper 1"
+			send "&7You've created Grim Reaper!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% grimreaper 1"
+			send "&7You've created Grim Reaper!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Staff of Zisca"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% Zisca 1"
+			send "&7You've created Staff of Zisca!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% Zisca 1"
+			send "&7You've created Staff of Zisca!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 16 Creeper/Moosh Coins :(" to player
+
+on right click holding a paper:
+	name of item contains "Blueprint: Golden One"
+	if player has 16 nether bricks:
+		player has 16 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 16 nether bricks from player
+			remove 16 nether quartz from player
+			execute console command "moggive %player% goldenone 1"
+			send "&7You've created Golden One!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 1 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 1 nether star from player
+			execute console command "moggive %player% goldenone 1"
+			send "&7You've created Golden One!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 16 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Alien Phaser"
+	if player has 16 nether bricks:
+		player has 16 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 16 nether bricks from player
+			remove 16 nether quartz from player
+			execute console command "moggive %player% alienpistol 1"
+			send "&7You've created Alien Phaser!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 1 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 1 nether star from player
+			execute console command "moggive %player% alienpistol 1"
+			send "&7You've created Alien Phaser!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 16 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Starfaller"
+	if player has 16 nether bricks:
+		player has 16 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 16 nether bricks from player
+			remove 16 nether quartz from player
+			execute console command "moggive %player% starfaller 1"
+			send "&7You've created Starfaller!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 1 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 1 nether star from player
+			execute console command "moggive %player% starfaller 1"
+			send "&7You've created Starfaller!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 16 Creeper/Moosh Coins :(" to player
+
+on right click holding a paper:
+	name of item contains "Blueprint: K95 Basilisk"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% Basilisk 1"
+			send "&7You've created K95 Basilisk!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% Basilisk 1"
+			send "&7You've created K95 Basilisk!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: PP90N1 Dummy's"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% pp90n1 1"
+			send "&7You've created PP90N1!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% pp90n1 1"
+			send "&7You've created PP90N1!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: UDON-SKP Automana"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% udon 1"
+			send "&7You've created UDON-SKP Automana!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% udon 1"
+			send "&7You've created UDON-SKP Automana!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Love Launcher"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% love 1"
+			send "&7You've created Love Launcher!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% love 1"
+			send "&7You've created Love Launcher!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+		
+on right click holding a paper:
+	name of item contains "Blueprint: Princess Crossbow"
+	if player has 32 nether bricks:
+		player has 32 nether quartz
+		if player has enough space for 1 diamond axe:
+			remove 32 nether bricks from player
+			remove 32 nether quartz from player
+			execute console command "moggive %player% princess 1"
+			send "&7You've created Princess Crossbow!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else if player has 2 nether star:
+		if player has enough space for 1 diamond axe:
+			remove 2 nether star from player
+			execute console command "moggive %player% princess 1"
+			send "&7You've created Princess Crossbow!" to player
+		else:
+			send "&7Make a free slot in your inventory and try again." to player
+	else:
+		message "&7You don't have 32 Creeper/Moosh Coins :(" to player
+
+on right click holding a chest:
+	
+	name of item contains "Treasure Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 3 wooden axe:
+		set {_rand} to random integer between 1 and 10
+		if {_rand} is 1:
+			give 24 lapis lazuli named "&fMagic Stone" to player
+			message "&7You've got 24 Magic Stones!"
+		if {_rand} is 2:
+			give 12 lapis lazuli named "&fMagic Stone" to player
+			give 12 iron ingot named "&fToolbox" to player
+			message "&7You've got 12 Toolbox and Magic Stones!"
+		if {_rand} is 3:
+			give 24 iron ingot named "&fToolbox" to player
+			message "&7You've got 24 Toolbox!"
+		if {_rand} is 4, 5, 6 or 7:
+			give 45 nether brick named "&fCreeper Coin" to player
+			give 45 nether quartz named "&fMoosh Coin" to player
+			message "&7You've got 45 Creeper and Moosh Coins!"
+		if {_rand} is 8, 9 or 10:
+			give 60 nether brick named "&fCreeper Coin" to player
+			give 60 nether quartz named "&fMoosh Coin" to player
+			message "&7Nice! You've got 60 Creeper and Moosh Coins!!!"
+		# execute console command "moggive %player% hikobosi 1"
+		# message "&7And you also got &aHikoboshi &7!!!"
+		remove 1 of held item from player
+		
+on right click holding a chest:
+	
+	name of item contains "Setubun Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 1 wooden axe:
+		set {_rand} to random integer between 1 and 10
+		if {_rand} is 1:
+			give 24 lapis lazuli named "&fMagic Stone" to player
+			message "&7You've got 24 Magic Stones!"
+		if {_rand} is 2:
+			give 1 of {setubungre} to player
+			message "&7You've got &aHukumame Kai&7!"
+		if {_rand} is 3:
+			give 1 of {setubunhat} to player
+			message "&7You've got &aOni Horn&7!"
+		if {_rand} is 4, 5, 6 or 7:
+			give 45 nether brick named "&fCreeper Coin" to player
+			give 45 nether quartz named "&fMoosh Coin" to player
+			message "&7You've got 45 Creeper and Moosh Coins!"
+		if {_rand} is 8, 9 or 10:
+			give 60 nether brick named "&fCreeper Coin" to player
+			give 60 nether quartz named "&fMoosh Coin" to player
+			message "&7Nice! You've got 60 Creeper and Moosh Coins!!!"
+		# execute console command "moggive %player% hikobosi 1"
+		# message "&7And you also got &aHikoboshi &7!!!"
+		remove 1 of held item from player
+
+		
+on right click holding a chest:
+	
+	name of item contains "Vote Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 2 wooden axe:
+		if {votechestopened%player%} is more than 57:
+			set {votechestopened%player%} to 0
+			set {_r} to random integer between 1 and 3
+			if {_r} is 1:
+				give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+			if {_r} is 2:
+				give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+			if {_r} is 3:
+				give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&f%player% found a &6Legendary Toolbox &ffrom voting chest !!"
+			broadcast "&7&m&l----------------------------------"
+			remove 1 of held item from player
+			stop
+			
+on right click holding a chest:
+	
+	name of item contains "Beta Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 10 wooden axe:
+		give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+		give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+		give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+		loop 5 times:
+			execute console command "/moggive %player% harp 1"
+		give 128 nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+		remove 1 of held item from player
+		send "&7&m&l----------------------------------"
+		message "&aベータテスト特典を手に入れました！じゃあ楽しんでってねー！"
+		send "&7&m&l----------------------------------"
+		stop
+			
+on right click holding a chest:
+	
+	name of item contains "Kami Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 3 wooden axe:
+		give gold ingot named "&fLegendary Toolbox: Warlord Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Warlord Mod&7 but only for ||&7brand new weapon." to player
+		give gold ingot named "&fLegendary Toolbox: Emperor Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Emperor Mod&7 but only for ||&7brand new weapon." to player
+		give gold ingot named "&fLegendary Toolbox: Monarch Mod" with lore "&7Notice: This toolbox gives you||&7100%% chance to apply a||&6Monarch Mod&7 but only for ||&7brand new weapon." to player
+		give paper named "&aBlueprint: Golden One" to player
+		execute console command "eco give %player% 1000"
+		send "&7You've got &fLegendary Toolbox: Warlord Mod !!"
+		send "&7You've got &fLegendary Toolbox: Emperor Mod !!"
+		send "&7You've got &fLegendary Toolbox: Monarch Mod !!"
+		send "&7You've got &a$1000&7 !!"
+		remove 1 of held item from player
+		stop
+	else:
+		send "&7Put your items in ender chest and try again !!"
+		
+on right click holding a chest:
+	
+	name of item contains "Moriri Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 6 wooden axe:
+		give 100 nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+		give 128 lapis lazuli named "&fMagic Stone" to player
+		give 128 iron ingot named "&fToolbox" to player
+		message "&aYou've got 128 Magic Stones!"
+		message "&aYou've got 128 Toolbox!"
+		message "&aYou've got 100 Diamond Coins!!"
+		message "&aThanks for supporting us :)"
+		remove 1 of held item from player
+	else:
+		send "&7Please make more space in inventory and try again!" to player
+		
+on right click holding a chest:
+	name of item contains "Christmas Chest"
+	cancel event
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player can hold 9 wooden axe:
+		execute console command "shot give %player% brugo"
+		execute console command "shot give %player% sol"
+		execute console command "shot give %player% rania"
+		execute console command "shot give %player% vely"
+		execute console command "shot give %player% minerva"
+		execute console command "shot give %player% iron"
+		give 10 iron ingot named "&fToolbox" to player
+		give 45 nether brick named "&fCreeper Coin" to player
+		give 45 nether quartz named "&fMoosh Coin" to player
+		message "&7Nice! You've got 45 Creeper and Moosh Coins!!!"
+		remove 1 of held item from player
+	else:
+		message "この箱の中身めっちゃ多いからエンチェスにアイテムしまってね" to player
+		
+on right click holding a golden axe:
+	name of held item contains "flash light":
+	
+		if player is in world "city":
+		
+			if {flashlight%player%} is not set:
+				set {flashlight%player%} to 1
+			if {flashlight%player%} is 1:
+				apply night vision to player for 3 minutes
+				set {flashlight%player%} to 0
+				execute console command "mogsound %player% ui.button.click 1 2"
+			else if {flashlight%player%} is 0:
+				remove night vision from player
+				set {flashlight%player%} to 1
+				execute console command "mogsound %player% ui.button.click 1 2"
+		
+		else:
+			send "&7You can only use Flash Light in CITY."

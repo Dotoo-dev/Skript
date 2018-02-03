@@ -1,0 +1,149 @@
+# ##################################################### #
+#						OPTIONS!						#
+#		  Here you can configure the Skript.	    	#
+# ##################################################### #
+
+options:
+	notfound: &fUnknown command. Type ""/help"" for help.
+	permission: AntiPlugins.bypass
+
+	
+	
+	
+	
+	
+	
+# ##################################################### #
+#						THE CODE!						#
+#		  Only change if you know what you do!	    	#
+# ##################################################### #
+	
+# on command "/plugins":
+	# if player doesn't have permission "{@permission}":
+		# message "{@notfound}"
+		# cancel event
+		
+# on command "/plugin":
+	# if player doesn't have permission "{@permission}":
+		# message "{@notfound}"
+		# cancel event
+		
+# on command "/pl":
+	# if player doesn't have permission "{@permission}":
+		# message "{@notfound}"
+		# cancel event
+		
+on command "/help":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/?":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/sk":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skript":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/umbaska":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skellett":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skrayfall":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/version":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/v":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/icanhasbukkit":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:plugins":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:plugin":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:pl":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:help":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:?":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:version":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:v":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/Bukkit:icanhasbukkit":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skript:skript":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skript:sk":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/umbaska:umbaska":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skellett:skellett":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event
+		
+on command "/skrayfall:skrayfall":
+	if player doesn't have permission "{@permission}":
+		message "{@notfound}"
+		cancel event

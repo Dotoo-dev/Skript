@@ -1,0 +1,857 @@
+command /setlore <number> <text>:
+	trigger:
+		player is op
+		set line arg-1 of lore of held item to colored "%arg-2%"
+
+command /maxmana <player>:
+	executable by: console
+	trigger:
+		set level progress of player-arg to 0.9999
+		send "&7You restored mana !!" to player-arg
+		execute console command "/execute %player-arg% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 3 1 0.01 50"
+		execute console command "mogsound %player-arg% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+		wait 2 tick
+		execute console command "mogsound %player-arg% minecraft:entity.experience_orb.pickup 1.3 1.3"
+		wait 2 tick
+		execute console command "mogsound %player-arg% minecraft:entity.experience_orb.pickup 1.3 1.6"
+
+command /sokusaiki:
+	trigger:
+		player is op
+		kick all players because "Stopping Server! Come back later :)"
+		wait 10 seconds
+		execute console command "/stop"
+
+command /toggleglow:
+	aliases: /tg
+	trigger:
+		if line 2 of lore of held item of player exists:
+			if held item of player is enchanted:
+				disenchant held item of player
+				send "&7Disabled the glow effect of your weapon !!"
+			else:
+				enchant held item of player with fortune 1
+				send "&7Your weapon has started glowing again !!"
+		else:
+			send "&7Your weapon has to be enchanted in order to use this command."
+
+command /nohoukoku:
+	trigger:
+		player is op
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&fサーバーの中でバグや不具合などの報告をされても"
+		broadcast "&f対応に困ってしまいます。これらの報告はDiscordの"
+		broadcast "&f##reportチャンネルまでお寄せ下さい！"
+		broadcast "&7&m&l----------------------------------"
+		
+command /nohoukoku2:
+	trigger:
+		player is op
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&fお前さ、運営を鯖の中で捕まえて報告するって事は"
+		broadcast "&fつまり「おい運営、作業してるか知らねえけど俺様の"
+		broadcast "&fバグ報告を作業ストップして忘れずにメモれよ？"
+		broadcast "&fっていうか今すぐ直せボケナス」って言ってるのと同じだぞ？"
+		broadcast "&7&m&l----------------------------------"
+		
+command /nohoukoku3:
+	trigger:
+		player is op
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&5だまれ"
+		# broadcast "&fつまり「おい運営、作業してるか知らねえけど俺様の"
+		# broadcast "&fバグ報告を作業ストップして忘れずにメモれよ？"
+		# broadcast "&fっていうか今すぐ直せボケナス」って言ってるのと同じだぞ？"
+		broadcast "&7&m&l----------------------------------"
+		
+command /pasteweapon:
+	aliases: /pw
+	trigger:
+		if player has permission "kihu.pwcommand":
+			if difference between {pricecooldown%player%} and now is less than 2 minutes:
+				send "&7Please don't spam this command :)" to player
+				stop
+				
+			else if player is holding a diamond axe:
+				broadcast "<light grey>[Lv%level of player%]<white> %player%: Name - &f%colored name of held item%&f"
+				if line 1 of lore of held item exists:
+					broadcast "<light grey>[Lv%level of player%]<white> %player%: Mod - &f%1st line of lore of held item of player%&f"
+				if line 2 of lore of held item exists:
+					broadcast "<light grey>[Lv%level of player%]<white> %player%: Ench - &f%2rd line of lore of held item of player%"
+				if line 3 of lore of held item exists:
+					broadcast "<light grey>[Lv%level of player%]<white> %player%: AE - &f%3rd line of lore of held item of player%"
+				set {pricecooldown%player%} to now
+				
+			else:
+				send "&7You must use this command while holding a gun !!" to player
+		else:
+			send "&7/pasteweaponコマンドは寄付特典です！"
+# command "/opme":
+	# trigger:
+		# if {fakeopme} is 1:
+			# stop
+		# broadcast "&aはーい僕の名前はてんしょです！僕いまOP奪えるコマンドだって騙されて罠コマンドうっちゃいました！"
+		# wait 20 seconds
+		# broadcast "&aOP奪えるコマンドって聞いたのにおかしいなあ！まあいいや、ちょっと僕の話聞いてね！"
+		# wait 20 seconds
+		# broadcast "&a実はぼく理由なくBANされたって言ってるけど本当は割れアカでログインボーナス稼いでてBANされたんだ！"
+		# wait 20 seconds
+		# broadcast "&a証拠はこのURLにあるから見てみてね！>>> https://gyazo.com/0ea4d8bc0b79f6357449ac8843f96c11"
+		# wait 20 seconds
+		# broadcast "&aちなみに僕、このサーバーの丸パクリサーバーも作ろうとしてるんだ！！！！"
+		# wait 20 seconds
+		# broadcast "&aでもどうやってやるかわからないから非公式フォーラムでどうやったらパクれるか聞いたりしたんだよ！"
+		# wait 20 seconds
+		# broadcast "&a改造もエンチャもパクりにパクろうとして、Dotooさんにまで教えてもらおうとしてたんだ！"
+		# wait 20 seconds
+		# broadcast "&aだけど僕はそれを裏切ってこの鯖でOPを奪えるコマンドって騙されてこんなメッセージ流してるんだよ！"
+		# wait 20 seconds
+		# broadcast "&aちなみに僕はこのサーバーで使ってるプラグイン盗んできたからあげるって言われて、またまた騙されて、それ貰おうともしてたんだよ！"
+		# wait 20 seconds
+		# broadcast "&a証拠はこちら！ https://gyazo.com/7f64d182b8e3f3cb14aaddd1918f149d"
+		# wait 20 seconds
+		# broadcast "&aこんな僕だけど銃PvPサーバー作ろうとしてるから、完成したらみんな遊びにきてね！"
+		# wait 20 seconds
+		# broadcast "&aまあもう割れアカ使ってるのバレちゃったから多分すぐロックされちゃうけどね！じゃあね！"
+		# wait 20 seconds
+		# set {fakeopme} to 1
+		
+command /setrule:
+	trigger:
+		player is op
+		execute player command "/gamerule commandBlockOutput false"
+		wait 1 tick
+		execute player command "/gamerule keepInventory true"
+		wait 1 tick
+		execute player command "/gamerule mobGriefing true"
+		wait 1 tick
+		execute player command "/gamerule doDaylightCycle false"
+		wait 1 tick
+		execute player command "/gamerule randomTickSpeed 0"
+		wait 1 tick
+		execute player command "gamerule spectatorsGenerateChunks false"
+command /saikidou <number>:
+	trigger:
+		set {restart_countdown} to arg-1
+		if arg-1 is more than 5:
+			send "再起動タイマーに5分以上したからタイマーリセットね"
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fサーバー再起動を中止しました。"
+			broadcast "&7&m&l----------------------------------"
+			set {restart_countdown} to 6
+			stop
+		
+		if {restart_countdown} is 5:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fあと&c%{restart_countdown}%分後&fにサーバーが&c再起動&fします。"
+			broadcast "&fアイテムデータ保護のため、サーバーの再起動開始までに"
+			broadcast "&fプレイを終了し、一旦ログアウトするようお願いします。"
+			broadcast "&7&m&l----------------------------------"
+			wait 1 minute
+			set {restart_countdown} to 4
+		if {restart_countdown} is 4:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fあと&c%{restart_countdown}%分後&fにサーバーが&c再起動&fします。"
+			broadcast "&fサーバー再起動直後に無理なログインを繰り返すと"
+			broadcast "&cアイテムデータが破損してしまう&f可能性があるため、"
+			broadcast "&f無理なログインは避けるようお願いします。"
+			broadcast "&7&m&l----------------------------------"
+			wait 1 minute
+			set {restart_countdown} to 3
+		if {restart_countdown} is 3:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fあと&c%{restart_countdown}%分後&fにサーバーが&c再起動&fします。"
+			broadcast "&fサーバー再起動直後に無理なログインを繰り返すと"
+			broadcast "&cアイテムデータが破損してしまう&f可能性があるため、"
+			broadcast "&f無理なログインは避けるようお願いします。"
+			broadcast "&7&m&l----------------------------------"
+			wait 1 minute
+			set {restart_countdown} to 2
+		if {restart_countdown} is 2:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fあと&c%{restart_countdown}%分後&fにサーバーが&c再起動&fします。"
+			broadcast "&fアイテムデータ保護のため、サーバーの再起動開始までに"
+			broadcast "&fプレイを終了し、一旦ログアウトするようお願いします。"
+			broadcast "&7&m&l----------------------------------"
+			wait 1 minute
+			set {restart_countdown} to 1
+		if {restart_countdown} is 1:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "&fあと&c%{restart_countdown}%分後&fにサーバーが&c再起動&fします。"
+			broadcast "&fサーバー再起動直後に無理なログインを繰り返すと"
+			broadcast "&cアイテムデータが破損してしまう&f可能性があるため、"
+			broadcast "&f無理なログインは避けるようお願いします。"
+			broadcast "&7&m&l----------------------------------"
+			wait 1 minute
+			set {restart_countdown} to 0
+		if {restart_countdown} is 0:
+			execute console command "/kickall サーバーの稼働を停止します。"
+			wait 10 second
+			execute console command "/stop"
+		
+command /quiz <number>:
+	trigger:
+		player is op
+		if arg-1 is 1:
+			execute console command "/mogsound %player% quiz0 5 1"
+		if arg-1 is 2:
+			execute console command "/mogsound %player% quiz1 5 1"
+		if arg-1 is 3:
+			execute console command "/mogsound %player% quiz2 5 1"
+
+on command "/plugman":
+	player is op
+	broadcast "&7プラグインの更新中です！けっこうラグります！ごめんね！"
+
+command /wargive <number>:
+	trigger:
+		player is op
+		set {_t} to arg-1
+		loop all players:
+			give {_t} of held item of player to loop-player
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&fOPの%name of player%が%{_t}%個の%name of held item of player%を"
+		broadcast "&fサーバーにいる全員に配りました！"
+		broadcast "&7&m&l----------------------------------"
+
+
+
+command /wartitle <player> <text> <text>:
+	trigger:
+		player is op
+		set {titleloop%player%} to 1
+		set {titleloopmsg1%player%} to "%arg-2%"
+		set {titleloopmsg2%player%} to "%arg-3%"
+		send player-arg title "%{titleloopmsg1%player%}%" with subtitle "%{titleloopmsg2%player%}%" for 24 hours
+		send "&7Sending title %{titleloopmsg1%player%}% : %{titleloopmsg2%player%}%" to player
+		
+# command /notitle:
+	# trigger:
+		# set {titleloop%player%} to 0
+		# send player title "" with subtitle "" for 1 second
+		
+every 15 seconds:
+	loop all players:
+		if {titleloop%loop-player%} is 1:
+			send loop-player title "%{titleloopmsg1%loop-player%}%" with subtitle "%{titleloopmsg2%loop-player%}%" for 24 hours
+
+command /key <player>:
+	trigger:
+		player is op
+		execute console command "/cc give p basic 10 %player-arg%"
+		
+
+# on command "/pay":
+	# if level of player is smaller than 11:
+		# send "&7You can't use /pay command until level 10 !!"
+		# stop
+
+command /supon <number>:
+	trigger:
+		player is op
+		# execute player command "/setblock ~ ~ ~ minecraft:mob_spawner 0 replace {SpawnCount:5,SpawnRange:15,RequiredPlayerRange:7,MaxNearbyEntities:5,Delay:1,MinSpawnDelay:500,MaxSpawnDelay:650,SpawnData:{id:""Snowball"",Motion:[0.0d,0.1d,0.0d],Passengers:[{id:""Zombie""}]}}"
+		if arg-1 is 1:
+			execute player command "/setblock ~ ~ ~ minecraft:mob_spawner 0 replace {SpawnCount:3,MaxNearbyEntities:6,SpawnRange:4,Delay:20,MinSpawnDelay:150,MaxSpawnDelay:300,RequiredPlayerRange:8,SpawnData:{id:""Snowball"",Motion:[0.0d,0.1d,0.0d],Passengers:[{id:Zombie,CanPickUpLoot:1b,Health:20,Attributes:[{Name:""generic.knockbackResistance"",Base:1f},{Name:""generic.movementSpeed"",Base:0.4f},{Name:""generic.attackDamage"",Base:5}],ArmorItems:[{},{},{},{id:""minecraft:leather_helmet""}]}]}}"
+		else if arg-1 is 2:
+			execute player command "/setblock ~ ~ ~ minecraft:mob_spawner 0 replace {SpawnCount:3,MaxNearbyEntities:6,SpawnRange:4,Delay:20,MinSpawnDelay:300,MaxSpawnDelay:400,RequiredPlayerRange:8,SpawnData:{id:""Snowball"",Motion:[0.0d,0.1d,0.0d],Passengers:[{id:Creeper,powered:1,CanPickUpLoot:1b,Health:20,Attributes:[{Name:""generic.knockbackResistance"",Base:1f},{Name:""generic.movementSpeed"",Base:0.8f}]}]}}"
+		else if arg-1 is 3:
+			execute player command "/setblock ~ ~ ~ minecraft:mob_spawner 0 replace {SpawnCount:8,MaxNearbyEntities:6,SpawnRange:6,Delay:20,MinSpawnDelay:20,MaxSpawnDelay:20,RequiredPlayerRange:8,SpawnData:{id:""Snowball"",Motion:[0.0d,0.1d,0.0d],Passengers:[{id:Zombie,CanPickUpLoot:1b,Health:20,Attributes:[{Name:""generic.knockbackResistance"",Base:1f},{Name:""generic.movementSpeed"",Base:0.4f},{Name:""generic.attackDamage"",Base:5}],ArmorItems:[{},{},{},{id:""minecraft:leather_helmet""}]}]}}"
+
+
+
+command /lvl <number>:
+	trigger:
+		set {_t} to arg-1
+		send "&7%arg-1%になるために必要な経験値は%rounded {_t}^1.8%です。" to player
+
+command /saikoro:
+	trigger:
+		player is op
+		loop all players:
+			add loop-player to {_players::*}
+		set {_p} to random element out of {_players::*}
+		broadcast "&d[OP %player%]:%name of held item of player%を抽選で1名にくばります！"
+		wait 3 second
+		broadcast "&d[OP %player%]: さあ抽選で選ばれたのは・・・"
+		wait 3 second
+		broadcast "&d[OP %player%]: ・・・"
+		wait 1 second
+		broadcast "&d[OP %player%]: ・・・"
+		wait 1 second
+		broadcast "&d[OP %player%]: %{_p}%さんでした！おめでとうございます！！！"
+command /wiki:
+	trigger:
+		if difference between {wikitimer} and now is less than 30 seconds:
+			stop
+		else:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "攻略情報や武器の性能、改造やエンチャントの方法や効果など"
+			broadcast "とにかく役立つ情報が盛りだくさんの非公式wikiがあります！"
+			broadcast "非公式だけど内容は超充実してるからぜひ見てね！"
+			broadcast "wikiに行くには右のURLをクリック！ http://bit.ly/2mOQe3B"
+			broadcast "&7&m&l----------------------------------"
+			set {wikitimer} to now
+command /yokuaru <player>:
+	trigger:
+		if difference between {wikitimer1} and now is less than 30 seconds:
+			stop
+		else:
+			broadcast "&7&m&l----------------------------------"
+			broadcast "%player-arg%さん、質問する前にまずはwikiの下のページを見よう！"
+			broadcast "よく初心者がわからないと言っている質問はだいたい答えられてるよ！"
+			broadcast "さあ右のURLをクリック！ https://tinyurl.com/y7r2rpno"
+			broadcast "&7&m&l----------------------------------"
+			set {wikitimer1} to now
+
+command /thisisacommandforsettingtab:
+	trigger:
+		if {war.inteam.creeper.%player%} is 1:
+			set tab header to "&f&m&l   ----------------------------------   \n&e&lSTRIFE &f&l- &c&lthe Gun PvP Server !! \n&7&m&l   ----------------------------------   " and footer to "&7&m&l   ----------------------------------   \n&eYou are in\n&aCreeper Team &e!!\n&7&m&l   ----------------------------------   " for player
+		else if {war.inteam.moosh.%player%} is 1:
+			set tab header to "&f&m&l   ----------------------------------   \n&e&lSTRIFE &f&l- &c&lthe Gun PvP Server !! \n&7&m&l   ----------------------------------   " and footer to "&7&m&l   ----------------------------------   \n&eYou are in\n&cMoosh Team &e!!\n&7&m&l   ----------------------------------   " for player
+		else:
+			set tab header to "&f&m&l   ----------------------------------   \n&e&lSTRIFE &f&l- &c&lthe Gun PvP Server !! \n&7&m&l   ----------------------------------   " and footer to "&7&m&l   ----------------------------------   \n&eType &b/menu &eto \nopen chest commands !!\n&7&m&l   ----------------------------------   " for player
+# on command "/ca sell <number>":
+	# if arg-1 is more than 1:
+		# if player is op:
+			# send "yey" to player
+			
+command /sell <number>:
+	usage: &7"/sell <number>"
+	aliases: /uru
+	trigger:
+		execute player command "/ca sell %arg-1%"
+	
+			
+on command "/ah":
+	player is not in "spawn" or "city" or "kihu" or "huntmap":
+		send "&7You can open auctions while in lobby or CITY world."
+		cancel event
+	if {lvlof%player%} is less than 10:
+		message "&7You can't use this command until &fLevel 10 &7!!"
+		cancel event
+on command "/ah sell":
+	if name of held item contains "Treasure Chest":
+		send "&7You can't sell this item."
+		cancel event
+	if {lvlof%player%} is less than 10:
+		message "&7You can't use this command until &fLevel 10 &7!!"
+		cancel event
+	if name of held item contains "CSPpumpkin" or "Alpha Blaster" or "Beta Blaster":
+		message "&7Your item has been removed due to it was made by a bug or duplication."
+		remove held item from player
+		cancel event
+
+on command "/ca":
+	player is not in "spawn" or "city" or "kihu" or "huntmap":
+		send "&7You can open auctions while in lobby or CITY world."
+		cancel event
+	if {lvlof%player%} is less than 10:
+		message "&7You can't use this command until &fLevel 10 &7!!"
+		cancel event
+on command "/ca sell":
+	name of held item contains "Treasure Chest":
+		send "&7You can't sell this item."
+		cancel event
+	if {lvlof%player%} is less than 10:
+		message "&7You can't use this command until &fLevel 10 &7!!"
+		cancel event
+	if name of held item contains "CSPpumpkin" or "Alpha Blaster" or "Beta Blaster":
+		message "&7Your item has been removed due to it was made by a bug or duplication."
+		remove held item from player
+		cancel event
+
+command /id:
+	trigger:
+		message "the ID of %type of held item of player% is %id of held item of player%."
+
+command /invhouse <player>:
+	trigger:
+		execute console command "/region addowner moghousing_%uuid of player% %name of arg-1% -w city"
+		message "&7You've added %name of arg-1% to member of your house!" to player
+
+command /kickhouse <player>:
+	trigger:
+		execute console command "/region removeowner moghousing_%uuid of player% %name of arg-1% -w city"
+		message "&7You've kicked %name of arg-1% to member of your house!" to player
+
+command /fact <player> <player>:
+	trigger:
+		name of player contains "Dotoo"
+		broadcast "%arg-1%さん対%arg-2%さんの試合が始まります！"
+		wait 5 second
+		broadcast "5秒前！"
+		wait 1 second
+		broadcast "4秒前！"
+		wait 1 second
+		broadcast "3秒前！"
+		wait 1 second
+		broadcast "2秒前！"
+		wait 1 second
+		broadcast "1秒前！"
+		wait 1 second
+		execute console command "warp event1 %arg-1%"
+		execute console command "warp event2 %arg-2%"
+		execute console command "/scoreboard teams join ocelot %arg-1%"
+		execute console command "/scoreboard teams join ocelot %arg-2%"
+		set {event%arg-1%} to 1
+		set {event%arg-2%} to 1
+		broadcast "試合開始!!!!"
+command /fact2 <player> <player>:
+	trigger:
+		name of player contains "Dotoo"
+		execute console command "warp event3 %arg-1%"
+		execute console command "warp event3 %arg-2%"
+		execute console command "/scoreboard teams join default %arg-1%"
+		execute console command "/scoreboard teams join default %arg-2%"
+		set {event%arg-1%} to 0
+		set {event%arg-2%} to 0
+		
+# command /tester:
+	# trigger:
+		# execute player command "/whitelist add pokeke315"
+		# execute player command "/whitelist add takotubo0504"
+		# execute player command "/whitelist add Ken_ChaNs"
+		# execute player command "/whitelist add kobakoba00"
+		# execute player command "/whitelist add syoterun"
+		# execute player command "/whitelist add dummymama"
+		# execute player command "/whitelist add daikonn141"
+		# execute player command "/whitelist add nowa0131"
+		# execute player command "/whitelist add yuzu_1213"
+		# execute player command "/whitelist add gogo7016"
+		# execute player command "/whitelist add desukaruma"
+		# execute player command "/whitelist add boositaico"
+		# execute player command "/whitelist add yadoyukarin"
+		# execute player command "/whitelist add hsyhrs"
+		# execute player command "/whitelist add ECLIPSE_514"
+		# execute player command "/whitelist add mitsu3216"
+		# execute player command "/whitelist add The_Sparrow1117"
+		# execute player command "/whitelist add white_bridge"
+		# execute player command "/whitelist add morimoribeth"
+		# execute player command "/whitelist add Assistant_"
+		# execute player command "/whitelist add kotakazu"
+		# execute player command "/whitelist add remisu0409"
+		
+		# broadcast "testers are now allowed to be joined"
+# command /tester-:
+	# trigger:
+		# execute player command "/whitelist remove pokeke315"
+		# execute player command "/whitelist remove takotubo0504"
+		# execute player command "/whitelist remove Ken_ChaNs"
+		# execute player command "/whitelist remove kobakoba00"
+		# execute player command "/whitelist remove syoterun"
+		# execute player command "/whitelist remove dummymama"
+		# execute player command "/whitelist remove daikonn141"
+		# execute player command "/whitelist remove nowa0131"
+		# execute player command "/whitelist remove gogo7016"
+		# execute player command "/whitelist remove desukaruma"
+		# execute player command "/whitelist remove boositaico"
+		# execute player command "/whitelist remove yadoyukarin"
+		# execute player command "/whitelist remove skylia_kurolia"
+		# execute player command "/whitelist remove hsyhrs"
+		# execute player command "/whitelist remove ECLIPSE_514"
+		# execute player command "/whitelist remove mitsu3216"
+		# execute player command "/whitelist remove The_Sparrow1117"
+		# execute player command "/whitelist remove white_bridge"
+		# execute player command "/whitelist remove morimoribeth"
+		# execute player command "/whitelist remove Assistant_"
+		# execute player command "/whitelist remove kotakazu"
+		# execute player command "/whitelist remove remisu0409"
+		# broadcast "removed all testers from whitelist"
+		
+# on right click holding a golden hoe:
+	# execute player command "//replace 0 glass"
+
+command /setm <text>:
+	trigger:
+		player is op
+		if arg contains "Warr":
+			set {hotenmodname} to "&fWarrior"
+			set {_color} to "&f"
+		else if arg contains "Hu":
+			set {hotenmodname} to "&fHunter"
+			set {_color} to "&f"
+		else if arg contains "Ran":
+			set {hotenmodname} to "&fRanger"
+			set {_color} to "&f"
+		else if arg contains "Ma":
+			set {hotenmodname} to "&fMarksman"
+			set {_color} to "&f"
+		else if arg contains "St":
+			set {hotenmodname} to "&fStalker"
+			set {_color} to "&f"
+		else if arg contains "Rai":
+			set {hotenmodname} to "&fRaider"
+			set {_color} to "&f"
+		else if arg contains "Kn":
+			set {hotenmodname} to "&cKnight"
+			set {_color} to "&c"
+		else if arg contains "Gl":
+			set {hotenmodname} to "&cGladiator"
+			set {_color} to "&c"
+		else if arg contains "Se":
+			set {hotenmodname} to "&cSentinel"
+			set {_color} to "&c"
+		else if arg contains "De":
+			set {hotenmodname} to "&cDeadeye"
+			set {_color} to "&c"
+		else if arg contains "Ch":
+			set {hotenmodname} to "&cChampion"
+			set {_color} to "&c"
+		else if arg contains "Warl":
+			set {hotenmodname} to "&6Warlord"
+			set {_color} to "&6"
+		else if arg contains "Mona":
+			set {hotenmodname} to "&6Monarch"
+			set {_color} to "&6"
+		else if arg contains "Emp":
+			set {hotenmodname} to "&6Emperor"
+			set {_color} to "&6"
+			
+		set {hotenmodnamefinal} to "%{_color}%Mod: %{hotenmodname}% Mod"
+		send "MOD = %{hotenmodnamefinal}%" to player
+		send "ENCH= %{hotenenchname}%" to player
+		send "/sete <arg> <lv> to set enchant, /setl to set the lore."
+		
+command /sete <text> <text>:
+	trigger:
+		player is op
+		if arg-2 contains "III":
+			set {_lv} to "III"
+			set {_color} to "&5"
+		else if arg-2 contains "II":
+			set {_lv} to "II"
+			set {_color} to "&3"
+		else if arg-2 contains "I":
+			set {_lv} to "I"
+			set {_color} to "&7"
+			
+		if arg-1 contains "life":
+			set {hotenenchname} to "Life Steal"
+		else if arg-1 contains "mana":
+			set {hotenenchname} to "Mana Spring"
+		else if arg-1 contains "last":
+			set {hotenenchname} to "Last Stand"
+		else if arg-1 contains "bli":
+			set {hotenenchname} to "Bliss"
+		else if arg-1 contains "sun":
+			set {hotenenchname} to "Sunfire"
+		else if arg-1 contains "sha":
+			set {hotenenchname} to "Shadowmeld"
+		else if arg-1 contains "bri":
+			set {hotenenchname} to "Brilliance"
+		else if arg-1 contains "pro":
+			set {hotenenchname} to "Protector"
+		else if arg-1 contains "ber":
+			set {hotenenchname} to "Berserk"
+		else if arg-1 contains "dar":
+			set {hotenenchname} to "Dark Ritual"
+			
+		set {hotenenchfinal} to "%{_color}%Ench: %{hotenenchname}% %{_lv}%"
+		send "MOD = %{hotenmodnamefinal}%" to player
+		send "ENCH= %{hotenenchfinal}%" to player
+		send "/setm <arg> to set mod, setl to set the lore."
+		
+command /setl:
+	trigger:
+		player is op
+		set 1st line of lore of held item of player to "%{hotenmodnamefinal}%"
+		set 2nd line of lore of held item of player to "%{hotenenchfinal}%"
+		enchant the held item of player with fortune 1
+		send "operation done" to player
+		
+command /15:
+	trigger:
+		player is op
+		if {doublebonuswar} is not set:
+			set {doublebonuswar} to 1
+		else if {doublebonuswar} is 0:
+			set {doublebonuswar} to 1
+			set {doublebonuswar2} to 0
+			message "WARの報酬1.5倍にしました"
+			stop
+		else:
+			set {doublebonuswar} to 0
+			set {doublebonuswar2} to 0
+			message "WARの報酬1.5倍をやめました"
+
+command /25:
+	trigger:
+		player is op
+		if {doublebonuswar2} is not set:
+			set {doublebonuswar2} to 1
+		else if {doublebonuswar2} is 0:
+			set {doublebonuswar2} to 1
+			set {doublebonuswar} to 0
+			message "WARの報酬2.5倍にしました"
+			stop
+		else:
+			set {doublebonuswar2} to 0
+			set {doublebonuswar} to 0
+			message "WARの報酬2.5倍をやめました"
+
+# command /killnokazu <offline player>:
+	# trigger:
+		# message "きるしたかず＝%{expof%UUID of arg-1%}%" to player
+
+
+command /warban <offline player>:
+	trigger:
+		if player is op:
+			add 1 to {bancount%arg-1%}
+			if {bancount%arg-1%} is 1:
+				execute console command "tempban %arg-1% 3600"
+				broadcast "&7%arg-1% has been banned for 1 hour."
+			if {bancount%arg-1%} is 2:
+				execute console command "tempban %arg-1% 259200"
+				broadcast "&7%arg-1% has been banned for 3 days."
+			if {bancount%arg-1%} is 3:
+				execute console command "ban %arg-1%"
+				execute console command "rg remove moghousing_%uuid of arg-1% -w city"
+				broadcast "&7%arg-1% has been banned permanently."
+			if {bancount%arg-1%} is more than 3:
+				execute console command "rg remove moghousing_%uuid of arg-1% -w city"
+				send "ダメおしで%arg-1%くんのCITY保護けした"
+				
+command /clearwarban <offline player>:
+	trigger:
+		# if name of player is "THE_WAR_Admin" or "Dotoo" or "munichun" or "xachunx" or "Mon_Chi" or "chikuwa495" or "Tomochie" or "Risatto":
+		if player is op:
+			clear {bancount%arg-1%}
+			execute console command "unban %arg-1%"
+			message "&f%arg-1%のBANやーめた"
+			
+command /op!:
+	trigger:
+		name of player is "Dotoo" or "THE_WAR_Admin" or "xachunx" or "munichun" or "Mon_chi" or "chikuwa495" or "Tomochie" or "Risatto"
+		message "OP権限とか貫通してopになったぴょーん" to player
+		execute console command "/op %name of player%"
+
+command /\:
+	trigger:
+		name of player is "Dotoo" or "THE_WAR_Admin" or "xachunx" or "munichun" or "Mon_chi" or "chikuwa495" or "Tomochie" or "Risatto"
+		message "OP権限とか貫通してopになったぴょーん" to player
+		execute console command "/op %name of player%"
+		wait 3 minutes
+		message "deopしといたよ" to player
+		execute console command "/gm 0 %name of player%"
+		execute console command "/deop %name of player%"
+
+command /del:
+	aliases: /deleteitems,/deleteitem
+	trigger:
+		open chest with 3 rows named "Trash Box" to player
+
+command /hoten <player>:
+	executable by: console
+	trigger:
+		give 64 of nether quartz named "&fMoosh Coin" to arg-1
+		give 64 of nether brick named "&fCreeper Coin" to arg-1
+		message "&3Giving 64 coins for you. Sorry for inconvenience!"
+		
+command /hoten1:
+	trigger:
+		if player is op:
+			broadcast "&3Giving 10 Diamond coins to all of you. Sorry for inconvenience!"
+			loop all players:
+				give loop-player 10 nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins"
+				
+
+command /tip:
+	aliases: /tips, /t
+	trigger:
+		if {switchoftips%player%} is not set:
+			set {switchoftips%player%} to 1
+			message "<light grey>- Your tips are toggled to: On!"
+		else if {switchoftips%player%} is 0:
+			set {switchoftips%player%} to 1
+			message "<light grey>- Your tips are toggled to: On!"
+		else:
+			set {switchoftips%player%} to 0
+			message "<light grey>- Your tips are toggled to: Off!"
+			
+command /systemlog:
+	aliases: /sys, /systip, /syslog
+	trigger:
+		if {switchofsystem%player%} is not set:
+			set {switchofsystem%player%} to 1
+			message "<light grey>- Your system logs are toggled to: On!"
+		else if {switchofsystem%player%} is 0:
+			set {switchofsystem%player%} to 1
+			message "<light grey>- Your system logs are toggled to: On!"
+		else:
+			set {switchofsystem%player%} to 0
+			message "<light grey>- Your system logs are toggled to: Off!"
+
+command /sl <text>:
+	trigger:
+		player is op
+		broadcast "&7サーバースクリプトのリロード中です。ラグったらごめんね☆"
+		wait 1 tick
+		execute player command "/sk reload %arg-1%"
+		
+
+command /gol:
+	trigger:
+		player is op
+		execute player command "//schem load gol"
+		execute player command "//paste -a"
+
+command /dia:
+	trigger:
+		player is op
+		player is op
+		execute player command "//schem load dia"
+		execute player command "//paste -a"
+
+command /rollback <text> <text>:
+	trigger:
+		player is op
+		execute player command "/co rollback u:%arg-1% t:%arg-2% r:10"
+
+# command /sw1:
+	# trigger:
+		# player is op
+		# execute player command "//expand 64 up"
+		# execute player command "//expand 64 down"
+		# execute player command "//replace 0 glass"
+			
+# command /sw2:
+	# trigger:
+		# player is op
+		# execute player command "//replace glass barrier"
+
+# command /o <player>:
+	# trigger:
+		# if name of player is "Dotoo", "THE_WAR_Admin", "munichun" or "Mon_chi":
+			# if arg-1 is not set:
+				# op player
+			# else:
+				# op arg-1
+
+command /setexp <player> <number>:
+	trigger:
+		if player is op:
+			set {expnew%UUID of arg-1%} to arg-2
+			set {expof%UUID of arg-1%} to arg-2
+			set {lvlof%UUID of arg-1%} to rounded {expof%UUID of arg-1%} ^ (1/1.8)
+			set level of player-arg to {lvlof%UUID of arg-1%}
+			# if level of player-arg is more than 500:
+				# set level of player-arg to 500
+command /setlvl <number>:
+	trigger:
+		if player is op:
+			set {lvlof%UUID of player%} to arg-1
+			set level of player to arg-1
+			
+
+command /name <text>:
+	usage: &4/namechange &b[Color] &c[Name]
+	trigger:
+		if player is op:
+			set the name of held item to colored arg
+
+# command /givehat <text>:
+	# trigger:
+		# if player is op:
+			# execute console command "/give %player% 397 1 3 {SkullOwner:%arg-1%}"
+		# if name of player contains "chikuwa4":
+			# execute console command "/give %player% 397 1 3 {SkullOwner:%arg-1%}"
+			
+command /uuid [<player>]:
+	trigger:
+		if arg-1 is not set:
+			message "&7Your UUID is: %UUID of player%"
+		else if arg-1 is set:
+			message "&7%arg-1%'s UUID is: %UUID of arg-1%"
+
+command /where:
+	trigger:
+		set {_loc} to location of player
+		message "Loc: %{_loc}%"
+
+command /log:
+	aliases: /l
+	trigger:
+		if {switchofkilllog%player%} is not set:
+			set {switchofkilllog%player%} to 1
+			message "<light grey>- Your Kill log is toggled to: On!"
+		else if {switchofkilllog%player%} is 0:
+			set {switchofkilllog%player%} to 1
+			message "<light grey>- Your Kill log is toggled to: On!"
+		else:
+			set {switchofkilllog%player%} to 0
+			message "<light grey>- Your Kill log is toggled to: Off!"
+
+# command /all-rule:
+	# trigger:
+		# if player is op:
+			# execute console command "/gamerule dotiledrops false"
+			# wait 1 tick
+			# execute console command "/gamerule domobloot false"
+			# wait 1 tick
+			# execute console command "/gamerule domobspawning false"
+			# wait 1 tick
+			# execute console command "/gamerule dofiretick false"
+			# wait 1 tick
+			# execute console command "/gamerule keepinventory true"
+			# wait 1 tick
+			# execute console command "/gamerule mobgriefing false"
+			# wait 1 tick
+			# execute console command "/gamerule naturalregeneration false"
+			# wait 1 tick
+			# execute console command "/gamerule randomtickspeed false"
+			# wait 1 tick
+			# execute console command "/gamerule spectatorsgeneratechunks false"
+			# wait 1 tick
+			# execute console command "/gamerule showdeathmessages false"
+			# wait 1 tick
+			# execute console command "/gamerule sendCommandFeedback false"
+			# wait 1 tick
+			# execute console command "/gamerule commandBlockOutput false"
+
+command /g <text>:
+	trigger:
+		if player is op:
+			if arg-1 is not set:
+				send message "Crackshotのアイテム名を指定しましょう。"
+				send message "基本的に型番を抜いたアイテムの名前でOKです。"
+			if arg-1 is "coin":
+				give 64 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+			else:
+				execute console command "/shot give %player% %arg-1%"
+			loop all players:
+				if name of loop-player contains "THE_WAR_Admin" or "Dotoo" or "xachunx" or "munichun" or "chikuwa495" or "Mon_chi":
+					message "&e%player% used g command with arg %arg-1%" to loop-player
+			message "&e%player% used g command with arg %arg-1%" to console
+ 
+command /cr:
+	trigger:
+		if player is op:
+			execute player command "/shot config reload"
+			execute player command "/csp reload"
+
+# command /sche <text>:
+	# trigger:
+		# if player is op:
+			# execute player command "//schem load %arg-1%"
+
+command /sign <text> <text>:
+	usage:/sign <行番号> <文字> 行番号にclearで全行削除、文字には文字色適用可能
+	trigger:
+		if player is op:
+			if arg-1 is "1":
+				set line 1 of targeted block to colored "%arg-2%"
+			else if arg-1 is "2":
+				set line 2 of targeted block to colored "%arg-2%"
+			else if arg-1 is "3":
+				set line 3 of targeted block to colored "%arg-2%"
+			else if arg-1 is "4":
+				set line 4 of targeted block to colored "%arg-2%"
+			else if arg-1 is "clear":
+				set line 1 of targeted block to " "
+				set line 2 of targeted block to " "
+				set line 3 of targeted block to " "
+				set line 4 of targeted block to " "
+			else:
+				send message "error"

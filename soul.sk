@@ -1,0 +1,149 @@
+command /giveunb <text>:
+	trigger:
+		player is op
+		execute console command "give %name of player% minecraft:diamond_axe 1 %arg-1% {Unbreakable:1,display:{Name:""§6Unbreakable"",Lore:[""§fRight click while in lobby""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+		disenchant held item of player
+		
+command /giveunb2 <text>:
+	trigger:
+		player is op
+		execute console command "give %name of player% minecraft:golden_pickaxe 1 %arg-1% {Unbreakable:1,display:{Name:""§6Unbreakable"",Lore:[""§fRight click while in lobby""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+		disenchant held item of player
+		
+command /giveunb3 <text>:
+	trigger:
+		player is op
+		execute console command "give %name of player% minecraft:stone_axe 1 %arg-1% {Unbreakable:1,display:{Name:""§6Unbreakable"",Lore:[""§fRight click while in lobby""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+		disenchant held item of player
+		
+command /giveunb4 <text>:
+	trigger:
+		player is op
+		execute console command "give %name of player% minecraft:stone_axe 1 %arg-1% {Unbreakable:1,display:{Name:""§6Unbreakable"",Lore:[""§fRight click while in lobby""]},HideFlags:63,ench:[{id:21,lvl:1}]}"
+		disenchant held item of player
+		
+command /de:
+	trigger:
+		player is op
+		disenchant held item of player
+		
+command /es <text>:
+	trigger:
+		player is op
+		
+		send "せっとかんりょう！"
+		
+command /elixset <number>:
+	trigger:
+		set {elixir_icon%arg-1%} to held item of player
+		set name of held item of player to "&fElixir of %arg-1%"
+		broadcast "エリクサー%arg-1%セット: %{elixir_icon%arg-1%}% &f(elixir_icon%arg-1%)"
+		
+command /setsoul:
+	trigger:
+		player is op
+		set {soulitem_knight2} to held item of player
+		send "&a setした"
+		
+#無名は黒　ロック
+#1は色付き　アンロック済み・アクティベート中
+#2はセピア　アンロック済みだかアクティベートされていない
+#{soulitem_upgrade}{blankpanel}{soulitem_apply}{soulitem_deny}
+		
+command /soulmenu <player>:
+	# executable by: console
+	trigger:
+		open chest with 3 rows named "&fSelect your soul" to player-arg
+		wait 1 tick
+		format slot 0 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 1 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 2 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 3 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 4 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 5 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 6 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 7 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 8 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 9 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		
+		#default
+		if {soul_active_default%player%} is not set:
+			set {soul_active_default%player%} to 1
+		if {soul_active_default%player%} is 1:
+			format slot 10 of player-arg with {soulitem_default} named "&bDefault Soul" with lore "&fThis is the default state of||&fevery players where it's||&fmost boring one to play with.|| ||&fBase health: &c❤&f x10|| ||&fAbilities:||&a + Very standard style|| &c- No special abilities||&c - Does not have tier upgrades|| ||&fTier unlocks:||&7 Tier 1: None||&7 Tier 2: None||&7 Tier 3: None" to run [make player execute command "/usesoul default"]
+		else:
+			format slot 10 of player-arg with {soulitem_default} named "&bDefault Soul" to be unstealable
+			
+		#knight
+		if {unlocked_soul_knight%player%} is 1:
+			if {soul_active_knight%player%} is 1:
+				format slot 11 of player-arg with {soulitem_knight1} named "&7Activate Soul of Leinhard" with lore "&fSoullinks to one of best||&fwarrior in history, makes you||&fvery resilient to keep you up||&fat frontline.|| ||&fBase health: &c❤&f x14|| ||&fAbilities:||&a + Very high health pool||&c - Slow stamina regen||&c - You can only deal 50%% damage at Long range|| ||&fTier unlocks:||&7 Tier 1: Deals +2 damage when your weapon has 50+ ammo||&7 Tier 2: Not implemented yet||&7 Tier 3: Not implemented yet" to run [make player execute command "/usesoul knight"]
+			else:
+				format slot 11 of player-arg with {soulitem_knight2} named "&fActivate &bSoul of Reinhard" with lore "&fClick to activate this soul" to run [make player execute command "/knight_activatethesoullikeapro"]
+		else:
+			format slot 11 of player-arg with {soulitem_knight} named "&7Locked soul" with lore "&fClick with 50 Soul Stones to||&funlock this soul." to run [make player execute command "/knight_unlockthesoullikeapro"]
+			
+		#hunter
+		if {unlocked_soul_hunter%player%} is 1:
+			if {soul_active_hunter%player%} is 1:
+				format slot 12 of player-arg with {soulitem_hunter1} named "&7Locked soul" with lore "せつめい" to run [make player execute command "/usesoul hunter"]
+			else:
+				format slot 12 of player-arg with {soulitem_hunter2} named "&fActivate &bSoul of Reinhard" with lore "&fClick to activate this soul" to run [make player execute command "/hunter_unlockthesoullikeapro"]
+		else:
+			format slot 12 of player-arg with {soulitem_hunter} named "&7Locked soul" with lore "&fClick with 50 Soul Stones to||&funlock this soul." to run [make player execute command "/hunter_unlockthesoullikeapro"]
+			
+		#assassin
+		if {unlocked_soul_assa%player%} is 1:
+			if {soul_active_assa%player%} is 1:
+				format slot 13 of player-arg with {soulitem_assa1} named "&7Locked soul" with lore "せつめい" to run [make player execute command "/usesoul assa"]
+			else:
+				format slot 13 of player-arg with {soulitem_assa2} named "&fActivate &bSoul of Reinhard" to run [make player execute command "/assa_unlockthesoullikeapro"]
+		else:
+			format slot 13 of player-arg with {soulitem_assa} named "&7Locked soul" with lore "&fClick with 50 Soul Stones to||&funlock this soul." to run [make player execute command "/assa_unlockthesoullikeapro"]
+		
+		
+		format slot 14 of player-arg with {soulitem_mage} named "&7Not available" with lore "&8Coming soon..." to be unstealable
+		format slot 15 of player-arg with {soulitem_zerk} named "&7Not available" with lore "&8Coming soon..." to be unstealable
+		format slot 16 of player-arg with {soulitem_lich} named "&7Not available" with lore "&8Coming soon..." to be unstealable
+		format slot 17 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 18 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 19 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 20 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 21 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 22 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 23 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 24 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 25 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 26 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		
+command /soulmenuconfirm <player>:
+	trigger:
+		open chest with 3 rows named "&fAre you sure spending points?" to player-arg
+		wait 1 tick
+		format slot 0 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 1 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 2 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 3 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 4 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 5 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 6 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 7 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 8 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 9 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 10 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 11 of player-arg with {soulitem_knight} named "&7Locked soul" to run [make player execute command "/kasdasdsad"]
+		format slot 12 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 13 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 14 of player-arg with {soulitem_apply} named "&aConfirm" with lore "&7Spend 50 soul points||&7to unlock this soul !!" to be unstealable
+		format slot 15 of player-arg with {soulitem_deny} named "&cCancel" with lore "&7Discard the unlock||&7and close this menu." to close
+		format slot 16 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 17 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 18 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 19 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 20 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 21 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 22 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 23 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 24 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 25 of player-arg with {blankpanel} named " " with lore " " to be unstealable
+		format slot 26 of player-arg with {blankpanel} named " " with lore " " to be unstealable

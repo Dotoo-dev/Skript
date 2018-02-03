@@ -1,0 +1,153 @@
+command /sactive <number>:
+	trigger:
+		if arg-1 is 1:
+			set {unlocked_soul_knight%player%} to 1
+			set {soul_active_knight%player%} to 1
+		else:
+			set {unlocked_soul_knight%player%} to 0
+			set {soul_active_knight%player%} to 0
+			
+command /namewallet:
+	trigger:
+		player is op
+		# set name of held item of player to "&fMagical Coin Pouch"
+		set line 1 of lore of held item to "&7&a⛃&f 0"
+		set line 2 of lore of held item to "&7&c⛃&f 0"
+		# set line 3 of lore of held item to "&7&m&l----------------------------------"
+		# set line 4 of lore of held item to "&7Drop key: Put coins into wallet"
+		# set line 5 of lore of held item to "&7Right click: Take a Creeper Coin"
+		# set line 6 of lore of held item to "&7Left click: Take a Moosh Coin"
+		# set line 7 of lore of held item to "&7Shift click: Take 16 Coins"
+		
+on right click holding a golden axe:
+	name of held item contains "Magical Coin Pouch"
+	if player can hold 1 wooden axe:
+		if player is sneaking:
+			set {_temp} to uncolored line 1 of lore of held item
+			replace all "⛃" in {_temp} with ""
+			replace all " " in {_temp} with ""
+			set {_temp2} to {_temp} parsed as number
+			
+			subtract 16 from {_temp2}
+			if {_temp2} is less than 0:
+				send "&7You don't have 16 Creeper Coins in your pouch :("
+				stop
+			set line 1 of lore of held item to "&a⛃&f %{_temp2}%"
+			give 16 of nether brick named "&fCreeper Coin" to player
+			execute console command "mogsound %player% entity.bat.takeoff 1 1.9"
+		else:
+			set {_temp} to uncolored line 1 of lore of held item
+			replace all "⛃" in {_temp} with ""
+			replace all " " in {_temp} with ""
+			set {_temp2} to {_temp} parsed as number
+			
+			subtract 1 from {_temp2}
+			if {_temp2} is less than 0:
+				send "&7You don't have Creeper Coins in your pouch :("
+				stop
+			set line 1 of lore of held item to "&a⛃&f %{_temp2}%"
+			give 1 of nether brick named "&fCreeper Coin" to player
+			execute console command "mogsound %player% entity.bat.takeoff 1 1.9"
+	else:
+		send "&7Your inventory is full !!"
+		
+on left click holding a golden axe:
+	if player can hold 1 wooden axe:
+		if player is sneaking:
+			name of held item contains "Magical Coin Pouch"
+			
+			set {_temp} to uncolored line 2 of lore of held item
+			replace all "⛃" in {_temp} with ""
+			replace all " " in {_temp} with ""
+			set {_temp2} to {_temp} parsed as number
+			
+			subtract 16 from {_temp2}
+			if {_temp2} is less than 0:
+				send "&7You don't have 16 Moosh Coin in your pouch :("
+				stop
+			set line 2 of lore of held item to "&c⛃&f %{_temp2}%"
+			give 16 of nether quartz named "&fMoosh Coin" to player
+			execute console command "mogsound %player% entity.bat.takeoff 1 1.9"
+
+		else:
+			name of held item contains "Magical Coin Pouch"
+			
+			set {_temp} to uncolored line 2 of lore of held item
+			replace all "⛃" in {_temp} with ""
+			replace all " " in {_temp} with ""
+			set {_temp2} to {_temp} parsed as number
+			
+			subtract 1 from {_temp2}
+			if {_temp2} is less than 0:
+				send "&7You don't have Moosh Coin in your pouch :("
+				stop
+			set line 2 of lore of held item to "&c⛃&f %{_temp2}%"
+			give 1 of nether quartz named "&fMoosh Coin" to player
+			execute console command "mogsound %player% entity.bat.takeoff 1 1.9"
+	else:
+		send "&7Your inventory is full !!"
+		
+		
+command /wallet <player> <text> <number>:
+	executable by: console
+	trigger:
+		set {_coins} to arg-3
+		loop all items of player-arg:
+			if name of loop-item contains "Magical Coin Pouch":
+				# broadcast "debug: has pouch"
+				if arg-2 is "cre":
+				
+					set {_temp} to uncolored line 1 of lore of loop-item
+					replace all "⛃" in {_temp} with ""
+					replace all " " in {_temp} with ""
+					set {_temp2} to {_temp} parsed as number
+					
+					
+					add {_coins} to {_temp2}
+					if {_temp2} is more than 10000:
+						set {_coins} to {_temp2}-10000
+						set {_temp2} to 10000
+						set line 1 of lore of loop-item to "&a⛃&f %{_temp2}%"
+					else:
+						set line 1 of lore of loop-item to "&a⛃&f %{_temp2}%"
+						stop
+						
+				if arg-2 is "moo":
+				
+					set {_temp} to uncolored line 2 of lore of loop-item
+					replace all "⛃" in {_temp} with ""
+					replace all " " in {_temp} with ""
+					set {_temp2} to {_temp} parsed as number
+					
+					
+					add {_coins} to {_temp2}
+					if {_temp2} is more than 10000:
+						set {_coins} to {_temp2}-10000
+						set {_temp2} to 10000
+						set line 2 of lore of loop-item to "&c⛃&f %{_temp2}%"
+					else:
+						set line 2 of lore of loop-item to "&c⛃&f %{_temp2}%"
+						stop
+				
+# on right click:
+	# player is op
+	# loop all items of player:
+		# send "test"
+		# if name of loop-item contains "Magical Coin Pouch":
+			# send "test"
+			# execute console command "/wallet %player% moo %{warwincoins}%"
+			# set {_switch} to 1
+			# exit loop
+			# stop
+	# if {_switch} is not set:
+		# give {warwincoins} of nether brick named "&fCreeper Coin" to player
+		
+command /testdayo:
+	trigger:
+		loop all players:
+			loop all items of loop-player:
+				if name of loop-item contains "Magical Coin Pouch":
+					set {_switch%loop-player%} to 1
+					broadcast "財布もってるひと: %loop-player%"
+			if {_switch%loop-player%} is 1:
+				send "財布もってるだろきみ" to loop-player

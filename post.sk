@@ -1,0 +1,9 @@
+# command /post <text>:
+	# trigger:
+		# add 1 to {post_sort_number}
+		# if {post_sort_number} is more than 9999:
+			# set {post_sort_number} to 1
+		# set {post_name_sender%{postnumber}%} to name of player
+		# set {post_item_data%{postnumber}%} to held item of player
+		# set {post_item_amount%{postnumber}%} to amount of held item of player
+		

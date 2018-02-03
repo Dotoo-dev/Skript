@@ -1,0 +1,211 @@
+# command /lege:
+	# trigger:
+		# player is op
+		# broadcast "&f&m&l✫----------------------------------✫"
+		# broadcast "&dピザDotoo has enchanted a weapon with Level III!"
+		# broadcast "&f(このメッセージはただのテストです)"
+		# broadcast "&f&m&l✫----------------------------------✫"
+
+command /sound5 <player>:
+	executable by: console
+	trigger:
+		add 1 to {ench_total%uuid of arg-1%}
+		add 1 to {ench_failed%uuid of arg-1%}
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 8 tick
+		execute console command "mogsound %arg-1% entity.item.break 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.item.break 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.item.break 1.2 0.5"
+		# execute console command "mogsound %arg-1% item.shield.break 2 1"
+		# wait 2 tick
+		# execute console command "mogsound %arg-1% item.shield.break 2 0.8"
+		# wait 2 tick
+		# execute console command "mogsound %arg-1% item.shield.break 2 0.6"
+		# wait 2 tick
+		
+command /sound6 <player>:
+	executable by: console
+	trigger:
+		add 1 to {ench_total%uuid of arg-1%}
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 8 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		
+command /sound7 <player>:
+	executable by: console
+	trigger:
+		add 1 to {ench_total%uuid of arg-1%}
+		message "&7You got &e+2 exp&7 for applying enchant II !!" to player-arg
+		add 2 to {expnew%uuid of player-arg%}
+		set {lvlof%UUID of player-arg%} to rounded {expnew%UUID of player-arg%} ^ (1/1.8)
+		# if {lvlof%UUID of player-arg%} is more than 500:
+			# set the player-arg's level to 500
+			# set {lvlof%UUID of player-arg%} to 500
+		# else:
+		set the player-arg's level to {lvlof%UUID of player-arg%}
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 8 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		
+command /sound8 <player>:
+	executable by: console
+	trigger:
+		add 1 to {ench_total%uuid of arg-1%}
+		add 1 to {ench_legend%uuid of arg-1%}
+		message "&7You got &e+50 exp&7 for applying enchant III !!" to player-arg
+		add 50 to {expnew%uuid of player-arg%}
+		set {lvlof%UUID of player-arg%} to rounded {expnew%UUID of player-arg%} ^ (1/1.8)
+		# if {lvlof%UUID of player-arg%} is more than 500:
+			# set the player-arg's level to 500
+			# set {lvlof%UUID of player-arg%} to 500
+		# else:
+		set the player-arg's level to {lvlof%UUID of player-arg%}
+		broadcast "&7&m&l----------------------------------"
+		broadcast "&d%arg-1% has enchanted a weapon with Level III!"
+		broadcast "&7&m&l----------------------------------"
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 8 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.2"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.experience_orb.pickup 1.2 1.6"
+		wait 5 tick
+		execute console command "mogsound %arg-1% block.portal.travel 2 1.4"
+
+# on damage:
+	# if lore of tool of attacker contains "Life Steal III":
+		# chance of 50%:
+			# heal the attacker by 20 hearts
+			# if {switchofsystem%attacker%} is 1:
+				# send "&7You healed yourself by 20 hearts (Life steal effect) !!" to attacker
+			# execute console command "/execute %attacker% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 1 1 0.01 15"
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+			# wait 2 tick
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.3"
+	# else if lore of tool of attacker contains "Life Steal II":
+		# chance of 50%:
+			# heal the attacker by 5 hearts
+			# if {switchofsystem%attacker%} is 1:
+				# send "&7You healed yourself by 5 hearts (Life steal effect) !!" to attacker
+			# execute console command "/execute %attacker% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 1 1 0.01 15"
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+			# wait 2 tick
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.3"
+	# else if lore of tool of attacker contains "Life Steal I":
+		# chance of 50%:
+			# heal the attacker by 3 hearts
+			# if {switchofsystem%attacker%} is 1:
+				# send "&7You healed yourself by 3 hearts (Life steal effect) !!" to attacker
+			# execute console command "/execute %attacker% ~ ~ ~ /particle happyVillager ~ ~ ~ 1 1 1 0.01 15"
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.2" 
+			# wait 2 tick
+			# execute console command "mogsound %attacker% minecraft:entity.experience_orb.pickup 1.3 1.3"
+	# if lore of tool of victim contains "Protector III":
+		# chance of 30%:
+			# cancel event
+			# if {switchofsystem%victim%} is 1:
+				# send "&7You negated the damage (Protector effect) !!" to victim
+			# execute console command "/execute %victim% ~ ~ ~ /particle magicCrit ~ ~ ~ 1 1 1 1 50"
+			# execute console command "/mogsound %victim% minecraft:block.anvil.place 1.3 0.9"
+	# else if lore of tool of victim contains "Protector II":
+		# chance of 15%:
+			# cancel event
+			# if {switchofsystem%victim%} is 1:
+				# send "&7You negated the damage (Protector effect) !!" to victim
+			# execute console command "/execute %victim% ~ ~ ~ /particle magicCrit ~ ~ ~ 1 1 1 1 50"
+			# execute console command "/mogsound %victim% minecraft:block.anvil.place 1.3 0.9"
+	# else if lore of tool of victim contains "Protector I":
+		# chance of 10%:
+			# cancel event
+			# if {switchofsystem%victim%} is 1:
+				# send "&7You negated the damage (Protector effect) !!" to victim
+			# execute console command "/execute %victim% ~ ~ ~ /particle magicCrit ~ ~ ~ 1 1 1 1 50"
+			# execute console command "/mogsound %victim% minecraft:block.anvil.place 1.3 0.9"
+	# if lore of tool of victim contains "Shadowmeld III":
+		# chance of 20%:
+			# cancel event
+			# send "&7Tye shadow has eaten the source of damage !!" to victim
+			# execute console command "/mogsound %victim% shoot.swingmelee2 2 1.8"
+	# else if lore of tool of victim contains "Shadowmeld II":
+		# chance of 12%:
+			# cancel event
+			# send "&7Tye shadow has eaten the source of damage !!" to victim
+			# execute console command "/mogsound %victim% shoot.swingmelee2 2 1.8"
+	# else if lore of tool of victim contains "Shadowmeld I":
+		# chance of 7%:
+			# cancel event
+			# send "&7Tye shadow has eaten the source of damage !!" to victim
+			# execute console command "/mogsound %victim% shoot.swingmelee2 2 1.8"

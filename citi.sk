@@ -1,0 +1,391 @@
+﻿
+# on damage:
+	# victim is snowman
+	# name of victim contains "&7Trader Hans" or "Auctioneer" or "Daily Stone Present" or "Bank"
+	# cancel event
+
+# on right click:
+	# name of player is "THE_WAR_Admin"
+	# kill the clicked entity
+command /setaucl:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7License"
+		apply slowness 255 to last spawned entity for 9999 days
+		apply regeneration 100 to last spawned entity for 9999 days
+	
+command /setbank:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7$$$ Bank $$$"
+		apply slowness 255 to last spawned entity for 9999 days
+		apply regeneration 100 to last spawned entity for 9999 days
+
+command /setstone:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7Daily Stone Present"
+		apply slowness 255 to last spawned entity for 999 days
+		apply regeneration 100 to last spawned entity for 999 days
+command /sethans:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7Trader Hans"
+		apply slowness 255 to last spawned entity for 999 days
+		apply regeneration 100 to last spawned entity for 999 days
+		
+command /setauc1:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7Auctioneer"
+		apply slowness 255 to last spawned entity for 999 days
+		apply regeneration 100 to last spawned entity for 999 days
+		
+command /setauc2:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7$ -> Coin"
+		apply slowness 255 to last spawned entity for 999 days
+		apply regeneration 100 to last spawned entity for 999 days
+		
+command /setauc3:
+	trigger:
+		player is op
+		spawn 1 snowman at location of player
+		set name of last spawned entity to "&7Coin -> $"
+		apply slowness 255 to last spawned entity for 999 days
+		apply regeneration 100 to last spawned entity for 999 days
+
+
+
+# every 1 minutes:
+
+	# add 1 to {hanstime}
+	
+	# if {hanstime} is 60:
+		# set {hans} to random integer between 1 and 4
+		# set {hanstime} to 0
+		
+		# loop all players:
+			# set {switch%loop-player%tradedwithhans} to 0
+
+options:
+	reqfood: 12
+	reqmelon: 12
+	
+on npc right click:
+	if citizen is 45:
+		# send "test"
+		execute console command "bankdayo %player%"
+on npc right click:
+	if citizen is 46:
+		# send "test"
+		execute console command "bankdayo %player%"
+on npc right click:
+	if citizen is 54:
+		# send "test"
+		execute console command "bankdayo %player%"
+on npc right click:
+	if citizen is 55:
+		# send "test"
+		execute console command "bankdayo %player%"
+	
+# on right click on snowman:
+	# cancel event
+on npc right click:
+	if citizen is 47:
+		message "&7[Lv215] &fAS Giver: Yo! I am giving you Ancient Stones every 18 hours!" to player
+		# broadcast "%player% clicked hans"
+		
+		if difference between {newswitch%player%tradedstone} and now is smaller than 18 hour:
+			message "&7[Lv215] &fAS Giver: So please come back, tomorrow perhaps?" to player
+			stop
+		else:
+			if level of player is more than 900:
+				if player can hold 11 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 11 Ancient Stone(s) !!" to player
+					give 11 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 850:
+				if player can hold 10 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 10 Ancient Stone(s) !!" to player
+					give 10 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 800:
+				if player can hold 9 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 9 Ancient Stone(s) !!" to player
+					give 9 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 750:
+				if player can hold 8 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 8 Ancient Stone(s) !!" to player
+					give 8 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 700:
+				if player can hold 7 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 7 Ancient Stone(s) !!" to player
+					give 7 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 650:
+				if player can hold 6 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 6 Ancient Stone(s) !!" to player
+					give 6 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 600:
+				if player can hold 6 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 6 Ancient Stone(s) !!" to player
+					give 6 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 500:
+				if player can hold 6 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 6 Ancient Stone(s) !!" to player
+					give 6 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 400:
+				if player can hold 5 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 5 Ancient Stone(s) !!" to player
+					give 5 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 300:
+				if player can hold 4 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 4 Ancient Stone(s) !!" to player
+					give 4 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 200:
+				if player can hold 3 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 3 Ancient Stone(s) !!" to player
+					give 3 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else if level of player is more than 100:
+				if player can hold 2 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 2 Ancient Stone(s) !!" to player
+					give 2 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+			else:
+				if player can hold 1 409:
+					message "&7[Lv215] &fAS Giver: Here's your daily reward!" to player
+					message "&7You got &f 1 Ancient Stone(s) !!" to player
+					give 1 409 named "&fAncient Stone" to player
+					set {newswitch%player%tradedstone} to now
+				else:
+					message "&7[Lv215] &fAS Giver: But your inventory is full! Will you come back once you made some space?" to player
+on npc right click:
+	if citizen is 48:
+		cancel event
+		message "&7[Lv150] &fHans: Hi, I'm Hans! I am trading &cfoods &ffor &cToolboxes!" to player
+		# broadcast "%player% clicked hans"
+		
+		if difference between {newswitch%player%tradedwithhans} and now is smaller than 1 hour:
+			message "&7[Lv150] &fHans: But I have enough foods already!" to player
+			message "&7[Lv150] &fHans: Please come back soon!" to player
+			stop
+		if {hans} is not set:
+			set {hans} to 1
+		
+		if {hans} is 1:
+			message "&7[Lv150] &fHans: I need {@reqfood} &cGolden Carrots &7at this moment." to player
+			if player has {@reqfood} golden carrots:
+				remove {@reqfood} golden carrots from player
+				give 10 iron ingot named "&fToolbox" to player
+				message "&7You've traded {@reqfood} &cGolden Carrots &7to &f10 Toolboxes&7 !!" to player
+				message "&7You got &e+5 exp&7 for trading with Hans!!" to player
+				set {newswitch%player%tradedwithhans} to now
+				add 5 to {expnew%uuid of player%}
+				set {lvlof%UUID of player%} to rounded {expnew%UUID of player%} ^ (1/1.8)
+				# if {lvlof%UUID of player%} is more than 500:
+					# set the player's level to 500
+					# set {lvlof%UUID of player%} to 500
+				# else:
+				set the player's level to {lvlof%UUID of player%}
+				set {hans} to 2
+				
+		else if {hans} is 2:
+			message "&7[Lv150] &fHans: I need {@reqfood} &cBaked Potatoes &7at this moment." to player
+			if player has {@reqfood} Baked Potatoes:
+				remove {@reqfood} Baked Potatoes from player
+				give 10 iron ingot named "&fToolbox" to player
+				message "&7You've traded {@reqfood} &cBaked Potatoes &7to &f10 Toolboxes&7 !!" to player
+				message "&7You got &e+5 exp&7 for trading with Hans!!" to player
+				set {newswitch%player%tradedwithhans} to now
+				add 5 to {expnew%uuid of player%}
+				set {lvlof%UUID of player%} to rounded {expnew%UUID of player%} ^ (1/1.8)
+				# if {lvlof%UUID of player%} is more than 500:
+					# set the player's level to 500
+					# set {lvlof%UUID of player%} to 500
+				# else:
+				set the player's level to {lvlof%UUID of player%}
+				set {hans} to 3
+				
+		else if {hans} is 3:
+			message "&7[Lv150] &fHans: I need{@reqfood} &cWheats &7at this moment." to player
+			if player has {@reqfood} Wheat:
+				remove {@reqfood} Wheat from player
+				give 10 iron ingot named "&fToolbox" to player
+				message "&7You've traded {@reqfood} &cWheats to &f10 Toolboxes&7 !!" to player
+				message "&7You got &e+5 exp&7 for trading with Hans!!" to player
+				set {newswitch%player%tradedwithhans} to now
+				add 5 to {expnew%uuid of player%}
+				set {lvlof%UUID of player%} to rounded {expnew%UUID of player%} ^ (1/1.8)
+				# if {lvlof%UUID of player%} is more than 500:
+					# set the player's level to 500
+					# set {lvlof%UUID of player%} to 500
+				# else:
+				set the player's level to {lvlof%UUID of player%}
+				set {hans} to 4
+				
+		else if {hans} is 4:
+			message "&7[Lv150] &fHans: I need {@reqmelon} &cMelons &7at this moment." to player
+			if player has {@reqmelon} Melon slice:
+				remove {@reqmelon} Melon slice from player
+				give 10 iron ingot named "&fToolbox" to player
+				message "&7You've traded {@reqmelon} &cMelons &7to &f10 Toolboxes&7 !!" to player
+				message "&7You got &e+5 exp&7 for trading with Hans!!" to player
+				set {newswitch%player%tradedwithhans} to now
+				add 5 to {expnew%uuid of player%}
+				set {lvlof%UUID of player%} to rounded {expnew%UUID of player%} ^ (1/1.8)
+				# if {lvlof%UUID of player%} is more than 500:
+					# set the player's level to 500
+					# set {lvlof%UUID of player%} to 500
+				# else:
+				set the player's level to {lvlof%UUID of player%}
+				set {hans} to 1
+				
+# on right click on sign:
+	# if line 3 of clicked block contains "サーバーのみんなに":
+		# if difference between {hansbroadcastCD} and now is less than 1 minute:
+			# stop
+		# else:
+			# broadcast "<light grey>[Lv%level of player%]<white> %player%: &aあと%(60 - {hanstime})%分でHans更新の時間だよ～！ CITY の前のゆきだるまに野菜もっていくとToolboxが10個もらえるよ～！"
+			# set {hansbroadcastCD} to now
+				
+# on right click on snowman:
+	# if clicked entity's name is "&7Coin -> $":
+	
+		# cancel event
+		# if {lvlof%player%} is less than 10:
+			# message "&7You can't use this NPC until &fLevel 10 &7!!"
+			# stop
+		# if player is not sneaking:
+			# if player has 1 nether star:
+				# remove 1 of nether star from player
+				# execute console command "eco give %player% 1"
+				# execute player command "money"
+				
+			# else:
+				# if player has 16 nether brick named "&fCreeper Coin":
+					# if player has 16 nether quartz item named "&fMoosh Coin":
+						# remove 16 nether brick from player
+						# remove 16 nether quartz item from player
+						# execute console command "eco give %player% 1"
+						# execute player command "money"
+				# else:
+					# message "&7[Lv12] &fCoin Guy: Sorry sir, but you don't have enough coin..." to player
+					# execute player command "money"
+		# else if player is sneaking:
+			# if player has 10 nether star:
+				# remove 10 of nether star from player
+				# execute console command "eco give %player% 10"
+				# execute player command "money"
+				
+			# else:
+				# if player has 160 nether brick named "&fCreeper Coin":
+					# if player has 160 nether quartz item named "&fMoosh Coin":
+						# remove 160 nether brick from player
+						# remove 160 nether quartz item from player
+						# execute console command "eco give %player% 10"
+						# execute player command "money"
+				# else:
+					# message "&7[Lv12] &fCoin Guy: Sorry sir, but you don't have enough coin..." to player
+					# execute player command "money"
+		# else:
+			# message "&7[Lv12] &fCoin Guy: Sorry sir, but you don't have enough money..." to player
+			# execute player command "money"
+			
+# on right click on snowman:
+	# if clicked entity's name is "&7$ -> Coin":
+		# cancel event
+		# if {lvlof%player%} is less than 10:
+			# message "&7You can't use this NPC until &fLevel 10 &7!!"
+			# stop
+		# if player is not sneaking:
+			# if player can hold a nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins":
+		
+				# if player's money is more than 0:
+					# subtract 1 from player's balance
+					# execute console command "eco take %player% 1"
+					# give 1 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+					
+					# message "&7[Lv22] &fCoin Girl: Here's your Diamond Coin!" to player
+					# execute player command "money"
+				# else:
+					# message "&7[Lv22] &fCoin Girl: You got no enough coin in your account :(" to player
+					# execute player command "money"
+			# else:
+				# message "&7[Lv22] &fCoin Girl: You don't have enough space in inventory :(" to player
+
+		# else if player is sneaking:
+			# if player can hold 10 nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins":
+		
+				# if player's money is more than 9:
+					# subtract 1 from player's balance
+					# execute console command "eco take %player% 10"
+					# give 10 of nether star named "&fDiamond Coin" with lore "&7Right click to get 16 of||&7Creeper and Moosh coins" to player
+					
+					# message "&7[Lv22] &fCoin Girl: Here's your 10 Diamond Coins!" to player
+					# execute player command "money"
+				# else:
+					# message "&7[Lv22] &fCoin Girl: You got no enough coins in your account :(" to player
+					# execute player command "money"
+			# else:
+				# message "&7[Lv22] &fCoin Girl: You don't have enough space in inventory :(" to player
+			
+on npc right click:
+	if citizen is 44:
+		cancel event
+		if {lvlof%player%} is less than 10:
+			message "&7You can't use this NPC until &fLevel 10 &7!!"
+			cancel event
+			stop
+		execute player command "ah"

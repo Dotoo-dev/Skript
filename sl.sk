@@ -1,0 +1,28 @@
+options:
+	itemname: &aCivilian Soul
+	lore1: &fBase Health: &c❤ &fx10
+	lore2: &7&m&l----------------------
+	lore3: &7This is default Soul that
+	lore4: &7does nothing special but
+	lore5: &7also confortable for everybody.
+	lore6: &7&m&l----------------------
+	# lore7: 
+	# lore8: 
+	# lore9: 
+	# lore10: 
+	
+command /setall:
+	trigger:
+		player is op
+		set name of held item to colored "{@itemname}"
+		set line 1 of lore of held item to colored "{@lore1}"
+		# set line 2 of lore of held item to colored "{@lore2}"
+		# set line 3 of lore of held item to colored "{@lore3}"
+		# set line 4 of lore of held item to colored "{@lore4}"
+		# set line 5 of lore of held item to colored "{@lore5}"
+		# set line 6 of lore of held item to colored "{@lore6}"
+		# set line 7 of lore of held item to colored "{@lore7}"
+		# set line 8 of lore of held item to colored "{@lore8}"
+		# set line 9 of lore of held item to colored "{@lore9}"
+		# set line 10 of lore of held item to colored "{@lore10"
+		delete line 1 of lore of held item of player

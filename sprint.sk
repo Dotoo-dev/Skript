@@ -1,0 +1,22 @@
+
+on hunger bar change:
+	cancel event
+
+every 15 tick:
+	loop all players:
+		if hunger bar of loop-player is less than 0.5:
+			set hunger bar of loop-player to 10
+			apply slowness 1 to loop-player for 1 seconds
+		if difference between {magicalshoesused%loop-player%} and now is less than 10 second:
+			add 0.5 to the hunger bar of the loop-player
+		# else if loop-player is in world "spawn":
+			# add 0.5 to the hunger bar of the loop-player
+		else if loop-player is sprinting:
+			subtract 0.5 from the hunger bar of the loop-player
+			set {sprinted%loop-player%} to now
+		else:
+			if lore of tool of loop-player contains "Reglowth":
+				add 0.5 to the hunger bar of the loop-player
+			else:
+				difference between {sprinted%loop-player%} and now is more than 2.5 second
+				add 0.5 to the hunger bar of the loop-player

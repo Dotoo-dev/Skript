@@ -1,0 +1,23 @@
+
+every 2 seconds:
+	loop all players:
+		if {wounded%loop-player%} is less than 0:
+			set {wounded%loop-player%} to 0
+		
+		if {wounded%loop-player%} is more than 0:
+			subtract 1 from {wounded%loop-player%}
+		
+		else if {wounded%loop-player%} is 0:
+			if difference between {magicalshoesused%loop-player%} and now is less than 10 second:
+				heal loop-player by 4 hearts
+			else:
+				heal loop-player by 2 hearts
+
+on damage:
+	victim is player
+	if lore of tool of victim contains "Reglowth":
+		set {wounded%victim%} to 0
+	else:
+		set {wounded%victim%} to 2
+	# if damage was caused by fire, burning or melting:
+		# set {wounded%victim%} to 2

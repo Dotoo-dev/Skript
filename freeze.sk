@@ -1,0 +1,58 @@
+#
+# Freeze 1.0.0
+# Player freeze script made by oskar3123
+#
+# /freeze <player> | toggles freeze state on the specified player
+#
+
+variables:
+	{freeze.maincolor} = "&3"
+	{freeze.seccolor} = "&b"
+	{freeze.errorcolor} = "&c"
+	{freeze.%player%.value} = false
+
+on any movement:
+	{freeze.%player%.value}
+	cancel the event
+	set {_checktime} to now
+	subtract 2 seconds from {_checktime}
+	{freeze.%player%.lastused} is less than {_checktime}
+	message "%{freeze.errorcolor}%You are frozen and cannot move"
+	set {freeze.%player%.lastused} to now
+
+command /freeze [<player>]:
+	trigger:
+		set {_prefix} to "%{freeze.maincolor}%&lFreeze%{freeze.seccolor}%&l> %{freeze.maincolor}%"
+		arg 1 is not set:
+			message "%{freeze.errorcolor}%Wrong syntax! Usage: /freeze <player>"
+			stop
+		{freeze.%arg 1%.value} is not set:
+			set {freeze.%arg 1%.value} to false
+		player is arg 1:
+			player does not have permission "freeze.freeze":
+				message "%{freeze.errorcolor}%You don't have permission to do that"
+				stop
+			# message "%{freeze.errorcolor}%You can't freeze yourself"
+			# stop
+		not {freeze.%arg 1%.value}:
+			player does not have permission "freeze.freeze":
+			player is not op:
+				message "%{freeze.errorcolor}%You don't have permission to do that"
+				stop
+			set {freeze.%arg 1%.value} to true
+			set {_templastused} to now
+			subtract 1 hour from {_templastused}
+			set {freeze.%arg 1%.lastused} to {_templastused}
+			message "%{_prefix}%You froze %{freeze.seccolor}%%arg 1%"
+			message "%{_prefix}%You have been frozen by %{freeze.seccolor}%%player%" to arg 1
+			stop
+		player does not have permission "freeze.unfreeze":
+		player is not op:
+			message "%{freeze.errorcolor}%You don't have permission to do that"
+			stop
+		set {freeze.%arg 1%.value} to false
+		set {_templastused} to now
+		subtract 1 hour from {_templastused}
+		set {freeze.%arg 1%.lastused} to {_templastused}
+		message "%{_prefix}%You unfroze %{freeze.seccolor}%%arg 1%"
+		message "%{_prefix}%You have been unfrozen by %{freeze.seccolor}%%player%" to arg 1

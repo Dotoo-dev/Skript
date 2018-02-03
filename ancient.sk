@@ -1,0 +1,183 @@
+command /tomottieffectdayoooo <player>:
+	# executable by: console
+	trigger:
+		set {_animation.height.%player-arg's uuid%} to 0.0
+		#set {_animation.ycoord.%player-arg's uuid%} to y coord of event-location
+		loop 10 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.3"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.1 seconds
+		loop 10 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.6"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.1 seconds
+		loop 10 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.84"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.1 seconds
+		wait 0.5 seconds
+		execute console command "/execute %player-arg% ~ ~ ~ /particle largeexplode %x coord of event-location% %y coord of event-location + 2.8% %z coord of event-location% 1 0 1 0 10"
+		execute console command "mogsound %player-arg% aafutbeam 1 2"
+		execute console command "mogsound %player% minecraft:block.portal.travel 1.3 1.5"
+		execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + 3% %z coord of event-location% 0 0 0 0.1 100"
+		
+command /tomottieffectdayoooo11 <player>:
+	# executable by: console
+	trigger:
+		set {_animation.height.%player-arg's uuid%} to 0.0
+		#set {_animation.ycoord.%player-arg's uuid%} to y coord of event-location
+		loop 5 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.7"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.1 seconds
+		loop 5 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.3"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.1 seconds
+		wait 0.2 seconds
+		execute console command "/execute %player-arg% ~ ~ ~ /particle largesmoke %x coord of event-location% %y coord of event-location + 2.8% %z coord of event-location% 1 0 1 0 10"
+		execute console command "mogsound %player-arg% aafutbeam 1 2"
+		execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + 3% %z coord of event-location% 0 0 0 0.1 100"
+		
+command /tomottieffectdayoooo22 <player>:
+	# executable by: console
+	trigger:
+		set {_animation.height.%player-arg's uuid%} to 0.0
+		#set {_animation.ycoord.%player-arg's uuid%} to y coord of event-location
+		loop 5 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.7"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.05 seconds
+		wait 0.7 seconds
+		execute console command "/execute %player-arg% ~ ~ ~ /particle largesmoke %x coord of event-location% %y coord of event-location + 2.8% %z coord of event-location% 1 0 1 0 10"
+		execute console command "/execute %player-arg% ~ ~ ~ /particle crit %x coord of event-location% %y coord of event-location + 3% %z coord of event-location% 0 0 0 0.1 100"
+		execute console command "mogsound %arg-1% entity.item.break 1.2 1.1"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.item.break 1.2 0.8"
+		wait 2 tick
+		execute console command "mogsound %arg-1% entity.item.break 1.2 0.5"
+		
+command /tomottieffectdayoooo33 <player>:
+	# executable by: console
+	trigger:
+		set {_animation.height.%player-arg's uuid%} to 0.0
+		#set {_animation.ycoord.%player-arg's uuid%} to y coord of event-location
+		loop 5 times:
+			execute console command "mogsound %player-arg% aafutbeam 0.5 1.7"
+			execute console command "/execute %player-arg% ~ ~ ~ /particle flame %x coord of event-location% %y coord of event-location + {_animation.height.%player-arg's uuid%}% %z coord of event-location% 0 0 0 0 30"
+			add 0.1 to {_animation.height.%player-arg's uuid%}
+			wait 0.05 seconds
+		wait 0.7 seconds
+		execute console command "/execute %player-arg% ~ ~ ~ /particle largesmoke %x coord of event-location% %y coord of event-location + 2.8% %z coord of event-location% 1 0 1 0 10"
+		execute console command "/execute %player-arg% ~ ~ ~ /particle crit %x coord of event-location% %y coord of event-location + 3% %z coord of event-location% 0 0 0 0.1 100"
+		
+command /ae:
+	trigger:
+		set {disAEallow%player%} to 1
+		send "&7You can disenchant the ancient enchant now."
+		wait 30 seconds
+		set {disAEallow%player%} to 0
+		send "&7Disabled the ancient disenchant."
+		
+on right click on end portal frame:
+	if slot 40 of player is not air or golden axe or diamond pickaxe:
+		send "&7Please change your offhand to offhand item or air."
+		stop
+	if player is holding a diamond axe:
+		# if player has 7 of 409:
+		if line 3 of lore of held item of player exists:
+			if {disAEallow%player%} is 1:
+				set {_r} to random integer between 1 and 7
+				if {_r} is 1 or 2 or 3:
+					if player has a ghast tear:
+						remove 1 of ghast tear from player
+						send "&7My &6Ancient Crystal &7has began shining and broke to pieces... It was SO close..."
+						execute player command "/tomottieffectdayoooo33 %player%"
+						stop
+					else:
+						remove held item from player
+						send "&7That's why I had to stop... I destroyed my weapons for nothing."
+						execute player command "/tomottieffectdayoooo22 %player%"
+						stop
+				else:
+					delete line 3 of lore of held item of player
+					send "&7You successfully disenchanted... This time."
+					execute player command "/tomottieffectdayoooo11 %player%"
+					stop
+			else:
+				send "&7Right clicking the Chaos Crystal with Ancient-enchanted weapon &cDESTROYS YOUR WEAPON AT 25%% CHANCE&7 or removes your weapon's ancient enchant. If you are &cABSOLUTELY &7sure you want to try disenchant, type &f/ae &7and right click the crystal within 30 seconds."
+				stop
+			
+		else if line 1 of lore of held item of player contains "Warlord" or "Monarch" or "Emperor":
+			if line 2 of lore of held item contains "III":
+				if player has 30 of 409:
+					remove 30 of 409 from player
+				else:
+					send "&7You don't have enough &fAncient Stone&7 to perform the ancient enchant (Requires 30 stones because the weapon has Legendary mod and Level 3 Enchantment)."
+					stop
+			else:
+				if player has 3 of 409:
+					remove 3 of 409 from player
+				else:
+					send "&7You don't have enough &fAncient Stone&7 to perform the ancient enchant (Requires 3 stones )."
+					stop
+		else:
+			if player has 3 of 409:
+				remove 3 of 409 from player
+			else:
+				send "&7You don't have enough &fAncient Stone&7 to perform the ancient enchant (Requires 3 stones )."
+				stop
+		
+		set {_n} to random integer between 1 and 11
+		if {_n} is 1:
+			set line 3 of lore of held item to "&9AE: Mana Efficiency"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Mana Efficiency enchant !!"
+		if {_n} is 2:
+			set line 3 of lore of held item to "&9AE: Bloodcraze"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Bloodcraze enchant !!"
+		if {_n} is 3:
+			set line 3 of lore of held item to "&9AE: Joy of Wealth"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Joy of Wealth enchant !!"
+		if {_n} is 4:
+			set line 3 of lore of held item to "&9AE: Reglowth"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Reglowth enchant !!"
+		if {_n} is 5:
+			set line 3 of lore of held item to "&9AE: Mastercrafted"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Mastercrafted enchant !!"
+		if {_n} is 6:
+			set line 3 of lore of held item to "&9AE: Fleet Footed"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Fleet Footed enchant !!"
+		if {_n} is 7:
+			set line 3 of lore of held item to "&9AE: Wheel of Fortune"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Wheel of Fortune enchant !!"
+		if {_n} is 8:
+			set line 3 of lore of held item to "&9AE: Amplify Magic"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Amplify Magic enchant !!"
+		if {_n} is 9:
+			set line 3 of lore of held item to "&9AE: Everlasting Life"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Everlasting Life enchant !!"
+		if {_n} is 10:
+			set line 3 of lore of held item to "&9AE: Indomitable Spirit"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Indomitable Spirit enchant !!"
+		if {_n} is 11:
+			set line 3 of lore of held item to "&9AE: Sudden Death"
+			execute player command "/tomottieffectdayoooo %player%"
+			send "&7Your weapon got &9Sudden Death enchant !!"
+	else:
+		send "&7You have to hold a primary or secondary weapon and have &f3 Ancient Stone&7 in inventory to perform the ancient enchant."

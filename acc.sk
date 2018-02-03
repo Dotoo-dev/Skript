@@ -1,0 +1,11 @@
+command /accname <text> <number>:
+	usage: /accname <name> <item level>
+	trigger:
+		player is op
+		set name of held item to colored "%arg-1%"
+		set line 1 of lore to "&fItem Level: %arg-2%"
+		
+command acclore <number> <text>:
+	trigger:
+		player is op
+		set line arg-1 of held item of player to 

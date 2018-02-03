@@ -1,0 +1,205 @@
+﻿# on region enter:
+	# wait 1 tick
+	# if "%region at player%" contains "warp_war":
+		# broadcast "test"
+	# execute player command "/b toggle"
+		
+# on portal:
+	# cancel event
+	
+on region enter:
+	wait 1 tick
+	set {manacollect%player%} to now
+	
+	
+	
+	if "%region at player%" contains "warp_bk_1v1":
+		execute console command "warp shop %player%"
+		wait 2 tick
+		execute console command "warp shop %player%"
+	
+	if "%region at player%" contains "warp_1v1":
+		execute console command "warp mapselect %player%"
+		stop
+					
+	if "%region at player%" contains "warp_hunter":
+		execute console command "warp kihuhunter %player%"
+	if "%region at player%" contains "warp_kaizoku":
+		execute console command "warp kaizoku %player%"
+	if "%region at player%" contains "warp_magic":
+		execute console command "warp kihumagic %player%"
+	if "%region at player%" contains "warp_line":
+		execute console command "warp kihuline1 %player%"
+	if "%region at player%" contains "warp_valkyrie":
+		execute console command "warp warp_valkyrie %player%"
+		
+		
+	
+	if "%region at player%" contains "warp_bk_hunter":
+		execute console command "warp kihuback %player%"
+	if "%region at player%" contains "warp_bk_kaizoku":
+		execute console command "warp kihuback %player%"
+	if "%region at player%" contains "warp_bk_magic":
+		execute console command "warp kihuback %player%"
+	if "%region at player%" contains "warp_bk_line":
+		execute console command "warp kihuback %player%"
+	if "%region at player%" contains "warp_bk_valkyrie":
+		execute console command "warp kihuback %player%"
+					
+	# else if x coordinate of player is greater than 56:
+		# if x coordinate of player is smaller than 61:
+			
+					
+	if "%region at player%" contains "warp_city":
+		if {lvlof%player%} is less than 50:
+			message "&7You can't go to CITY until &fLevel 50 &7!!"
+			stop
+		if difference between {cityspawncamper%player%} and now is less than 1 minutes:
+			send "&7You are not allowed entiering this portal for 1 minutes because of &cattacmping of spawn camping&7." to player
+			stop
+		execute console command "teleporthouse %player%"
+		set {deadimmune%player%} to now
+		wait 1 second
+		execute console command "scoreboard teams join orange %player%"
+		execute console command "/settabname %player% city"
+		# set {namecolor%player%} to "&6"
+		# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+		if player is in world "city":
+			stop
+		else:
+			execute console command "warp city %player%"
+			set {deadimmune%player%} to now
+			
+	if "%region at player%" contains "warp_hunt":
+		if {lvlof%player%} is less than 50:
+			message "&7You can't go to HUNT until &fLevel 50 &7!!"
+			stop
+		execute console command "/warp huntspawn %player%"
+		wait 1 tick
+		set {_r1} to random integer between 1 and 5
+		set {_r2} to random integer between 1 and 30
+		if {inhuntteam1%player%} is 1:
+			execute console command "/warp 1hunt%{_r1}% %player%"
+			execute console command "/scoreboard teams join Hunt_1 %player%"
+		else if {inhuntteam2%player%} is 1:
+			execute console command "/warp 2hunt%{_r1}% %player%"
+			execute console command "/scoreboard teams join Hunt_2 %player%"
+		else:
+			execute console command "/warp huntr%{_r2}% %player%"
+			execute console command "/scoreboard teams join Hunt_alone %player%"
+		execute console command "/settabname %player% hunt"
+		set {moribeaconclicked%player%} to now
+					
+	# else if {countdown} is less than 30:
+		# if {war.teamnumber.creeper} is not 0:
+			# if {war.teamnumber.moosh} is not 0:
+		# send "&7You can't join the WAR when the game is about to end."
+		# stop
+	# else if {currentmap.war} is "20":
+		# add 1 to {war.teamnumber.creeper}
+		# set {war.inteam.creeper.%player%} to 1
+		# set {war.inteam.moosh.%player%} to 0
+		# execute console command "/scoreboard teams join Creeper %player%"
+		# set {namecolor%player%} to "&a"
+		# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+		# execute console command "/settabname %player% cwar"
+		
+		# message "&a████████"
+		# message "&a████████"
+		# message "&a█&8██&a██&8██&a█   &7You've joined"
+		# message "&a█&8██&a██&8██&a█   &aCreeper &7Team!"
+		# message "&a███&8██&a███"
+		# message "&a██&8████&a██"
+		# message "&a██&8█&a██&8█&a██"
+	if "%region at player%" contains "warp_war":
+		if {war.teamnumber.moosh} is equal to {war.teamnumber.creeper}:
+			set {_rand} to random integer between 1 and 2
+			if {_rand} is 1:
+				add 1 to {war.teamnumber.moosh}
+				set {war.inteam.creeper.%player%} to 0
+				set {war.inteam.moosh.%player%} to 1
+				execute console command "/scoreboard teams join Moosh %player%"
+				
+				execute console command "/settabname %player% mwar"
+				# set {namecolor%player%} to "&c"
+				# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+				
+				message "&4████&f██&7██&4██"
+				message "&4████&f███&4███"
+				message "&4█&8██&4█&f██&4█&8██&4█   &7You've joined"
+				message "&4█&8██&4█&f█&4██&8██&4█   &cMoosh &7Team!"
+				message "&4██████████"
+				message "&4███&f████&4███"
+				message "&4██&f█&8█&7██&8█&f█&4██"
+				message "&4██&f█&7████&f█&4██"
+			else if {_rand} is 2:
+				add 1 to {war.teamnumber.creeper}
+				set {war.inteam.creeper.%player%} to 1
+				set {war.inteam.moosh.%player%} to 0
+				execute console command "/scoreboard teams join Creeper %player%"
+				execute console command "/settabname %player% cwar"
+				# set {namecolor%player%} to "&a"
+				# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+				
+				message "&a████████"
+				message "&a████████"
+				message "&a█&8██&a██&8██&a█   &7You've joined"
+				message "&a█&8██&a██&8██&a█   &aCreeper &7Team!"
+				message "&a███&8██&a███"
+				message "&a██&8████&a██"
+				message "&a██&8█&a██&8█&a██"
+		else if {war.teamnumber.creeper} is greater than {war.teamnumber.moosh}:
+			add 1 to {war.teamnumber.moosh}
+			set {war.inteam.creeper.%player%} to 0
+			set {war.inteam.moosh.%player%} to 1
+			execute console command "/scoreboard teams join Moosh %player%"
+			execute console command "/settabname %player% mwar"
+			# set {namecolor%player%} to "&c"
+			# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+			
+			message "&4████&f██&7██&4██"
+			message "&4████&f███&4███"
+			message "&4█&8██&4█&f██&4█&8██&4█   &7You've joined"
+			message "&4█&8██&4█&f█&4██&8██&4█   &cMoosh &7Team!"
+			message "&4██████████"
+			message "&4███&f████&4███"
+			message "&4██&f█&8█&7██&8█&f█&4██"
+			message "&4██&f█&7████&f█&4██"
+		else if {war.teamnumber.moosh} is greater than {war.teamnumber.creeper}:
+			add 1 to {war.teamnumber.creeper}
+			set {war.inteam.creeper.%player%} to 1
+			set {war.inteam.moosh.%player%} to 0
+			execute console command "/scoreboard teams join Creeper %player%"
+			execute console command "/settabname %player% cwar"
+			# set {namecolor%player%} to "&a"
+			# set player tab name to " &7[Lv%{lvlof%player%}%] %{namecolor%player%}%%player%"
+			
+			message "&a████████"
+			message "&a████████"
+			message "&a█&8██&a██&8██&a█   &7You've joined"
+			message "&a█&8██&a██&8██&a█   &aCreeper &7Team!"
+			message "&a███&8██&a███"
+			message "&a██&8████&a██"
+			message "&a██&8█&a██&8█&a██"
+		set level progress of the player to 0.9999
+		
+		set {deathstreak%player%} to 0
+		set {noitemswap%player%} to now
+		set {deadimmune%player%} to now
+		set {wardead%player%} to 0
+		set {warkill%player%} to 0
+
+		if {war.inteam.creeper.%player%} is 1:
+			execute console command "/warp c%{currentmap.war}% %player%"
+			execute console command "mogarmor %player% 100 255 100"
+		else if {war.inteam.moosh.%player%} is 1:
+			execute console command "/warp m%{currentmap.war}% %player%"
+			execute console command "mogarmor %player% 255 100 100"
+		
+		make player execute command "/thisisacommandforsettingtab"
+		
+	
+	wait 1 tick
+	if {speed%player%} is 1:
+		execute console command "speed walk 1.75 %player%"
+	set hunger bar of player to 10

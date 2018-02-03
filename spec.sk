@@ -1,0 +1,37 @@
+command /spec:
+	trigger:
+		if player is in world "syoteru" or "city":
+			send "&7You can't use /spec command while in 1v1 or CITY."
+			stop
+		if {war.inteam.creeper.%player%} is 1:
+			send "&7You can't go to spectator mode while in WAR." to player
+			stop
+		if {war.inteam.moosh.%player%} is 1:
+			send "&7You can't go to spectator mode while in WAR." to player
+			stop
+		if {togglespec%player%} is not set:
+			set {togglespec%player%} to 1
+		if {togglespec%player%} is 1:
+			set player's gamemode to spectator
+			set {spectatemode%player%} to 1
+			set {togglespec%player%} to 0
+			send "&7Spectator mode - On" to player
+			execute console command "warp c%{currentmap.war}% %player%"
+		else:
+			set player's gamemode to survival
+			set {spectatemode%player%} to 0
+			set {togglespec%player%} to 1
+			send "&7Spectator mode - Off" to player
+			execute console command "warp shop %player%"
+
+every 3 second:
+	loop all players:
+		if {spectatemode%loop-player%} is 1:
+			if loop-player is in world "spawn" or "city":
+			
+				set loop-player's gamemode to survival
+				set {spectatemode%loop-player%} to 0
+				set {togglespec%loop-player%} to 1
+				send "&7Spectator mode - Off" to loop-player
+				execute console command "warp shop %loop-player%"
+		
