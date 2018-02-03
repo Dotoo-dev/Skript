@@ -3,9 +3,9 @@
 #		  Here you can configure the Skript.	    	#
 # ##################################################### #
 
-options:
-	notfound: &fUnknown command. Type ""/help"" for help.
-	permission: AntiPlugins.bypass
+# options:
+	# notfound: &fUnknown command. Type ""/help"" for help.
+	# permission: AntiPlugins.bypass
 
 	
 	
