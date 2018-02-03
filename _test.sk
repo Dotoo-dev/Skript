@@ -1,12 +1,4 @@
-#test
 
-# on right click:
-	# player is holding air
-	# distance between player and targeted entity is less than 2
-	# if targeted entity is riding:
-		# send "&7You can't ride that :("
-		# stop
-	# make player ride targeted entity
 
 on right click:
 	player is holding a paper
